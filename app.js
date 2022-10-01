@@ -18,7 +18,7 @@ try {
 
 const PORT = 5432;
 app.listen(PORT, () => {
-    console.log("Server listing on PORT 3000");
+    console.log("Server listening on PORT 5432 Postgress DB");
 });
 
 
