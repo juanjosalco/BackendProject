@@ -19,7 +19,7 @@ try {
     console.log('Unable to connect to DB:', error);
 }
 
-const PORT = 5432;
+let PORT = (process.env.PORT || 5432);
 app.listen(PORT, () => {
 
     console.log("Server listening on PORT 5432 Postgress DB");
