@@ -34,7 +34,7 @@ async function updateUser(req, res){
 async function deleteUser(req, res){
     const id = req.params.id;
     const destruido = User.destroy({where: {id}});
-    res.status(200).json(destruido);
+    res.status(200).json({destruido});
 }
 
 module.exports = {
