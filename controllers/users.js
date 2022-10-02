@@ -15,10 +15,13 @@ async function getUser(req, res){
 }
 
 async function getUsers(req, res){
-    
+    try{
     const users = await User.findAll();
     res.status(200).json(users);
-    
+    }
+    catch (err){
+        res.json(err)
+    }
 }
 
 async function updateUser(req, res){
