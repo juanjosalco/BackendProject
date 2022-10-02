@@ -39,7 +39,7 @@ async function deleteUser(req, res){
 
 async function bringByRol(req, res){
     const rol = req.params.rol;
-    const user = await User.findAll({where: {rol : rol}});
+    const user = await User.findAll({where: {rol: 'user'}});
     res.status(200).json(user);
 }
 
