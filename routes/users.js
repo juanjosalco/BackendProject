@@ -6,7 +6,8 @@ const {
     createUser,
     deleteUser,
     updateUser,
-    bringByRol
+    bringByRol,
+    bringByAttributes
 
 } = require('../controllers/users');
 
@@ -15,6 +16,7 @@ router.get('/id/:id', getUser);
 router.post('/', createUser);
 router.patch('/id/:id', updateUser);
 router.delete('/id/:id', deleteUser);
-router.get('/search/:rol', bringByRol);
+router.get('/search/atributos', bringByAttributes);
+router.get('/search/rol/:rol',bringByRol);
 
 module.exports = router;

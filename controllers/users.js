@@ -38,9 +38,13 @@ async function deleteUser(req, res){
     res.status(200).json({destruido});
 }
 
+async function bringByAttributes(req, res){
+    const user = await User.findAll({attributes: ['username','firstname', 'email', 'rol']});
+    res.status(200).json(user);
+}
 async function bringByRol(req, res){
     const rol = req.params.rol;
-    const user = await User.findAll({attributes: ['username','firstname', 'email', 'rol']}, {where:{rol}});
+    const user = await User.findAll({where:{rol}});
     res.status(200).json(user);
 }
 
@@ -50,5 +54,6 @@ module.exports = {
     getUsers,
     updateUser,
     deleteUser,
-    bringByRol
+    bringByRol,
+    bringByAttributes
 }
