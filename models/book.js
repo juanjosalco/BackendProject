@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
+const Category = require('../models/category');
+const Editorial = require('../models/editorial');
 
 const Book = sequelize.define('Book', {
     book_id: {
@@ -33,5 +35,10 @@ const Book = sequelize.define('Book', {
         allowNull: false
     },
 });
+
+Book.hasOne(Category);
+Book.hasOne(Editorial);
+Editorial.hasMany(Book);
+Category.hasMany(Book);
 
 module.exports = Book;

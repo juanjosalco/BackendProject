@@ -15,7 +15,7 @@ const Library = sequelize.define('Library', {
     }
 });
 Library.hasMany(User);
-Library.hasMany(User);
+Library.hasMany(Book);
 User.belongsTo(Library);
 Book.belongsTo(Library);
 
