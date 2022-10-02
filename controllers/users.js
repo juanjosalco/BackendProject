@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const User = require('../models/users');
 
 function createUser(req, res){
@@ -39,7 +40,7 @@ async function deleteUser(req, res){
 
 async function bringByRol(req, res){
     const rol = req.params.rol;
-    const user = await User.findAll({attributes: ['username','firstname', 'email', 'rol']});
+    const user = await User.findAll({attributes: ['username','firstname', 'email', 'rol']}, {where:{rol}});
     res.status(200).json(user);
 }
 
