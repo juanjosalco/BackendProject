@@ -15,6 +15,6 @@ router.get('/:id', getUser);
 router.post('/', createUser);
 router.patch('/:id', updateUser);
 router.delete('/:id', deleteUser);
-router.get('search', bringByRol);
+router.get('/especial', bringByRol);
 
 module.exports = router;
