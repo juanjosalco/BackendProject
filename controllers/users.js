@@ -37,10 +37,17 @@ async function deleteUser(req, res){
     res.status(200).json({destruido});
 }
 
+async function bringByRol(req, res){
+    const rol = req.params.rol;
+    const user = await User.findAll({where: {rol}});
+    res.status(200).json(user);
+}
+
 module.exports = {
     createUser,
     getUser,
     getUsers,
     updateUser,
-    deleteUser
+    deleteUser,
+    bringByRol
 }
