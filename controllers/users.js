@@ -1,4 +1,4 @@
-const { where } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const User = require('../models/users');
 
 function createUser(req, res){
