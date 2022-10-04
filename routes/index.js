@@ -7,8 +7,8 @@ router.get('/', (req, res) => {
     res.json({'info': 'Welcome to Users API'});
 });
 
-router.use('/users', users);
-router.use('/category', categories);
-router.use('/editorial', editorial);
+router.use('/index/users', users);
+router.use('/index/category', categories);
+router.use('/index/editorial', editorial);
 
 module.exports = router;
