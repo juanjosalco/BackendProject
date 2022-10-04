@@ -10,4 +10,4 @@ const Category = sequelize.define('Category', {
     }
 });
 
-module.exports = User;
+module.exports = Category;
