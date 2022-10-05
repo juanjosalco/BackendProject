@@ -9,13 +9,13 @@ function createBook (req,res) {
     );    
 }
 
-function getBook(req,res){
+async function getBook(req,res){
     const id = req.params.id;
     const bk = await book.findByPk(id);
     res.status(200).json(bk);
 }
 
-function getBooks(req,res){
+async function getBooks(req,res){
     try{
         const books = await book.findAll();
         res.status(200).json(books)
@@ -26,7 +26,7 @@ function getBooks(req,res){
     }
 }
 
-function updateBook(req,res){
+async function updateBook(req,res){
     const id = req.params.id;
     const bk = req.body;
     const update = await book.update(bk,{where : {id}})
