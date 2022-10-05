@@ -9,8 +9,8 @@ const {
 
 } = require('../controllers/book');
 
-router.get('/', getBook);
-router.get('/id/:id', getBooks);
+router.get('/', getBooks);
+router.get('/id/:id', getBook);
 router.post('/', createBook);
 router.patch('/id/:id', updateBook);
 router.delete('/id/:id', deleteBook);

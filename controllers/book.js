@@ -1,4 +1,4 @@
-const {sequelize} = require('sequelize');
+const {Sequelize} = require('sequelize');
 const book = require('../models/book');
 
 function createBook (req,res) {
