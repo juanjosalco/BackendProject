@@ -3,7 +3,7 @@ const router = require('express').Router();
 const {
     getUser,
     getUsers,
-    createUser,
+    signUp,
     deleteUser,
     updateUser,
     bringByRol,
@@ -13,7 +13,7 @@ const {
 
 router.get('/', getUsers);
 router.get('/id/:id', getUser);
-router.post('/', createUser);
+router.post('/', signUp);
 router.patch('/id/:id', updateUser);
 router.delete('/id/:id', deleteUser);
 router.get('/search/atributos', bringByAttributes);
