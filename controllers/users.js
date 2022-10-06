@@ -66,9 +66,24 @@ async function bringByRol(req, res){
     res.status(200).json(user);
 }
 
+async function logIn(req, res){
+    const body = req.body;
+    const user = User.findOne({username: body.username});
+    if (!user){
+        return res.status(404).json({error: "user not found"});
+
+    }
+    if (user.validatePassword(body.password)){
+        return res.status(200).json({mensaje: "Welcome " + body.username + "!!"})
+    } else{
+        return res.status(400).json({mensaje: "Password incorrect, please try again"})
+    }
+}
+
 
 module.exports = {
     signUp,
+    logIn,
     getUser,
     getUsers,
     updateUser,

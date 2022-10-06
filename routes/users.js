@@ -4,6 +4,7 @@ const {
     getUser,
     getUsers,
     signUp,
+    logIn,
     deleteUser,
     updateUser,
     bringByRol,
@@ -13,10 +14,11 @@ const {
 
 router.get('/', getUsers);
 router.get('/id/:id', getUser);
-router.post('/', signUp);
+router.post('/signUp', signUp);
+
 router.patch('/id/:id', updateUser);
 router.delete('/id/:id', deleteUser);
 router.get('/search/atributos', bringByAttributes);
 router.get('/search/rol/:rol',bringByRol);
-
+router.post('/logIn',logIn);
 module.exports = router;
