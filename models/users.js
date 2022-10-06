@@ -50,9 +50,7 @@ const User = sequelize.define('User', {
     membersince: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
-            isDate:true, //just allow date string
-        }
+        
     },
     rol: {
         type: DataTypes.STRING,
