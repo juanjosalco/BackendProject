@@ -4,15 +4,21 @@ const sequelize = require('../config/db');
 const User = sequelize.define('User', {
     username: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
+        validate:{
+            isLowercase: true, 
+            is: /^[a-zA-Z0-9_-]+$/
+        }
     },
-    userpass: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
+   
     firstname: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    lastname:{
+        type: DataTypes.STRING,
+        allowNull:false
     },
     address: {
         type: DataTypes.STRING,
@@ -20,18 +26,37 @@ const User = sequelize.define('User', {
     },
     email: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate:{
+            isEmail: true // se revisa que el dato sea un email
+        }
+    },
+    userpass: {
+        type: DataTypes.STRING,
         allowNull: false
+    },
+    password_hash: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    password_salt: {
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     phonenumber: {
         type: DataTypes.STRING
     },
     membersince: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            isDate:true, //just allow date string
+        }
     },
     rol: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true //especifica el rol
     }
 });
 

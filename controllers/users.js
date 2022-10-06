@@ -3,6 +3,8 @@ const User = require('../models/users');
 
 function createUser(req, res){
     const body = req.body;
+    //
+    body.membersince = new Date()
     User.create(body).then(user =>{
         res.status(201).json(user);
     });
