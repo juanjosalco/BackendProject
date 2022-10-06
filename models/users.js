@@ -66,11 +66,11 @@ User.createPassword = function(plainText){
     return {salt : salt, hash: hash}
 }
 
-User.validatePassword = function(password){
+User.validatePassword = function(password,user_salt, user_hash){
     const hash = crypto
-        .pbkdf2Sync(plainText, salt, 10000, 512,"sha512")
+        .pbkdf2Sync(password, user_salt, 10000, 512,"sha512")
         .toString("hex")
-    return  this.password_hash === hash;
+    return  this.user_hash === hash;
 }
 
 module.exports = User;

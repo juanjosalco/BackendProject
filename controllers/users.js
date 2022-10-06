@@ -73,7 +73,7 @@ async function logIn(req, res){
         return res.status(404).json({error: "user not found"});
 
     }
-    if (user.validatePassword(body.password)){
+    if (user.validatePassword(body.password, user.password_salt, user.password_hash)){
         return res.status(200).json({mensaje: "Welcome " + body.username + "!!"})
     } else{
         return res.status(400).json({mensaje: "Password incorrect, please try again"})
