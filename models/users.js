@@ -70,7 +70,7 @@ User.validatePassword = function(password){
     const hash = crypto
         .pbkdf2Sync(plainText, salt, 10000, 512,"sha512")
         .toString("hex")
-    return  this.hash === hash;
+    return  this.password_hash === hash;
 }
 
 module.exports = User;
