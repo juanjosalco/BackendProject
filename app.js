@@ -10,7 +10,7 @@ try {
     sequelize.authenticate().then(()=>{
         console.log('DB Authenticated')
     })
-    sequelize.sync().then(()=>{
+    sequelize.sync({force: true}).then(()=>{
         console.log('DB syncronized')
     })
 
