@@ -68,12 +68,12 @@ async function bringByRol(req, res){
 
 async function logIn(req, res){
     const body = req.body;
-    const user = await User.findOne({username: body.username});
+    const user = await User.findOne({where: {username: body.username}});
     if (!user){
         return res.status(404).json({error: "user not found"});
 
     }
-    if (User.validatePassword(body.password)){
+    if (user.validatePassword(body.password)){
         return res.status(200).json({mensaje: "Welcome " + body.username + "!!"})
     } else{
         return res.status(400).json({mensaje: "Password incorrect, please try again"})
