@@ -3,34 +3,34 @@ const sequelize = require('../config/db');
 
 const User = sequelize.define('User', {
     username: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
     userpass: {
-        type: DataTypes.CHAR(30),
+        type: DataTypes.STRING,
         allowNull: false
     },
     firstname: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
     address: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
     email: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
     phonenumber: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     membersince: {
-        type: DataTypes.CHAR(64),
+        type: DataTypes.STRING,
         allowNull: false
     },
     rol: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     }
 });

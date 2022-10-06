@@ -21,7 +21,7 @@ async function getBooks(req,res){
         res.status(200).json(books)
     }
     catch (err){
-        res.json(err)
+        res.status(400).json(err)
 
     }
 }
