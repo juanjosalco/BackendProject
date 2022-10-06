@@ -1,13 +1,23 @@
 const { Sequelize } = require('sequelize');
 const User = require('../models/users');
 
-function createUser(req, res){
-    const body = req.body;
-    //
+function signUp(req, res){
+    try{const body = req.body;
     body.membersince = new Date().toDateString();
     User.create(body).then(user =>{
         res.status(201).json(user);
     });
+} catch (err){
+    if (["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(err.name) ) {
+        return res.status(400).json({
+            error: err.errors.map(e => e.message)
+        })
+    }
+    else {
+        throw err;
+    }
+}
+
 }
 
 async function getUser(req, res){
@@ -50,8 +60,9 @@ async function bringByRol(req, res){
     res.status(200).json(user);
 }
 
+
 module.exports = {
-    createUser,
+    signUp,
     getUser,
     getUsers,
     updateUser,
