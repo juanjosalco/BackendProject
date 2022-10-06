@@ -2,20 +2,21 @@ const { Sequelize } = require('sequelize');
 const User = require('../models/users');
 
 function signUp(req, res){
-    try{const body = req.body;
+    const body = req.body;
     body.membersince = new Date().toDateString();
+    try{
     User.create(body).then(user =>{
         res.status(201).json(user);
     });
-} catch (err){
-    if (["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(err.name) ) {
-        return res.status(400).json({
+    } catch (err){
+        if (["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(err.name) ) {
+            return res.status(400).json({
             error: err.errors.map(e => e.message)
         })
-    }
-    else {
-        throw err;
-    }
+         }
+        else {
+            throw err;
+        }
 }
 
 }
