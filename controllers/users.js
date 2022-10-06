@@ -1,9 +1,9 @@
 const { Sequelize } = require('sequelize');
 const User = require('../models/users');
 
-function signUp(req, res){
+async function signUp(req, res){
     const body = req.body;
-    body.membersince = new Date().toDateString();
+    
     try{
     const user = await User.create(body)
     res.status(201).json(user);
