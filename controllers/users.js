@@ -5,8 +5,8 @@ function signUp(req, res){
     const body = req.body;
     body.membersince = new Date().toDateString();
     try{
-    User.create(body).then(user =>{
-        res.status(201).json(user);
+    const user = await User.create(body).then(user =>{
+    res.status(201).json(user);
     });
     } catch (err){
         if (["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(err.name) ) {
