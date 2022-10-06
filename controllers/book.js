@@ -11,6 +11,10 @@ function createBook (req,res) {
 
 async function getBook(req,res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const bk = await book.findByPk(id);
     res.status(200).json(bk);
 }
@@ -28,6 +32,10 @@ async function getBooks(req,res){
 
 async function updateBook(req,res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const bk = req.body;
     const update = await book.update(bk,{where : {id}})
     const newbk = await book.findByPk(update[0]);
@@ -37,6 +45,10 @@ async function updateBook(req,res){
 
 function deleteBook(){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const destruido = book.destroy({where: {id}});
 
     res.status(200).json({destruido});

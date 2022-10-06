@@ -10,6 +10,10 @@ function createEditorial(req, res){
 
 async function getEditorial(req, res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const ed = await Editorial.findByPk(id);
     res.status(200).json(ed);
 }
@@ -26,6 +30,10 @@ async function getEditorials(req, res){
 
 async function updateEditorial(req, res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const ed = req.body;
     const update = await Editorial.update(ed,{where: {id}});
     const newEd = await Editorial.findByPk(update[0]);
@@ -34,6 +42,10 @@ async function updateEditorial(req, res){
 
 async function deleteEditorial(req, res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const destruido = Editorial.destroy({where: {id}});
     res.status(200).json({destruido});
 }

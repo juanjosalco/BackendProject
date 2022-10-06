@@ -10,6 +10,10 @@ function createCategory(req, res){
 
 async function getCategory(req, res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const cat = await Category.findByPk(id);
     res.status(200).json(cat);
 }
@@ -26,6 +30,10 @@ async function getCategories(req, res){
 
 async function updateCategory(req, res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const cat = req.body;
     const update = await Category.update(cat,{where: {id}});
     const newCat = await Category.findByPk(update[0]);
@@ -34,6 +42,10 @@ async function updateCategory(req, res){
 
 async function deleteCategory(req, res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const destruido = Category.destroy({where: {id}});
     res.status(200).json({destruido});
 }

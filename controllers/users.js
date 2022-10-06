@@ -52,6 +52,10 @@ async function getUsers(req, res){
 async function updateUser(req, res){
     const id = req.params.id;
     const user = req.body;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const update = await User.update(user,{where: {id}});
     const newUser = await User.findByPk(update[0]);
     res.status(200).json(newUser);
@@ -59,6 +63,10 @@ async function updateUser(req, res){
 
 async function deleteUser(req, res){
     const id = req.params.id;
+    if(typeof(id)!="number"){
+        
+        return (res.status(400).json({error : "Try with numeric value"}))
+    }
     const destruido = User.destroy({where: {id}});
     res.status(200).json({destruido});
 }
