@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
+const crypto = require('node:crypto')
 
 const User = sequelize.define('User', {
     username: {
@@ -57,5 +58,19 @@ const User = sequelize.define('User', {
         allowNull: true //especifica el rol
     }
 });
+
+
+User.createPassword = function(plainText){
+    const salt = crypto.randomBytes(16).toString('hex') //generador de salt aleatorio
+    const hash = crypto.pbkdf2Sync(plainText, salt, 10000, 512,"sha512").toString("hex") //creacion de hash
+    return {salt : salt, hash: hash}
+}
+
+User.validatePassword = function(password){
+    const hash = crypto
+        .pbkdf2Sync(plainText, salt, 10000, 512,"sha512")
+        .toString("hex")
+    return  this.hash === hash;
+}
 
 module.exports = User;

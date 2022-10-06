@@ -1,11 +1,16 @@
-const { Sequelize } = require('sequelize');
+
 const User = require('../models/users');
 
 async function signUp(req, res){
     const body = req.body;
     body.membersince = new Date().toDateString();
     try{
+
     const user = await User.create(body)
+    const {salt , hash} =User.generatePassword(body['userpass']);
+    user.password_salt = salt;
+    user.password_hash = hash;
+    await user.save();
     res.status(201).json(user);
     }
      catch (err){
