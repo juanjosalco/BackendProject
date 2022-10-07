@@ -96,7 +96,6 @@ async function logIn(req, res){
         })
 
 
-
     } else{
         return res.status(400).json({mensaje: "Password incorrect, please try again"})
     }
