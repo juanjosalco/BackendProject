@@ -29,7 +29,7 @@ async function signUp(req, res){
 async function getUser(req, res){
     const id = req.params.id;
     console.log(typeof(Number(id)))
-    if(typeof(Number(id))!='number'){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -53,7 +53,7 @@ async function getUsers(req, res){
 async function updateUser(req, res){
     const id = req.params.id;
     const user = req.body;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -64,7 +64,7 @@ async function updateUser(req, res){
 
 async function deleteUser(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }

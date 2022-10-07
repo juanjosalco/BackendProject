@@ -10,7 +10,7 @@ function createCategory(req, res){
 
 async function getCategory(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -30,7 +30,7 @@ async function getCategories(req, res){
 
 async function updateCategory(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -42,7 +42,7 @@ async function updateCategory(req, res){
 
 async function deleteCategory(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
