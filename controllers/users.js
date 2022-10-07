@@ -89,7 +89,14 @@ async function logIn(req, res){
 
     }
     if (User.validatePassword(body.userpass, user.password_salt, user.password_hash)){
-        return res.status(200).json({mensaje: "Welcome " + body.username + "!!"})
+        return res.status(200).json({
+            user: user.username,
+            email: user.email,
+            token: User.generateJWT(user)
+        })
+
+
+
     } else{
         return res.status(400).json({mensaje: "Password incorrect, please try again"})
     }

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('../config/auth')
 
 const {
     getUser,
@@ -13,7 +14,7 @@ const {
 } = require('../controllers/users');
 
 router.get('/', getUsers);
-router.get('/id/:id', getUser);
+router.get('/id/:id',auth.required, getUser);
 router.post('/signUp', signUp);
 
 router.patch('/id/:id', updateUser);
