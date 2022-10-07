@@ -1,6 +1,13 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const crypto = require('node:crypto')
+const crypto = require('node:crypto');
+
+/**
+ * @swagger
+ * /users/:
+ * get:
+ *      
+ */
 
 const User = sequelize.define('User', {
     username: {
