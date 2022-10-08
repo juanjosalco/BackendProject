@@ -143,6 +143,6 @@ dist
 
 #database
 
-.sqlite
+db.sqlite
 
 # End of https://www.toptal.com/developers/gitignore/api/node
