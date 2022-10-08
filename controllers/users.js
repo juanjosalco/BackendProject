@@ -93,6 +93,7 @@ async function logIn(req, res){
         return res.status(200).json({
             user: user.username,
             email: user.email,
+            //role: user.rol,
             token: User.generateJWT(user)
         })
 

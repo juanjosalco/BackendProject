@@ -14,7 +14,7 @@ const {
 } = require('../controllers/users');
 
 router.get('/', getUsers);
-router.get('/id/:id',auth.required, getUser);
+router.get('/id/:id',auth.isAdmin, getUser);
 router.post('/signUp', signUp);
 
 router.patch('/id/:id', updateUser);

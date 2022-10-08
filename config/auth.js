@@ -14,6 +14,17 @@ const auth = {
         userProperty: 'user',
         getToken: getTokenFromHeader
     }),
+    isAdmin: function (req, res, next) {
+        
+        if(!req.auth) {
+            
+            return res.status(401).json({"Error" :"Credentials not founded"});
+        }
+        if (req.auth.role !== 'admin') {
+            return res.status(403).json({"Error":"You are not an admin, can't access this info"});
+        }
+        next();
+    },
     optional: expressjwt({
         secret: secret,
         algorithms: ['HS256'],
