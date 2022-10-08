@@ -142,7 +142,7 @@ dist
 .svelte-kit
 
 #database
-
+db.sqlite3
 db.sqlite
 
 # End of https://www.toptal.com/developers/gitignore/api/node
