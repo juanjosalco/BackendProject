@@ -17,7 +17,7 @@ const auth = {
     optional: expressjwt({
         secret: secret,
         algorithms: ['HS256'],
-        userProperty: 'usuario',
+        userProperty: 'user',
         credentialsRequired: false,
         getToken: getTokenFromHeader
     })

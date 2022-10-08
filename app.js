@@ -2,9 +2,11 @@ require('dotenv').config()
 const express = require('express');
 const sequelize = require('./config/db');
 const routes = require('./routes/index');
+const auth = require('./config/auth');
 
 const app = express();
 app.use(express.json());
+app.use(auth.optional)
 app.use('/', routes);
 
 try {
@@ -20,9 +22,9 @@ try {
     console.log('Unable to connect to DB:', error);
 }
 
-let PORT = (process.env.PORT || 5432);
-app.listen(PORT, () => {
 
-    console.log("Server listening on PORT 5432 Postgress DB");
+app.listen(process.env.PORT || 3000, () => {
+
+    console.log("Server listening on PORT: "+ process.env.PORT);
 });
 
