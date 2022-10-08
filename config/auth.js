@@ -15,8 +15,9 @@ const auth = {
         }
         if (!req.user || !req.auth.user){
             console.log ('NOT pass double verification')
-            return next();
+            return res.status(403).json({Error : "Something wrong in verification"});
         }
+        
         next();
     }
     ,
