@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const auth = require('../config/auth')
+const passport = require ('passport')
 
 const {
     getUser,
@@ -14,7 +15,7 @@ const {
 } = require('../controllers/users');
 
 router.get('/', getUsers);
-router.get('/id/:id',auth.isAdmin, getUser);
+router.get('/id/:id',[passport.authenticate('bearer',{session:false,assignProperty: 'user'})],auth.isAdmin, getUser);
 router.post('/signUp', signUp);
 
 router.patch('/id/:id', updateUser);

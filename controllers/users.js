@@ -28,7 +28,7 @@ async function signUp(req, res){
 
 async function getUser(req, res){
     const id = req.params.id;
-    console.log(typeof(Number(id)))
+    
     if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))

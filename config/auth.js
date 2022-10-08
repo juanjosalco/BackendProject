@@ -8,12 +8,18 @@ function getTokenFromHeader(req) {
 }
 
 const auth = {
-    required: expressjwt({
-        secret: secret,
-        algorithms: ['HS256'],
-        userProperty: 'user',
-        getToken: getTokenFromHeader
-    }),
+    required: function(req,res,next){
+        if(!req.auth) {
+            
+            return res.status(401).json({"Error" :"Credentials not founded"});
+        }
+        if (!req.user || !req.auth.user){
+            console.log ('NOT pass double verification')
+            return next();
+        }
+        next();
+    }
+    ,
     isAdmin: function (req, res, next) {
         
         if(!req.auth) {
@@ -23,6 +29,7 @@ const auth = {
         if (req.auth.role !== 'admin') {
             return res.status(403).json({"Error":"You are not an admin, can't access this info"});
         }
+        //console.log(req.auth)
         next();
     },
     optional: expressjwt({
