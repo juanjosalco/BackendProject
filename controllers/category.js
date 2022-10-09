@@ -9,7 +9,8 @@ function createCategory(req, res) {
             return res.status(201).json(cat);
         });
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -22,7 +23,8 @@ async function getCategory(req, res) {
             });
         res.status(200).json(cat);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -34,7 +36,8 @@ async function getCategories(req, res) {
         res.status(200).json(categories);
     }
     catch (err) {
-        res.status(400).json({ error: "Intenta refrescar la página" })
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -46,7 +49,8 @@ async function updateCategory(req, res) {
         const newCat = await Category.findByPk(update[0]);
         res.status(200).json(newCat);
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -57,7 +61,8 @@ async function deleteCategory(req, res) {
         const destruido = Category.destroy({ where: { genre } });
         res.status(200).json({ destruido });
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
