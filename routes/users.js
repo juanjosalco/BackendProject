@@ -15,7 +15,7 @@ const {
 
 } = require('../controllers/users');
 
-router.get('/', authpassport,auth.required,getUsers);
+router.get('/',getUsers);
 router.get('/id/:id',authpassport,auth.required, getUser);
 router.post('/signUp', signUp);
 

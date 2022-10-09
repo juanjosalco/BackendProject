@@ -45,22 +45,24 @@ async function getUser(req, res) {
 
             return (res.status(400).json({ error: "Try with numeric value" }))
         }
+        
         const user = await User.findByPk(id, {
             include: [{ association: User.hasMany(Library) }]
         });
         if (!user) {
-            res.status(404).json({ mensaje: "id not found in DB, try with another id" })
+            return res.status(404).json({ mensaje: "id not found in DB, try with another id" })
         }
         res.status(200).json(user);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Check error",
+        error : "description " + error})
     }
 }
 
 async function getUsers(req, res) {
 
     try {
-        if (req.auth.role == 'admin') {
+        if (!!req.auth && req.auth.role == 'admin') {
             const users = await User.findAll({
                 include: [{ association: User.hasMany(Library) }]
             });
@@ -70,7 +72,8 @@ async function getUsers(req, res) {
         res.status(200).json(user);
     }
     catch (error) {
-        res.status(400).json({ error: "Intenta refrescar la página " + error })
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -82,12 +85,39 @@ async function updateUser(req, res) {
 
             return (res.status(400).json({ error: "Try with numeric value" }))
         }
+        const newUser = await User.findByPk(id);
+        if(req.user.rol != 'admin' && req.auth.user != newUser.username){
+            console.log("usuario diferente")
+            return res.status(403).json({"status": "Cannot update others profiles, just only update your own profile"})
+        }
+
         const update = await User.update(user, { where: { id } });
-        const newUser = await User.findByPk(update[0]);
-        res.status(200).json(newUser);
-    } catch (error) {
-        res.status(400).json(error);
-    }
+        
+        
+        /////  
+        for (const key in user) {
+                     
+              if (!newUser[key]){
+                console.log("no encontrado")
+                return res.status(400).json({Error: "Attribute not update, attribute not valid"})
+              }
+            
+        }
+    
+    
+        res.status(200).json({status : "Attribute was updated",
+                               user: user });
+    } catch (err) {
+        if (["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(err.name)) {
+            return res.status(400).json({
+                error: err.errors.map(e => e.message),
+                "description" : "try with other value"
+            })
+        }
+        else {
+            throw err;
+        }
+     }
 
 }
 
@@ -101,7 +131,8 @@ async function deleteUser(req, res) {
         const destruido = User.destroy({ where: { id } });
         res.status(200).json({ destruido });
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -110,7 +141,8 @@ async function bringByAttributes(req, res) {
         const user = await User.findAll({ attributes: ['username', 'firstname', 'email', 'rol'] });
         res.status(200).json(user);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 async function bringByRol(req, res) {
@@ -119,7 +151,8 @@ async function bringByRol(req, res) {
         const user = await User.findAll({ where: { rol } });
         res.status(200).json(user);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+        error : "description " + error})
     }
 }
 
@@ -144,7 +177,8 @@ async function logIn(req, res) {
             return res.status(400).json({ mensaje: "Password incorrect, please try again" })
         }
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
