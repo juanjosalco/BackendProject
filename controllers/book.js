@@ -12,9 +12,10 @@ function createBook(req, res) {
         }
         );
     } catch (error) {
-        res.status(400).json(error);
-    }
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
 
+}
 }
 
 async function getBook(req, res) {
@@ -34,7 +35,8 @@ async function getBook(req, res) {
             });
         res.status(200).json(bk);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -49,7 +51,8 @@ async function getBooks(req, res) {
         res.status(200).json(books)
     }
     catch (err) {
-        res.status(400).json({ error: "Intenta refrescar la página " + error })
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
 
     }
 }
@@ -66,7 +69,8 @@ async function updateBook(req, res) {
         const newbk = await book.findByPk(update[0]);
         res.status(200).json(newbk);
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json({ "info": "Error in request",
+        error : "description " + error})
     }
 
 }
@@ -83,7 +87,8 @@ function deleteBook() {
         res.status(200).json({ destruido });
         return
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
