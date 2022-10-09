@@ -14,9 +14,14 @@ const Library = sequelize.define('Library', {
         type: DataTypes.STRING
     }
 });
-Library.hasMany(User);
-Library.hasMany(Book);
+Library.hasOne(User,{
+    foreignKey: 'username'
+});
 User.belongsTo(Library);
+
+Library.hasMany(Book,{
+    foreignKey: 'book_id'
+});
 Book.belongsTo(Library);
 
 module.exports = Library;

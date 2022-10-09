@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(auth.optional)
 app.use('/', routes);
 
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/docs/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+//const swaggerDocs = swaggerJsDoc(swaggerOptions);
+//app.use('/docs/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 try {
     sequelize.authenticate().then(()=>{

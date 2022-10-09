@@ -3,7 +3,8 @@ const sequelize = require('../config/db');
 
 const Editorial = sequelize.define('Editorial', {
     editorial_name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        primaryKey: true
     },
     country: {
         type: DataTypes.STRING
