@@ -13,9 +13,9 @@ const {
 } = require('../controllers/editorial');
 
 router.get('/', getEditorials);
-router.get('/id/:id',authpassport,auth.required, getEditorial);
+router.get('/id/:name',authpassport,auth.required, getEditorial);
 router.post('/',authpassport,auth.isAdmin, createEditorial);
 router.patch('/id/:name',authpassport,auth.isAdmin, updateEditorial);
-router.delete('/id/:id',authpassport,auth.isAdmin, deleteEditorial);
+router.delete('/id/:name',authpassport,auth.isAdmin, deleteEditorial);
 
 module.exports = router;

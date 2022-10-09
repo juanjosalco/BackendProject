@@ -20,6 +20,6 @@ const Library = sequelize.define('Library', {
 });
 
 Library.hasMany(Book);
-Book.hasMany(Library);
+Book.belongsTo(Library);
 
 module.exports = Library;

@@ -10,16 +10,10 @@ function createCategory(req, res){
 }
 
 async function getCategory(req, res){
-    const id = req.params.id;
-    if(!Number(id)){
-        
-        return (res.status(400).json({error : "Try with numeric value"}))
-    }
-    const cat = await Category.findByPk(id,
+    const genre = req.params.genre;
+    const cat = await Category.findByPk(genre,
         {
-            include: [
-                {association: Category.belongsTo(Book)},
-            ]
+            include: Book
         });
     res.status(200).json(cat);
 }
@@ -27,9 +21,7 @@ async function getCategory(req, res){
 async function getCategories(req, res){
     try{
     const categories = await Category.findAll({
-        include: [
-            {association: Category.belongsTo(Book)}
-        ]
+        include: Book
     });
     res.status(200).json(categories);
     }
@@ -39,11 +31,15 @@ async function getCategories(req, res){
 }
 
 async function updateCategory(req, res){
-    const genre = req.params.genre;
-    const cat = req.body;
-    const update = await Category.update(cat,{where: {genre}});
-    const newCat = await Category.findByPk(update[0]);
-    res.status(200).json(newCat);
+    try{
+        const genre = req.params.genre;
+        const cat = req.body;
+        const update = await Category.update(cat,{where: {genre}});
+        const newCat = await Category.findByPk(update[0]);
+        res.status(200).json(newCat);
+    } catch(error){
+        res.status(400).json(error);
+    }
 }
 
 async function deleteCategory(req, res){

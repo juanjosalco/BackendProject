@@ -5,11 +5,16 @@ const Editorial = require('../models/editorial');
 const Library = require('../models/libary');
 
 function createBook (req,res) {
-    const body = req.body;
-    book.create(body).then(bk =>{
-        res.status(201).json(bk);
+    try{
+        const body = req.body;
+        book.create(body).then(bk =>{
+            res.status(201).json(bk);
+        }
+        ); 
+    } catch(error){
+        res.status(400).json(error);
     }
-    );    
+       
 }
 
 async function getBook(req,res){
@@ -46,15 +51,19 @@ async function getBooks(req,res){
 }
 
 async function updateBook(req,res){
-    const id = req.params.id;
-    if(!Number(id)){
-        
-        return (res.status(400).json({error : "Try with numeric value"}))
+    try{
+        const id = req.params.id;
+        if(!Number(id)){
+            
+            return (res.status(400).json({error : "Try with numeric value"}))
+        }
+        const bk = req.body;
+        const update = await book.update(bk,{where : {id}})
+        const newbk = await book.findByPk(update[0]);
+        res.status(200).json(newbk);
+    } catch(error){
+        res.status(400).json(error);
     }
-    const bk = req.body;
-    const update = await book.update(bk,{where : {id}})
-    const newbk = await book.findByPk(update[0]);
-    res.status(200).json(newbk);
 
 }
 
