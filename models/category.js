@@ -3,7 +3,7 @@ const sequelize = require('../config/db');
 
 const Category = sequelize.define('Category', {
     genre: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true
     },
     description: {

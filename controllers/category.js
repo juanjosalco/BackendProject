@@ -4,7 +4,7 @@ const Category = require('../models/category');
 function createCategory(req, res){
     const body = req.body;
     Category.create(body).then(cat =>{
-        res.status(201).json(cat);
+        return res.status(201).json(cat);
     });
 }
 
@@ -29,13 +29,9 @@ async function getCategories(req, res){
 }
 
 async function updateCategory(req, res){
-    const id = req.params.id;
-    if(!Number(id)){
-        
-        return (res.status(400).json({error : "Try with numeric value"}))
-    }
+    const genre = req.params.genre;
     const cat = req.body;
-    const update = await Category.update(cat,{where: {id}});
+    const update = await Category.update(cat,{where: {genre}});
     const newCat = await Category.findByPk(update[0]);
     res.status(200).json(newCat);
 }

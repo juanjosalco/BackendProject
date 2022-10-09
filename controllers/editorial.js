@@ -29,13 +29,9 @@ async function getEditorials(req, res){
 }
 
 async function updateEditorial(req, res){
-    const id = req.params.id;
-    if(!Number(id)){
-        
-        return (res.status(400).json({error : "Try with numeric value"}))
-    }
+    const name = req.params.name;
     const ed = req.body;
-    const update = await Editorial.update(ed,{where: {id}});
+    const update = await Editorial.update(ed,{where: {name}});
     const newEd = await Editorial.findByPk(update[0]);
     res.status(200).json(newEd);
 }

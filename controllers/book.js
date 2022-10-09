@@ -1,7 +1,8 @@
 const {Sequelize} = require('sequelize');
 const book = require('../models/book');
 const Category =  require('../models/category') 
-const Editorial = require('../models/editorial')
+const Editorial = require('../models/editorial');
+const Library = require('../models/libary');
 
 function createBook (req,res) {
     const body = req.body;
@@ -19,8 +20,11 @@ async function getBook(req,res){
     }
     const bk = await book.findByPk(id,
         {
-            include: [{association: book.hasOne(Category),
-                association: book.hasOne(Editorial)}]
+            include: [
+                {association: book.belongsTo(Editorial)},
+                {association: book.belongsTo(Library)},
+                {association: book.belongsTo(Category)}
+            ]
         });
     res.status(200).json(bk);
 }

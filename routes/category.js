@@ -15,7 +15,7 @@ const {
 router.get('/',getCategories);
 router.get('/id/:id',authpassport,auth.required,getCategory);
 router.post('/',authpassport,auth.isAdmin,createCategory);
-router.patch('/id/:id',authpassport,auth.isAdmin,updateCategory);
+router.patch('/id/:genre',authpassport,auth.required,updateCategory);
 router.delete('/id/:id',authpassport,auth.isAdmin, deleteCategory);
 
 module.exports = router;
