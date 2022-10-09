@@ -9,7 +9,8 @@ function createLibrary(req, res) {
             res.status(201).json(lib);
         });
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -32,7 +33,8 @@ async function getLibrary(req, res) {
         }
         res.status(200).json(lib);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -46,7 +48,8 @@ async function getLibraries(req, res) {
         res.status(200).json(lib);
     }
     catch (error) {
-        res.status(400).json({ error: "Intenta refrescar la página" + error })
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -62,7 +65,8 @@ async function updateLibrary(req, res) {
         const newLib = await Library.findByPk(update[0]);
         res.status(200).json(newLib);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 
 }
@@ -77,7 +81,8 @@ async function deleteLibrary(req, res) {
         const destruido = Library.destroy({ where: { id } });
         res.status(200).json({ destruido });
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
