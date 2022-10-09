@@ -9,9 +9,6 @@ const Library = sequelize.define('Library', {
     },
     description: {
         type: DataTypes.TEXT
-    },
-    books: {
-        type: DataTypes.STRING
     }
 });
 Library.hasOne(User,{
