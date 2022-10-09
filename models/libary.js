@@ -12,9 +12,7 @@ const Library = sequelize.define('Library', {
     }
 });
 
-Library.hasMany(Book,{
-    foreignKey: 'book_id'
-});
+Library.hasMany(Book);
 Book.belongsTo(Library);
 
 module.exports = Library;

@@ -45,12 +45,12 @@ async function getUsers(req, res){
     try{
         if (req.auth.role == 'admin'){
             const users = await User.findAll();
-            res.status(200).json(users);
+            return res.status(200).json(users);
         }
         const user = await User.findAll({attributes: ['username','firstname', 'email', 'rol']})
         res.status(200).json(user);
     }
-    catch (err){
+    catch (error){
         res.status(400).json({error : "Intenta refrescar la página"})
     }
 }
