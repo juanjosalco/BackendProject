@@ -1,10 +1,13 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const Category = require('../models/category');
-const Editorial = require('../models/editorial');
+const Category = require('./category');
+const Editorial = require('./editorial');
+///
+const Library = require('./libary');
 
+//
 const Book = sequelize.define('Book', {
-    book_id: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -43,6 +46,8 @@ Book.hasOne(Editorial,{
 });
 //Editorial.belongsTo(Book);
 Editorial.hasMany(Book);
+
+
 
 
 module.exports = Book;
