@@ -12,7 +12,6 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        primaryKey: true,
         validate:{
             isLowercase: true, 
             is: /^[a-zA-Z0-9_-]+$/
@@ -93,9 +92,7 @@ User.generateJWT = function(user) {
     }, secret);
  }
 
-User.hasMany(Library,{
-    foreignKey: 'id'
-});
+User.hasMany(Library);
 Library.hasMany(User);
 
 module.exports = User;
