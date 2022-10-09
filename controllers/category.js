@@ -47,12 +47,9 @@ async function updateCategory(req, res){
 }
 
 async function deleteCategory(req, res){
-    const id = req.params.id;
-    if(!Number(id)){
-        
-        return (res.status(400).json({error : "Try with numeric value"}))
-    }
-    const destruido = Category.destroy({where: {id}});
+    const genre = req.params.genre;
+    
+    const destruido = Category.destroy({where: {genre}});
     res.status(200).json({destruido});
 }
 

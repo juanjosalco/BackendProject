@@ -14,7 +14,9 @@ async function getLibrary(req, res){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
-    const lib = await Library.findByPk(id);
+    const lib = await Library.findByPk(id,{
+        include: [{association: Editorial.belongsTo(book)}]
+    });
     if (!lib){
         res.status(404).json({mensaje : "id not found in DB, try with another id"})
     }

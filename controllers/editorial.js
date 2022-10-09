@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const Editorial = require('../models/editorial');
+const book = require('../models/book');
 
 function createEditorial(req, res){
     const body = req.body;
@@ -9,18 +10,19 @@ function createEditorial(req, res){
 }
 
 async function getEditorial(req, res){
-    const id = req.params.id;
-    if(!Number(id)){
-        
-        return (res.status(400).json({error : "Try with numeric value"}))
-    }
-    const ed = await Editorial.findByPk(id);
+    const name = req.params.name;
+    
+    const ed = await Editorial.findByPk(name,{
+        include: [{association: Editorial.belongsTo(book)}]
+    });
     res.status(200).json(ed);
 }
 
 async function getEditorials(req, res){
     try{
-    const editorials = await Editorial.findAll();
+    const editorials = await Editorial.findAll({
+        include: [{association: Editorial.belongsTo(book)}]
+    });
     res.status(200).json(editorials);
     }
     catch (err){
@@ -37,12 +39,12 @@ async function updateEditorial(req, res){
 }
 
 async function deleteEditorial(req, res){
-    const id = req.params.id;
+    const name = req.params.name;
     if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
-    const destruido = Editorial.destroy({where: {id}});
+    const destruido = Editorial.destroy({where: {name}});
     res.status(200).json({destruido});
 }
 

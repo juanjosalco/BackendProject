@@ -32,8 +32,10 @@ async function getBook(req,res){
 async function getBooks(req,res){
     try{
         const books = await book.findAll({
-            include: [{association: book.hasOne(Category),
-                association: book.hasOne(Editorial)}]
+            
+            include: [{association: book.belongsTo(Editorial)},
+                {association: book.belongsTo(Library)},
+                {association: book.belongsTo(Category)}]
         });
         res.status(200).json(books)
     }
