@@ -11,32 +11,37 @@ const Book = sequelize.define('Book', {
         primaryKey: true
     },
     book_name: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
     author: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
-    },
-    editorial: {
-        type: DataTypes.CHAR(256),
-        allowNull: false,
     },
     description: {
         type: DataTypes.TEXT,
         allowNull: false
     },
     publication_date: {
-        type: DataTypes.CHAR(50),
+        type: DataTypes.STRING,
         allowNull: false
     },
-    category: {
-        type: DataTypes.CHAR(256),
-        allowNull: false
-    },
+    // category: {
+    //     type: DataTypes.STRING,
+        
+    //     allowNull: false
+    // },
 });
 
-Book.hasOne(Category);
+Book.hasOne(Category,{
+    foreignKey: 'genre'
+});
+Category.hasMany(Book);
+//Category.belongsTo(Book);
+Book.hasOne(Editorial,{
+    foreignKey: 'name'
+});
+//Editorial.belongsTo(Book);
 Editorial.hasMany(Book);
 
 
