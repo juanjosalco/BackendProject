@@ -6,7 +6,7 @@ const Category = sequelize.define('Category', {
         type: DataTypes.INTEGER
     },
     description: {
-        type: DataTypes.CHAR(256)
+        type: DataTypes.STRING
     }
 });
 

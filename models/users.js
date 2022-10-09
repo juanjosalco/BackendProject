@@ -1,6 +1,13 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const crypto = require('node:crypto')
+const crypto = require('node:crypto');
+
+/**
+ * @swagger
+ * /users/:
+ * get:
+ *      
+ */
 const jwt = require('jsonwebtoken') // Genera los JWT
 const secret = require ('../config/secret')
 

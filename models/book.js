@@ -11,15 +11,15 @@ const Book = sequelize.define('Book', {
         primaryKey: true
     },
     book_name: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
     author: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
     editorial: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     description: {
@@ -27,11 +27,11 @@ const Book = sequelize.define('Book', {
         allowNull: false
     },
     publication_date: {
-        type: DataTypes.CHAR(50),
+        type: DataTypes.STRING,
         allowNull: false
     },
     category: {
-        type: DataTypes.CHAR(256),
+        type: DataTypes.STRING,
         allowNull: false
     },
 });
