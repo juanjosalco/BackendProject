@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 const Editorial = sequelize.define('Editorial', {
-    editorial_name: {
+    name: {
         type: DataTypes.STRING,
         primaryKey: true
     },
