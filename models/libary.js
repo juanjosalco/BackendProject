@@ -11,10 +11,6 @@ const Library = sequelize.define('Library', {
         type: DataTypes.TEXT
     }
 });
-Library.hasOne(User,{
-    foreignKey: 'username'
-});
-User.belongsTo(Library);
 
 Library.hasMany(Book,{
     foreignKey: 'book_id'
