@@ -7,7 +7,7 @@ async function signUp(req, res){
     try{
 
     const user = await User.create(body)
-    const {salt , hash} =User.createPassword(body['userpass']);
+    const {salt , hash} = await User.createPassword(body['userpass']);
     user.password_salt = salt;
     user.password_hash = hash;
     await user.save();

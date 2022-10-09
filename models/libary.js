@@ -5,7 +5,8 @@ const Book = require('./book');
 
 const Library = sequelize.define('Library', {
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        
     },
     description: {
         type: DataTypes.TEXT
@@ -14,11 +15,13 @@ const Library = sequelize.define('Library', {
 Library.hasOne(User,{
     foreignKey: 'username'
 });
-User.belongsTo(Library);
+User.hasOne(Library,{
+    foreignKey: 'id_library'
+});
 
 Library.hasMany(Book,{
     foreignKey: 'book_id'
 });
-Book.belongsTo(Library);
+Book.hasMany(Library);
 
 module.exports = Library;
