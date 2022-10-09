@@ -11,7 +11,7 @@ function createBook (req,res) {
 
 async function getBook(req,res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -32,7 +32,7 @@ async function getBooks(req,res){
 
 async function updateBook(req,res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -45,7 +45,7 @@ async function updateBook(req,res){
 
 function deleteBook(){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }

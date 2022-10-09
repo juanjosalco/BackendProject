@@ -28,7 +28,8 @@ async function signUp(req, res){
 
 async function getUser(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    console.log(typeof(Number(id)))
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -52,7 +53,7 @@ async function getUsers(req, res){
 async function updateUser(req, res){
     const id = req.params.id;
     const user = req.body;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -63,7 +64,7 @@ async function updateUser(req, res){
 
 async function deleteUser(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -89,7 +90,13 @@ async function logIn(req, res){
 
     }
     if (User.validatePassword(body.userpass, user.password_salt, user.password_hash)){
-        return res.status(200).json({mensaje: "Welcome " + body.username + "!!"})
+        return res.status(200).json({
+            user: user.username,
+            email: user.email,
+            token: User.generateJWT(user)
+        })
+
+
     } else{
         return res.status(400).json({mensaje: "Password incorrect, please try again"})
     }

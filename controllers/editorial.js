@@ -10,7 +10,7 @@ function createEditorial(req, res){
 
 async function getEditorial(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -30,7 +30,7 @@ async function getEditorials(req, res){
 
 async function updateEditorial(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
@@ -42,7 +42,7 @@ async function updateEditorial(req, res){
 
 async function deleteEditorial(req, res){
     const id = req.params.id;
-    if(typeof(id)!="number"){
+    if(!Number(id)){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
