@@ -60,7 +60,8 @@ const User = sequelize.define('User', {
     },
     rol: {
         type: DataTypes.STRING,
-        allowNull: true //especifica el rol
+        allowNull: true, //especifica el rol
+        defaultValue: "user"
     }
 });
 

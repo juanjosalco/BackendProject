@@ -7,11 +7,20 @@ async function signUp(req, res){
     try{
 
     const user = await User.create(body)
-    const {salt , hash} =User.createPassword(body['userpass']);
+    const {salt , hash} = await User.createPassword(body['userpass']);
     user.password_salt = salt;
     user.password_hash = hash;
     await user.save();
-    res.status(201).json(user);
+    res.status(201).json({Estado : "User created",
+                    usuario: user.username,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    address: user.address,
+                    email: user.email,
+                    phonenumber: user.phonenumber,
+                    rol: user.rol,
+                    membersince: user.membersince
+                                        });
     }
      catch (err){
         if (["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(err.name) ) {

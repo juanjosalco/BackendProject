@@ -5,7 +5,8 @@ const Book = require('./book');
 
 const Library = sequelize.define('Library', {
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        
     },
     description: {
         type: DataTypes.TEXT
