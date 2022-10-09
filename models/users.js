@@ -2,14 +2,10 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const crypto = require('node:crypto');
 
-/**
- * @swagger
- * /users/:
- * get:
- *      
- */
 const jwt = require('jsonwebtoken') // Genera los JWT
 const secret = require ('../config/secret')
+
+const Library = require('./libary');
 
 const User = sequelize.define('User', {
     username: {
@@ -95,4 +91,10 @@ User.generateJWT = function(user) {
         exp: parseInt(exp.getTime() / 1000) // En segundos
     }, secret);
  }
+
+User.hasMany(Library,{
+    foreignKey: 'id'
+});
+Library.hasMany(User);
+
 module.exports = User;

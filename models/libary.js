@@ -12,16 +12,10 @@ const Library = sequelize.define('Library', {
         type: DataTypes.TEXT
     }
 });
-Library.hasOne(User,{
-    foreignKey: 'username'
-});
-User.hasOne(Library,{
-    foreignKey: 'id_library'
-});
 
 Library.hasMany(Book,{
     foreignKey: 'book_id'
 });
-Book.hasMany(Library);
+Book.belongsTo(Library);
 
 module.exports = Library;
