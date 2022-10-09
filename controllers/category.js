@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const Category = require('../models/category');
+const Book = require('../models/book')
 
 function createCategory(req, res){
     const body = req.body;
@@ -14,13 +15,22 @@ async function getCategory(req, res){
         
         return (res.status(400).json({error : "Try with numeric value"}))
     }
-    const cat = await Category.findByPk(id);
+    const cat = await Category.findByPk(id,
+        {
+            include: [
+                {association: Category.belongsTo(Book)},
+            ]
+        });
     res.status(200).json(cat);
 }
 
 async function getCategories(req, res){
     try{
-    const categories = await Category.findAll();
+    const categories = await Category.findAll({
+        include: [
+            {association: Category.belongsTo(Book)}
+        ]
+    });
     res.status(200).json(categories);
     }
     catch (err){
