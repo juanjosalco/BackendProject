@@ -36,15 +36,9 @@ const Book = sequelize.define('Book', {
     // },
 });
 
-Book.hasOne(Category,{
-    foreignKey: 'genre'
-});
+Book.hasOne(Category);
 Category.hasMany(Book);
-//Category.belongsTo(Book);
-Book.hasOne(Editorial,{
-    foreignKey: 'name'
-});
-//Editorial.belongsTo(Book);
+Book.hasOne(Editorial);
 Editorial.hasMany(Book);
 
 
