@@ -1,5 +1,6 @@
 
 const User = require('../models/users');
+const Library = require('../models/libary');
 
 async function signUp(req, res){
     const body = req.body;
@@ -53,14 +54,16 @@ async function getUsers(req, res){
     
     try{
         if (req.auth.role == 'admin'){
-            const users = await User.findAll();
+            const users = await User.findAll({
+                include: [{association: User.hasMany(Library)}]
+            });
             return res.status(200).json(users);
         }
         const user = await User.findAll({attributes: ['username','firstname', 'email', 'rol']})
         res.status(200).json(user);
     }
     catch (error){
-        res.status(400).json({error : "Intenta refrescar la página"})
+        res.status(400).json({error : "Intenta refrescar la página " + error})
     }
 }
 
