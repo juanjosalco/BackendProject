@@ -9,7 +9,8 @@ function createEditorial(req, res) {
             res.status(201).json(ed);
         });
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -22,7 +23,8 @@ async function getEditorial(req, res) {
         });
         res.status(200).json(ed);
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -34,7 +36,8 @@ async function getEditorials(req, res) {
         res.status(200).json(editorials);
     }
     catch (err) {
-        res.status(400).json({ error: "Intenta refrescar la página" })
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
@@ -46,7 +49,8 @@ async function updateEditorial(req, res) {
         const newEd = await Editorial.findByPk(update[0]);
         res.status(200).json(newEd);
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 
 }
@@ -61,7 +65,8 @@ async function deleteEditorial(req, res) {
         const destruido = Editorial.destroy({ where: { name } });
         res.status(200).json({ destruido });
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({ "info": "Error in request",
+                                error : "description " + error})
     }
 }
 
