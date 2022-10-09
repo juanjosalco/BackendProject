@@ -24,7 +24,7 @@ async function getEditorials(req, res){
     res.status(200).json(editorials);
     }
     catch (err){
-        res.json(err)
+        res.status(400).json({error : "Intenta refrescar la página"})
     }
 }
 
