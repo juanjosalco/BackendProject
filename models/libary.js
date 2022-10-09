@@ -4,6 +4,12 @@ const User = require('./users');
 const Book = require('./book');
 
 const Library = sequelize.define('Library', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     name: {
         type: DataTypes.STRING,
         
