@@ -37,8 +37,7 @@ const Book = sequelize.define('Book', {
 });
 
 Book.hasOne(Category);
-Book.hasOne(Editorial);
 Editorial.hasMany(Book);
-Category.hasMany(Book);
+
 
 module.exports = Book;

@@ -14,9 +14,8 @@ const Library = sequelize.define('Library', {
         type: DataTypes.CHAR(50)
     }
 });
-Library.hasMany(User);
+Library.hasOne(User);
 Library.hasMany(Book);
-User.belongsTo(Library);
-Book.belongsTo(Library);
+
 
 module.exports = Library;
