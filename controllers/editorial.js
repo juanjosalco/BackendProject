@@ -45,9 +45,24 @@ async function updateEditorial(req, res) {
     try {
         const name = req.params.name;
         const ed = req.body;
+
+        const newEd = await Editorial.findByPk(name);
+
+        for (const key in ed) {
+                     
+            if (!newEd[key]){
+              console.log("no encontrado")
+              return res.status(400).json({Error: "Attribute not update, attribute not valid"})
+            }
+          
+      }
+
+
         const update = await Editorial.update(ed, { where: { name } });
-        const newEd = await Editorial.findByPk(update[0]);
-        res.status(200).json(newEd);
+        
+        res.status(200).json({status : "Attribute was updated",
+                               ed: ed });
+
     } catch (error) {
         res.status(400).json({ "info": "Error in request",
                                 error : "description " + error})

@@ -45,9 +45,22 @@ async function updateCategory(req, res) {
     try {
         const genre = req.params.genre;
         const cat = req.body;
+        
+        const newCat = await Category.findByPk(genre);
+
+        for (const key in cat) {
+                     
+            if (!newCat[key]){
+              console.log("no encontrado")
+              return res.status(400).json({Error: "Attribute not update, attribute not valid"})
+            }
+          
+      }
+
         const update = await Category.update(cat, { where: { genre } });
-        const newCat = await Category.findByPk(update[0]);
-        res.status(200).json(newCat);
+        
+        res.status(200).json({status : "Attribute was updated",
+                               cat : cat });
     } catch (error) {
         res.status(400).json({ "info": "Error in request",
                                 error : "description " + error})

@@ -60,14 +60,27 @@ async function getBooks(req, res) {
 async function updateBook(req, res) {
     try {
         const id = req.params.id;
+        const bk = req.body;
         if (!Number(id)) {
 
             return (res.status(400).json({ error: "Try with numeric value" }))
         }
-        const bk = req.body;
-        const update = await book.update(bk, { where: { id } })
-        const newbk = await book.findByPk(update[0]);
-        res.status(200).json(newbk);
+
+        //
+        const newbk = await book.findByPk(id);
+        for (const key in bk) {
+                     
+            if (!newbk[key]){
+              console.log("no encontrado")
+              return res.status(400).json({Error: "Attribute not update, attribute not valid"})
+            }
+          
+      }
+      //
+      const update = await book.update(bk, { where: { id } })
+      res.status(200).json({status : "Attribute was updated",
+                             user: user });
+
     } catch (error) {
         res.status(400).json({ "info": "Error in request",
         error : "description " + error})

@@ -61,9 +61,23 @@ async function updateLibrary(req, res) {
 
             return (res.status(400).json({ error: "Try with numeric value" }))
         }
+        const newLib = await Library.findByPk(id);
+        ///
+        for (const key in lib) {
+                     
+            if (!newLib[key]){
+              console.log("no encontrado")
+              return res.status(400).json({Error: "Attribute not update, attribute not valid"})
+            }
+          
+      }
+        //
+
+        
         const update = await Library.update(lib, { where: { id } });
-        const newLib = await Library.findByPk(update[0]);
-        res.status(200).json(newLib);
+        
+        res.status(200).json({status : "Attribute was updated",
+                             lib: lib });
     } catch (error) {
         res.status(400).json({ "info": "Error in request",
                                 error : "description " + error})
