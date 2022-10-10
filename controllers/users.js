@@ -1,6 +1,7 @@
 
 const User = require('../models/users');
 const Library = require('../models/libary');
+const { NULL } = require('sass');
 
 async function signUp(req, res) {
     const body = req.body;
@@ -97,7 +98,7 @@ async function updateUser(req, res) {
         /////  
         for (const key in user) {
                      
-              if (!newUser[key]){
+              if (!newUser[key] && newUser[key] != null){
                 console.log("no encontrado")
                 return res.status(400).json({Error: "Attribute not update, attribute not valid"})
               }

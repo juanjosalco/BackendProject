@@ -70,7 +70,7 @@ async function updateBook(req, res) {
         const newbk = await book.findByPk(id);
         for (const key in bk) {
                      
-            if (!newbk[key]){
+            if (!newbk[key] && newbk[key] != null){
               console.log("no encontrado")
               return res.status(400).json({Error: "Attribute not update, attribute not valid"})
             }

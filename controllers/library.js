@@ -65,7 +65,7 @@ async function updateLibrary(req, res) {
         ///
         for (const key in lib) {
                      
-            if (!newLib[key]){
+            if (!newLib[key] && newLib[key] != null){
               console.log("no encontrado")
               return res.status(400).json({Error: "Attribute not update, attribute not valid"})
             }

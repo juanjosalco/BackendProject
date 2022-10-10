@@ -50,7 +50,7 @@ async function updateEditorial(req, res) {
 
         for (const key in ed) {
                      
-            if (!newEd[key]){
+            if (!newEd[key] && newEd[key] != null){
               console.log("no encontrado")
               return res.status(400).json({Error: "Attribute not update, attribute not valid"})
             }
