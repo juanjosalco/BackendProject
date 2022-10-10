@@ -14,8 +14,8 @@ const {
 
 router.get('/', getEditorials);
 router.get('/id/:name',authpassport,auth.required, getEditorial);
-router.post('/',authpassport,auth.isAdmin, createEditorial);
-router.patch('/id/:name',authpassport,auth.isAdmin, updateEditorial);
+router.post('/',authpassport,auth.required, createEditorial);
+router.patch('/id/:name',authpassport,auth.required, updateEditorial);
 router.delete('/id/:name',authpassport,auth.isAdmin, deleteEditorial);
 
 module.exports = router;
