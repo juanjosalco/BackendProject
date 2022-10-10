@@ -91,7 +91,7 @@ async function updateUser(req, res) {
             return res.status(403).json({"status": "Cannot update others profiles, just only update your own profile"})
         }
 
-        const update = await User.update(user, { where: { id } });
+        
         
         
         /////  
@@ -103,7 +103,7 @@ async function updateUser(req, res) {
               }
             
         }
-    
+        const update = await User.update(user, { where: { id } });
     
         res.status(200).json({status : "Attribute was updated",
                                user: user });
