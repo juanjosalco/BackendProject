@@ -3,6 +3,7 @@
 ## Índice
 
 * [Descripción](#descripcion)
+* [Instalación](#instalacion)
 * [Entidades](#entidades)
     - [Relacion Entidades](#relacion_entidades)
 *[EndPoints](#endpoints)
@@ -14,13 +15,23 @@
 * [Tecnologías](#Tecnologias)
 * [Documento inicial](#evidencia_documento_inicial)
 
+
 ## Descripcion
 
 Libravere es una API-REST, esta pensada para proporcionar información a quien la requiera de sus datos que contiene.
 Proporciona la información de las entidades creadas, ademas proporciona los métodos CRUD para manejar cada entidad.
 
 
+## Instalacion
 
+Para probar nuestro proyecto sigue los siguientes pasos
+
+* clonar repositorio a tu repositorio local
+* ´npm install` (instala las librerias necesarias)
+*  `npm run dev` (para iniciar la aplicacion en modo desarrollador
+
+con estos sencillos pasos tienes la aplicación en tu computadora y ahora puedes realizar las peticiones desde Insominia o Postman
+usando la siguiente dirección  `localhost:3000/`
 
 ## Entidades   
 
