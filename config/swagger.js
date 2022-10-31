@@ -9,12 +9,12 @@ const swaggerOptions = {
 		openapi: "3.0.3",
 		components: {
 			securitySchemes: {
-				// bearerAuth: {
-				// 	type: "http",
-				// 	scheme: "bearer",
-				// 	bearerFormat: "JWT",
-				// 	value: "Bearer <JWT token here>",
-				// },
+				bearerAuth: {
+					type: "http",
+					scheme: "bearer",
+					bearerFormat: "JWT",
+					value: "Bearer <JWT token here>",
+				},
 			},
 		},
 	},
