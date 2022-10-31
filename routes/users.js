@@ -17,118 +17,101 @@ const {
 	bringByAttributes,
 } = require("../controllers/users");
 
-// swagger documentation
-/**
- * @swagger
- * /users:
- *  get:
- *   tags:
- *    - Users
- *   summary: Users page for Libroverse
- *   description: view all registerd users
- *   responses:
- *    200:
- *     description: a welcome message
- */
+router.get(
+	"/",
+	getUsers
+	/*
+  #swagger.tags = ['Users'];
+  #swagger.summary = 'Get all users';
+  #swagger.description = 'API to get all users';
+  #swagger.responses[200] = {
+            description: 'all users successfully obtained.',
+            schema: { 
+				$name: 'Jhon Doe',
+				$age: 29,
+				about: ''
+            }
+  }
+  */
+);
+router.get(
+	"/id/:id",
+	authpassport,
+	auth.required,
+	getUser
+	/*
+  #swagger.tags = ['Users'];
+  #swagger.summary = 'Get user by ID';
+  #swagger.description = 'API to get user based on user ID';
+  #swagger.consumes = ['application/json'];
+  #swagger.parameters['id'] = {
+          in: 'path',
+          required: true,
+          type: 'number',
+          description: 'User ID that will be search',
+          example: 1
+  }
+  #swagger.responses[200] = {
+            description: 'User successfully obtained.',
+            schema: { 
+              id: 1,
+            }
+  }
+  #swagger.responses[400] = {
+			description: 'User not found.',
+			schema: {
+				error: 'User not found.'
+			}
+  }
+  #swagger.security = [{
+               "bearer": []
+        }] 
+  */
+);
 
-router.get("/", getUsers);
-router.get("/id/:id", authpassport, auth.required, getUser);
-
-// swagger documentation
-/**
- * @swagger
- * /users/signUp:
- *   post:
- *     tags:
- *       - Users
- *     summary: sign up
- *     description: sign up a new user
- *     requestBody:
- *       description: user object that will be created and added to the database
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
- *     responses:
- *       200:
- *         description: ok
- */
-router.post("/signUp", signUp);
-
-router.patch("/id/:id", authpassport, auth.required, updateUser);
-router.delete("/id/:id", authpassport, auth.isAdmin, deleteUser);
-router.get("/search/atributos", bringByAttributes);
-router.get("/search/rol/:rol", authpassport, auth.required, bringByRol);
-
-/**
- * @swagger
- * /users/logIn:
- *   post:
- *     tags:
- *       - Users
- *     summary: user login
- *     description: login with username and password
- *     requestBody:
- *       description: user object that will be created and added to the database
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/logIn'
- *     responses:
- *       200:
- *         description: ok
- *       4001:
- *         description: unauthorized you need to be an admin
- *       403:
- *         description: forbidden
- */
-router.post("/logIn", logIn);
+router.post(
+	"/signUp",
+	signUp
+	/*
+  #swagger.tags = ['Users'];
+  #swagger.summary = 'Sign up';
+  */
+);
+router.patch(
+	"/id/:id",
+	authpassport,
+	auth.required,
+	updateUser
+	/*
+  #swagger.tags = ['Users'];
+  */
+);
+router.delete(
+	"/id/:id",
+	authpassport,
+	auth.isAdmin,
+	deleteUser /*
+  #swagger.tags = ['Users'];
+  */
+);
+router.get(
+	"/search/atributos",
+	bringByAttributes /*
+  #swagger.tags = ['Users'];
+  */
+);
+router.get(
+	"/search/rol/:rol",
+	authpassport,
+	auth.required,
+	bringByRol /*
+  #swagger.tags = ['Users'];
+  */
+);
+router.post(
+	"/logIn",
+	logIn /*
+  #swagger.tags = ['Users'];
+  */
+);
 module.exports = router;
-
-// schema : users
-/**
- *@swagger
- * components:
- *   schemas:
- *     User:
- *       type: object
- *       properties:
- *         firstname:
- *           type: string
- *           example: jon
- *         lastname:
- *           type: string
- *           example: snow
- *         username:
- *           type: string
- *           example: kingofthenorth
- *         email:
- *           type: string
- *           example: jon@thewall.com
- *         address:
- *           type: string
- *           example: 123 IN THE NORTH AVE
- *         userpass:
- *           type: string
- *           example: 12345
- *         membersince:
- *           type: string
- *           example: 1900
- *         phonenumber:
- *           type: string
- *           example: 3333333333
- *         rol:
- *           type: string
- *           example: user
- *     logIn:
- *      type: object
- *      properties:
- *        username:
- *          type: string
- *          example: kingofthenorth
- *        userpass:
- *          type: string
- *          example: 12345
- */

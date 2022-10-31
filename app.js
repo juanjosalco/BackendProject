@@ -28,19 +28,20 @@ app.listen(process.env.PORT || 3000, () => {
 });
 
 // swagger js docs and swagger ui express for api documentation
-const swaggerJsDoc = require("swagger-jsdoc");
+
 const swaggerUi = require("swagger-ui-express");
 
 // import swagger definition from swagger.js
 const swaggerOptions = require("./config/swagger");
 
 // initialize swagger-jsdoc
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
+// const swaggerDocs = swaggerJsDoc(swaggerOptions); // not in use
 
+const swaggerDocument = require("./config/swagger.json");
 // use swagger-Ui-express for app documentation endpoint
 
 app.use(
 	"/api-docs",
 	swaggerUi.serve,
-	swaggerUi.setup(swaggerDocs, { explorer: true })
+	swaggerUi.setup(swaggerDocument, { explorer: true })
 );
