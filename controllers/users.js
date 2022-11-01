@@ -1,3 +1,5 @@
+const { Sequelize, DataTypes, Op } = require("sequelize");
+const sequelize = new Sequelize('sqlite::memory:');
 const User = require("../models/users");
 const Library = require("../models/libary");
 
@@ -6,9 +8,14 @@ async function signUp(req, res) {
 	body.membersince = new Date().toDateString();
 	try {
 		const user = await User.create(body);
-		const { salt, hash } = await User.createPassword(body["userpass"]);
+		const { salt, hash } = await User.createPassword(body["password_hash"]);
 		user.password_salt = salt;
 		user.password_hash = hash;
+		const card = User.hashCard(body['credit_card'], salt);
+        console.log("credit_card:",body['credit_card']);
+        console.log("salt:",salt);
+        console.log("card:",card);
+        user.credit_card = card;
 		await user.save();
 		res.status(201).json({
 			Estado: "User created",
@@ -68,9 +75,9 @@ async function getUsers(req, res) {
 			});
 			return res.status(200).json(users);
 		}
-		const user = await User.findAll({
+		const user = await User.findAll(/*{
 			attributes: ["id", "username", "firstname", "email", "rol"],
-		});
+		}*/);
 		res.status(200).json(user);
 	} catch (error) {
 		res
