@@ -69,7 +69,7 @@ async function getUsers(req, res) {
 			return res.status(200).json(users);
 		}
 		const user = await User.findAll({
-			attributes: ["username", "firstname", "email", "rol"],
+			attributes: ["id", "username", "firstname", "email", "rol"],
 		});
 		res.status(200).json(user);
 	} catch (error) {
@@ -89,12 +89,10 @@ async function updateUser(req, res) {
 		const newUser = await User.findByPk(id);
 		if (req.user.rol != "admin" && req.auth.user != newUser.username) {
 			console.log("usuario diferente");
-			return res
-				.status(403)
-				.json({
-					status:
-						"Cannot update others profiles, just only update your own profile",
-				});
+			return res.status(403).json({
+				status:
+					"Cannot update others profiles, just only update your own profile",
+			});
 		}
 
 		/////

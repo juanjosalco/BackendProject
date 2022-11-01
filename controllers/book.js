@@ -1,7 +1,15 @@
-const { Sequelize } = require("sequelize");
+// const { Sequelize } = require("sequelize"); // declared but never used
+
+// import book model
 const book = require("../models/book");
+
+// import category  model
 const Category = require("../models/category");
+
+// import edtiorial model
 const Editorial = require("../models/editorial");
+
+// import library model
 const Library = require("../models/libary");
 
 function createBook(req, res) {

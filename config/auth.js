@@ -1,6 +1,7 @@
 const secret = require("./secret");
 const { expressjwt } = require("express-jwt");
 
+// Get Token from Header
 function getTokenFromHeader(req) {
 	if (
 		req.headers.authorization &&
@@ -10,6 +11,7 @@ function getTokenFromHeader(req) {
 	}
 }
 
+// Verify Token
 const auth = {
 	required: function (req, res, next) {
 		if (!req.auth) {
@@ -19,7 +21,6 @@ const auth = {
 			console.log("NOT pass double verification");
 			return res.status(403).json({ Error: "Something wrong in verification" });
 		}
-
 		next();
 	},
 	isAdmin: function (req, res, next) {
