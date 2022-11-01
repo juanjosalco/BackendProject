@@ -84,6 +84,39 @@ router.patch(
 	updateUser
 	/*
   #swagger.tags = ['Users'];
+  #swagger.summary = 'Update user';
+  #swagger.description = 'API to update user based on user ID';
+  #swagger.consumes = ['application/json'];
+  #swagger.parameters['id'] = {
+		  in: 'path',
+		  required: true,
+		  type: 'number',
+		  description: 'User ID that will be updated',
+		  example: 1
+		    }
+  #swagger.parameters['body'] = {
+		  in: 'body',
+		  required: true,
+		  type: 'object',
+		  description: 'User data that will be updated',
+		  schema: {
+			  $name: 'Jhon Doe',
+			  $age: 29,
+			  about: ''
+		  }
+	 }
+   #swagger.responses[200] = {
+			description: 'User successfully updated.',
+			  }
+   #swagger.responses[400] = {
+			description: 'User not found.',
+			schema: {
+				error: 'User not found.'
+			}
+}
+  #swagger.security = [{
+			   "bearer": []	
+		}]
   */
 );
 router.delete(
@@ -92,12 +125,58 @@ router.delete(
 	auth.isAdmin,
 	deleteUser /*
   #swagger.tags = ['Users'];
+  #swagger.summary = 'Delete user';
+  #swagger.description = 'API to delete user based on user ID';
+  #swagger.consumes = ['application/json'];
+  #swagger.parameters['id'] = {
+		  in: 'path',
+		  required: true,
+		  type: 'number',
+		  description: 'User ID that will be deleted',
+		  example: 1
+		    }
+			  #swagger.responses[200] = {
+			description: 'User successfully deleted.',
+			  }
+			     #swagger.responses[400] = {
+			description: 'User not found.',
+			schema: {
+				error: 'User not found.'
+			}
+}
+  #swagger.security = [{
+			   "bearer": []
+		}]
+
+		
   */
 );
 router.get(
 	"/search/atributos",
 	bringByAttributes /*
   #swagger.tags = ['Users'];
+  #swagger.summary = 'Search user by attributes';
+  #swagger.description = 'API to search user based on attributes';
+  #swagger.consumes = ['application/json'];
+  #swagger.parameters['body'] = {
+		  in: 'body',
+		  required: true,
+		  type: 'object',
+		  description: 'User data that will be search',
+		  schema: {
+			  $name: 'Jhon Doe',
+			  $age: 29,
+		  }
+		}
+		  #swagger.responses[200] = {
+			description: 'User successfully obtained.',
+		}
+		#swagger.responses[400] = {
+			description: 'User not found.',
+			schema: {
+				error: 'User not found.'
+			}
+		}
   */
 );
 router.get(

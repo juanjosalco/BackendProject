@@ -2,10 +2,9 @@ const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 const Category = require("./category");
 const Editorial = require("./editorial");
-///
-const Library = require("./libary");
 
-//
+// const Library = require("./libary"); // declared but not used
+
 const Book = sequelize.define("Book", {
 	id: {
 		type: DataTypes.INTEGER,
@@ -29,11 +28,10 @@ const Book = sequelize.define("Book", {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
-	// category: {
-	//     type: DataTypes.STRING,
-
-	//     allowNull: false
-	// },
+	category: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
 });
 
 Book.hasOne(Category);

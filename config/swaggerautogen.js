@@ -1,6 +1,13 @@
+// use swagger autogen
 const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.3" });
+
+// where the output swagger jsn will go
 const outputFile = "../config/swagger.json";
+
+// where swagger will get initial routes from
 const endpointsFiles = ["../routes/index.js"];
+
+// declare configuation setting for swagger
 const config = {
 	info: {
 		title: "Libraryverse",
@@ -52,11 +59,5 @@ const config = {
 	},
 };
 
+// run swagger using declared values
 swaggerAutogen(outputFile, endpointsFiles, config);
-
-module.exports = {
-	swaggerAutogen,
-	outputFile,
-	endpointsFiles,
-	config,
-};

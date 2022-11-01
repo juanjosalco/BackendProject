@@ -4,6 +4,7 @@ const User = require("../models/users");
 const jwt = require("jsonwebtoken");
 const secret = require("../config/secret");
 
+// passport verififcation
 passport.use(
 	new BearerStratey(function (token, done) {
 		const body = jwt.decode(token, { secret });
