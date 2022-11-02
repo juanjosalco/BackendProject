@@ -115,4 +115,4 @@ la relación de las entidades se describen en la siguiente imagen
 ## Evidencia_Documento_inicia
 
 En este [Documento inicial](https://docs.google.com/document/d/1Zm7--3V2wiXMalCs8f_o3MtDpoGeK2owIOqlfRb7rno/edit)
-en donde fuimos realizando los primeros pasos para la creación y organización del proyecto.
+en donde fuimos realizando los primeros pasos para la creación y organización del proyecto. Merging
