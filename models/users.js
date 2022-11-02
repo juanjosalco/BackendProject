@@ -1,11 +1,12 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
-const crypto = require("node:crypto");
+const crypto = require("crypto");
 
 const jwt = require("jsonwebtoken"); // Genera los JWT
 const secret = require("../config/secret");
 
 const Library = require("./libary");
+const Rol = require("./rol");
 
 const User = sequelize.define("User", {
 	username: {
@@ -38,10 +39,10 @@ const User = sequelize.define("User", {
 			isEmail: true, // se revisa que el dato sea un email
 		},
 	},
-	userpass: {
+	/*userpass: {
 		type: DataTypes.STRING,
 		allowNull: false,
-	},
+	},*/
 	password_hash: {
 		type: DataTypes.TEXT(1024),
 		allowNull: true,
@@ -57,20 +58,50 @@ const User = sequelize.define("User", {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
+	credit_card_type: { type: DataTypes.CHAR(50) },
+    credit_card: { 
+        type: DataTypes.TEXT,
+        allowNull: false,
+        /*validate: {
+            isCreditCard: true
+        }*/
+    },
 	rol: {
-		type: DataTypes.STRING,
+		/*type: DataTypes.STRING,
 		allowNull: true, //especifica el rol
-		defaultValue: "user",
+		defaultValue: "user",*/
+		type: DataTypes.INTEGER,
+        allowNull: false
 	},
 });
 
 User.createPassword = function (plainText) {
-	const salt = crypto.randomBytes(16).toString("hex"); //generador de salt aleatorio
-	const hash = crypto
-		.pbkdf2Sync(plainText, salt, 10000, 512, "sha512")
-		.toString("hex"); //creacion de hash
-	return { salt: salt, hash: hash };
+	try {
+		const salt = crypto.randomBytes(16).toString("hex"); //generador de salt aleatorio
+		const hash = crypto
+			.pbkdf2Sync(plainText, salt, 10000, 512, "sha512")
+			.toString("hex"); //creacion de hash
+		return { salt: salt, hash: hash };
+	} catch (err) {
+        return res.status(400).json({
+            error: err.errors.map(e => e.message)
+        });
+    }
 };
+
+User.hashCard = function(plainText, salt) {
+    try {
+        //const salt = crypto.randomBytes(16).toString('hex');
+        const card = crypto
+            .pbkdf2Sync(plainText, salt, 10000, 512, "sha512")
+            .toString("hex");
+        return card.concat(plainText.slice(-4)); ///Se añaden 4 últimos valores
+    } catch (err) {
+        return res.status(400).json({
+            error: err.errors.map(e => e.message)
+        });
+    }
+}
 
 User.validatePassword = function (password, user_salt, user_hash) {
 	const hash = crypto
@@ -96,5 +127,14 @@ User.generateJWT = function (user) {
 
 User.hasMany(Library);
 Library.hasMany(User);
+
+Rol.hasMany(User, {
+	foreignKey: 'rol',
+	sourceKey: 'id',
+  });
+User.belongsTo(Rol,{
+	foreignKey: "rol",
+	targetKey: "id",
+  });
 
 module.exports = User;
