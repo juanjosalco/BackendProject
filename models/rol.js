@@ -4,11 +4,15 @@ const sequelize = require("../config/db");
 const Rol = sequelize.define(
 	"Roles",
 	{
+		id: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true,
+		},
 		rol: {
-			type: DataTypes.TEXT,
-			allowNull:false,
-		    unique:true,
-			isLowercase: true
+			type: DataTypes.STRING,
+			allowNull: false,
+			unique: true,
 		},
 	},
 	{

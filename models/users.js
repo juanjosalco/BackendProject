@@ -59,19 +59,19 @@ const User = sequelize.define("User", {
 		allowNull: false,
 	},
 	credit_card_type: { type: DataTypes.CHAR(50) },
-    credit_card: { 
-        type: DataTypes.TEXT,
-        allowNull: false,
-        /*validate: {
+	credit_card: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+		/*validate: {
             isCreditCard: true
         }*/
-    },
+	},
 	rol: {
 		/*type: DataTypes.STRING,
 		allowNull: true, //especifica el rol
 		defaultValue: "user",*/
 		type: DataTypes.INTEGER,
-        allowNull: false
+		allowNull: false,
 	},
 });
 
@@ -83,25 +83,25 @@ User.createPassword = function (plainText) {
 			.toString("hex"); //creacion de hash
 		return { salt: salt, hash: hash };
 	} catch (err) {
-        return res.status(400).json({
-            error: err.errors.map(e => e.message)
-        });
-    }
+		return res.status(400).json({
+			error: err.errors.map((e) => e.message),
+		});
+	}
 };
 
-User.hashCard = function(plainText, salt) {
-    try {
-        //const salt = crypto.randomBytes(16).toString('hex');
-        const card = crypto
-            .pbkdf2Sync(plainText, salt, 10000, 512, "sha512")
-            .toString("hex");
-        return card.concat(plainText.slice(-4)); ///Se añaden 4 últimos valores
-    } catch (err) {
-        return res.status(400).json({
-            error: err.errors.map(e => e.message)
-        });
-    }
-}
+User.hashCard = function (plainText, salt) {
+	try {
+		//const salt = crypto.randomBytes(16).toString('hex');
+		const card = crypto
+			.pbkdf2Sync(plainText, salt, 10000, 512, "sha512")
+			.toString("hex");
+		return card.concat(plainText.slice(-4)); ///Se añaden 4 últimos valores
+	} catch (err) {
+		return res.status(400).json({
+			error: err.errors.map((e) => e.message),
+		});
+	}
+};
 
 User.validatePassword = function (password, user_salt, user_hash) {
 	const hash = crypto
@@ -129,12 +129,12 @@ User.hasMany(Library);
 Library.hasMany(User);
 
 Rol.hasMany(User, {
-	foreignKey: 'rol',
-	sourceKey: 'id',
-  });
-User.belongsTo(Rol,{
+	foreignKey: "rol",
+	sourceKey: "id",
+});
+User.belongsTo(Rol, {
 	foreignKey: "rol",
 	targetKey: "id",
-  });
+});
 
 module.exports = User;

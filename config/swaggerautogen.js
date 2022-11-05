@@ -1,3 +1,6 @@
+const { text } = require("body-parser");
+const { INTEGER } = require("sequelize");
+
 // use swagger autogen
 const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.3" });
 
@@ -49,12 +52,46 @@ const config = {
 			name: "Libraries",
 			description: "Libraries API",
 		},
+		{
+			name: "Roles",
+			description: "Roles API for all the users",
+		},
 	],
 	securityDefinitions: {
 		bearer: {
 			type: "http",
 			scheme: "bearer",
 			bearerFormat: "JWT",
+		},
+	},
+	definitions: {
+		Roles: {
+			id: "2",
+			rol: "user",
+		},
+		Users: {
+			username: "kingofthenorth",
+			firstname: "jon",
+			lastname: "snow",
+			address: "123 winderfell",
+			email: "winter@fell.com",
+			phonenumber: "1234567890",
+			rol: "1",
+		},
+		Library: {
+			name: "King's Landing",
+			description: "The capital of the seven kingdoms",
+		},
+		Book: {
+			book_name: "A Game of thrones",
+			author: "George RR martin",
+			description: "a song of ice and fire",
+			publication_date: "1996",
+			category: "fantasy",
+		},
+		Category: {
+			genre: "fantasy",
+			description: "a genre of fiction",
 		},
 	},
 };

@@ -39,6 +39,10 @@
     {
       "name": "Libraries",
       "description": "Libraries API"
+    },
+    {
+      "name": "Roles",
+      "description": "Roles API for all the users"
     }
   ],
   "paths": {
@@ -1263,9 +1267,402 @@
           }
         }
       }
+    },
+    "/rol/": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get all Roles",
+        "description": "API to get all Roles",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all Roles successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    },
+                    "rol": {
+                      "type": "string",
+                      "example": "admin"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    },
+                    "rol": {
+                      "type": "string",
+                      "example": "admin"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Create a new Role",
+        "description": "API to create a new Role",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "description": "Rol",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rol/{id}": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get Role by ID",
+        "description": "API to get Role based on Role ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Role ID that will be search",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Role not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Update a Role",
+        "description": "API to update a Role",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Role ID that will be updated",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "description": "Rol",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Delete Role by ID",
+        "description": "API to delete Role based on Role ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Role ID that will be deleted",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role successfully deleted."
+          },
+          "400": {
+            "description": "Role not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
+    "schemas": {
+      "Roles": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "2"
+          },
+          "rol": {
+            "type": "string",
+            "example": "user"
+          }
+        },
+        "xml": {
+          "name": "Roles"
+        }
+      },
+      "Users": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "kingofthenorth"
+          },
+          "firstname": {
+            "type": "string",
+            "example": "jon"
+          },
+          "lastname": {
+            "type": "string",
+            "example": "snow"
+          },
+          "address": {
+            "type": "string",
+            "example": "123 winderfell"
+          },
+          "email": {
+            "type": "string",
+            "example": "winter@fell.com"
+          },
+          "phonenumber": {
+            "type": "string",
+            "example": "1234567890"
+          },
+          "rol": {
+            "type": "string",
+            "example": "1"
+          }
+        },
+        "xml": {
+          "name": "Users"
+        }
+      },
+      "Library": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "King's Landing"
+          },
+          "description": {
+            "type": "string",
+            "example": "The capital of the seven kingdoms"
+          }
+        },
+        "xml": {
+          "name": "Library"
+        }
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "book_name": {
+            "type": "string",
+            "example": "A Game of thrones"
+          },
+          "author": {
+            "type": "string",
+            "example": "George RR martin"
+          },
+          "description": {
+            "type": "string",
+            "example": "a song of ice and fire"
+          },
+          "publication_date": {
+            "type": "string",
+            "example": "1996"
+          },
+          "category": {
+            "type": "string",
+            "example": "fantasy"
+          }
+        },
+        "xml": {
+          "name": "Book"
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "genre": {
+            "type": "string",
+            "example": "fantasy"
+          },
+          "description": {
+            "type": "string",
+            "example": "a genre of fiction"
+          }
+        },
+        "xml": {
+          "name": "Category"
+        }
+      }
+    },
     "securitySchemes": {
       "bearer": {
         "type": "http",
