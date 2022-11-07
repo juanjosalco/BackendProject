@@ -29,7 +29,7 @@ const User = sequelize.define("User", {
 	},
 	address: {
 		type: DataTypes.STRING,
-		allowNull: false,
+		allowNull: true,
 	},
 	email: {
 		type: DataTypes.STRING,
@@ -56,7 +56,7 @@ const User = sequelize.define("User", {
 	},
 	membersince: {
 		type: DataTypes.STRING,
-		allowNull: false,
+		// allowNull: false,
 	},
 	credit_card_type: { type: DataTypes.CHAR(50) },
 	credit_card: {
@@ -67,9 +67,7 @@ const User = sequelize.define("User", {
         }*/
 	},
 	rol: {
-		/*type: DataTypes.STRING,
-		allowNull: true, //especifica el rol
-		defaultValue: "user",*/
+		defaultValue: "2",
 		type: DataTypes.INTEGER,
 		allowNull: false,
 	},

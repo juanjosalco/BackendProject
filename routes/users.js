@@ -75,9 +75,17 @@ router.post(
 	/*
   #swagger.tags = ['Users'];
   #swagger.summary = 'Sign up';
+  #swagger.description = 'API to sign up';
+  #swagger.consumes = ['application/json'];
+  #swagger.requestBody['signup'] = {
+		  in: 'body',
+		  required: true,
+		  type: 'object',
+		 schema: { $ref: "#/definitions/Users" }
+		}
   */
 );
-router.patch(
+router.put(
 	"/id/:id",
 	authpassport,
 	auth.required,

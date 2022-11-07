@@ -19,7 +19,11 @@ const config = {
 	servers: [
 		{
 			url: "http://localhost:3000/",
-			description: "Local server",
+			description: "LocalSqlite server",
+		},
+		{
+			url: "http://localhost:5668/",
+			description: "Local Postgress server",
 		},
 		{
 			url: "https://libroverse-production.up.railway.app/",

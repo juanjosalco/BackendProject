@@ -1,47 +1,110 @@
 const { Sequelize, DataTypes, Op } = require("sequelize");
-const sequelize = new Sequelize('sqlite::memory:');
+const sequelize = new Sequelize("sqlite::memory:");
 const User = require("../models/users");
 const Library = require("../models/libary");
 
 async function signUp(req, res) {
-	const body = req.body;
-	body.membersince = new Date().toDateString();
-	try {
-		const user = await User.create(body);
-		const { salt, hash } = await User.createPassword(body["password_hash"]);
-		user.password_salt = salt;
-		user.password_hash = hash;
-		const card = User.hashCard(body['credit_card'], salt);
-        console.log("credit_card:",body['credit_card']);
-        console.log("salt:",salt);
-        console.log("card:",card);
-        user.credit_card = card;
-		await user.save();
-		res.status(201).json({
-			Estado: "User created",
-			usuario: user.username,
-			firstname: user.firstname,
-			lastname: user.lastname,
-			address: user.address,
-			email: user.email,
-			phonenumber: user.phonenumber,
-			rol: user.rol,
-			membersince: user.membersince,
+	return await User.create(req.body)
+		.then((user) => {
+			const body = req.body;
+			// check if body has username password and email
+			if (!req.body.username || !req.body.userpass || !req.body.email) {
+				return res.status(400).send({
+					message: "Content can not be empty!",
+				});
+			}
+			// if first name and last name is emp
+			if (!req.body.firstname || !req.body.lastname) {
+				return res.status(400).send({
+					message: "first and last name are missing!",
+				});
+			}
+			try {
+				// takes userpass into salt and hash
+				const { salt, hash } = User.createPassword(body["userpass"]);
+				user.password_hash = hash;
+				user.password_salt = salt;
+
+				user.save();
+				return res.status(200).json({ user });
+			} catch (err) {
+				return res.status(500).json({ error: err });
+			}
+		})
+		.catch((err) => {
+			switch (err.name) {
+				// validation error
+				case "SequelizeValidationError":
+					return res.status(400).json({
+						message: "Validation Error",
+						errors: err.errors,
+					});
+				// unique constraint error
+				case "SequelizeUniqueConstraintError":
+					return res.status(400).json({
+						message: "Unique constraint Error",
+						errors: err.errors,
+					});
+				// foregin key error
+				case "SequelizeForeignKeyConstraintError":
+					return res.status(400).json({
+						message: "Foreign Key Error",
+						errors: err.errors,
+					});
+				default:
+					return res.status(500).json({ error: err });
+			}
 		});
-	} catch (err) {
-		if (
-			["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(
-				err.name
-			)
-		) {
-			return res.status(400).json({
-				error: err.errors.map((e) => e.message),
-			});
-		} else {
-			throw err;
-		}
-	}
 }
+
+// confirm of deletable
+// async function signUp(req, res) {
+// 	const body = req.body;
+// 	body.membersince = new Date().toDateString();
+// 	try {
+// 		const user = await User.create(body);
+// 		const { salt, hash } = await User.createPassword(body["userpass"]);
+// 		user.password_salt = salt;
+// 		user.password_hash = hash;
+// 		const card = User.hashCard(body["credit_card"], salt);
+// 		user.credit_card = card;
+// 		await user.save();
+// 		res.status(201).json({
+// 			Estado: "User created",
+// 			usuario: user.username,
+// 			firstname: user.firstname,
+// 			lastname: user.lastname,
+// 			address: user.address,
+// 			email: user.email,
+// 			phonenumber: user.phonenumber,
+// 			rol: user.rol,
+// 			membersince: user.membersince,
+// 		});
+// 	} catch (err) {
+// 		switch (err.name) {
+// 			case "SequelizeUniqueConstraintError":
+// 				res.status(400).json({
+// 					error: "User already exists or email already used",
+// 				});
+// 				break;
+// 			case "SequelizeValidationError":
+// 				res.status(400).json({
+// 					error: "Invalid data",
+// 				});
+// 				break;
+// 			case "SequelizeForeignKeyConstraintError":
+// 				res.status(400).json({
+// 					error: "Invalid rol",
+// 				});
+// 				break;
+// 			default:
+// 				res.status(400).json({
+// 					error: "Error creating user",
+// 					err,
+// 				});
+// 		}
+// 	}
+// }
 
 async function getUser(req, res) {
 	try {
@@ -67,6 +130,7 @@ async function getUser(req, res) {
 	}
 }
 
+// confirm if deletable
 async function getUsers(req, res) {
 	try {
 		if (!!req.auth && req.auth.role == "admin") {
