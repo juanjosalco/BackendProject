@@ -589,11 +589,14 @@
         "description": "API to sign up",
         "parameters": [],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "requestBody": {
@@ -761,11 +764,42 @@
         "tags": [
           "Categories"
         ],
-        "description": "",
+        "summary": "Get all Categories",
+        "description": "API to get all Categories",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "all Categories successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -776,7 +810,8 @@
         "tags": [
           "Categories"
         ],
-        "description": "",
+        "summary": "Create a new Category",
+        "description": "API to create a new Category",
         "parameters": [],
         "responses": {
           "201": {
@@ -791,6 +826,23 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "requestBody": {
+          "description": "Category",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Categories"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Categories"
+              }
+            }
+          }
         }
       }
     },
@@ -799,7 +851,8 @@
         "tags": [
           "Categories"
         ],
-        "description": "",
+        "summary": "Get Categorie by Genre",
+        "description": "API to get Categorie based on Genre",
         "parameters": [
           {
             "name": "genre",
@@ -807,15 +860,77 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Genre that will be search",
+            "example": "action"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Category successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "genre": {
+                      "type": "string",
+                      "example": "action"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "genre": {
+                      "type": "string",
+                      "example": "action"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Category not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -829,7 +944,8 @@
         "tags": [
           "Categories"
         ],
-        "description": "",
+        "summary": "Update a Categories",
+        "description": "API to update a Category",
         "parameters": [
           {
             "name": "genre",
@@ -837,7 +953,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Genre that will be updated",
+            "example": "action"
           }
         ],
         "responses": {
@@ -853,13 +971,31 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "requestBody": {
+          "description": "Category",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Categories"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Categories"
+              }
+            }
+          }
         }
       },
       "delete": {
         "tags": [
           "Categories"
         ],
-        "description": "",
+        "summary": "Delete Category by Genre",
+        "description": "API to delete Category based on Genre",
         "parameters": [
           {
             "name": "genre",
@@ -867,15 +1003,47 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "genre that will be deleted",
+            "example": "action"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Category successfully deleted."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Category not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -891,11 +1059,42 @@
         "tags": [
           "Editorials"
         ],
-        "description": "",
+        "summary": "Get all Editorials",
+        "description": "API to get all Editorials",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "all Editorials successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -906,7 +1105,8 @@
         "tags": [
           "Editorials"
         ],
-        "description": "",
+        "summary": "Create a new Editorial",
+        "description": "API to create a new Editorial",
         "parameters": [],
         "responses": {
           "201": {
@@ -921,6 +1121,23 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "requestBody": {
+          "description": "Editorial",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorials"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorials"
+              }
+            }
+          }
         }
       }
     },
@@ -929,7 +1146,8 @@
         "tags": [
           "Editorials"
         ],
-        "description": "",
+        "summary": "Get Editorial by ID",
+        "description": "API to get Editorial based on Editorial ID",
         "parameters": [
           {
             "name": "name",
@@ -938,14 +1156,84 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Editorial ID that will be search",
+            "example": 1,
+            "schema": {
+              "type": "number"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Editorial successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Editorial not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -959,7 +1247,8 @@
         "tags": [
           "Editorials"
         ],
-        "description": "",
+        "summary": "Update an Editorial",
+        "description": "API to update a Role",
         "parameters": [
           {
             "name": "name",
@@ -967,6 +1256,16 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Editorial ID that will be updated",
+            "example": 1,
+            "schema": {
+              "type": "number"
             }
           }
         ],
@@ -983,13 +1282,31 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "requestBody": {
+          "description": "Editorial",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorials"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorials"
+              }
+            }
+          }
         }
       },
       "delete": {
         "tags": [
           "Editorials"
         ],
-        "description": "",
+        "summary": "Delete Editorial by ID",
+        "description": "API to delete Editorial based on Editorial ID",
         "parameters": [
           {
             "name": "name",
@@ -998,14 +1315,54 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Editorial ID that will be deleted",
+            "example": 1,
+            "schema": {
+              "type": "number"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Editorial successfully deleted."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Editorial not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -1021,11 +1378,42 @@
         "tags": [
           "Books"
         ],
-        "description": "",
+        "summary": "Get all Books",
+        "description": "API to get all Books",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "all Books successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -1036,7 +1424,8 @@
         "tags": [
           "Books"
         ],
-        "description": "",
+        "summary": "Create a new Book",
+        "description": "API to create a new Book",
         "parameters": [],
         "responses": {
           "201": {
@@ -1051,6 +1440,23 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "requestBody": {
+          "description": "Book",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Books"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Books"
+              }
+            }
+          }
         }
       }
     },
@@ -1059,7 +1465,8 @@
         "tags": [
           "Books"
         ],
-        "description": "",
+        "summary": "Get Book by ID",
+        "description": "API to get Book based on Book ID",
         "parameters": [
           {
             "name": "id",
@@ -1067,15 +1474,77 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Book ID that will be search",
+            "example": 1
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Role successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Book not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -1089,7 +1558,8 @@
         "tags": [
           "Books"
         ],
-        "description": "",
+        "summary": "Update a Book",
+        "description": "API to update a Book",
         "parameters": [
           {
             "name": "id",
@@ -1097,7 +1567,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Book ID that will be updated",
+            "example": 1
           }
         ],
         "responses": {
@@ -1113,13 +1585,31 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "requestBody": {
+          "description": "Book",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Books"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Books"
+              }
+            }
+          }
         }
       },
       "delete": {
         "tags": [
           "Books"
         ],
-        "description": "",
+        "summary": "Delete Book by ID",
+        "description": "API to delete Book based on Book ID",
         "parameters": [
           {
             "name": "id",
@@ -1127,10 +1617,48 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Book ID that will be deleted",
+            "example": 1
           }
         ],
         "responses": {
+          "200": {
+            "description": "Book successfully deleted."
+          },
+          "400": {
+            "description": "Book not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -1143,13 +1671,44 @@
     "/library/": {
       "get": {
         "tags": [
-          "Libraries"
+          "Library"
         ],
-        "description": "",
+        "summary": "Get all Libraries",
+        "description": "API to get all Libraries",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "all Libraries successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -1162,7 +1721,8 @@
         "tags": [
           "Libraries"
         ],
-        "description": "",
+        "summary": "Get Library by ID",
+        "description": "API to get Library based on Library ID",
         "parameters": [
           {
             "name": "id",
@@ -1170,15 +1730,77 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Library ID that will be search",
+            "example": 1
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Library successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Library not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -1195,7 +1817,8 @@
         "tags": [
           "Libraries"
         ],
-        "description": "",
+        "summary": "Update a Library",
+        "description": "API to update a Library",
         "parameters": [
           {
             "name": "id",
@@ -1203,7 +1826,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Library ID that will be updated",
+            "example": 1
           }
         ],
         "responses": {
@@ -1219,13 +1844,31 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "requestBody": {
+          "description": "Library",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            }
+          }
         }
       },
       "delete": {
         "tags": [
           "Libraries"
         ],
-        "description": "",
+        "summary": "Delete Library by ID",
+        "description": "API to delete Library based on Library ID",
         "parameters": [
           {
             "name": "id",
@@ -1233,15 +1876,47 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Library ID that will be deleted",
+            "example": 1
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Library successfully deleted."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Library not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -1257,7 +1932,8 @@
         "tags": [
           "Libraries"
         ],
-        "description": "",
+        "summary": "Create a new Library",
+        "description": "API to create a new Library",
         "parameters": [],
         "responses": {
           "201": {
@@ -1271,6 +1947,23 @@
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "description": "Library",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            }
           }
         }
       }
