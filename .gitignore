@@ -153,3 +153,4 @@ db.sqlite
 #
 env.json
 config.json.env
+.env.db.old.example
