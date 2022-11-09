@@ -60,6 +60,10 @@ const config = {
 			name: "Roles",
 			description: "Roles API for all the users",
 		},
+		{
+			name: "User Filters",
+			description: "User Filters API",
+		},
 	],
 	securityDefinitions: {
 		bearer: {
@@ -75,12 +79,13 @@ const config = {
 		},
 		Users: {
 			username: "kingofthenorth",
+			userpass: "123456",
 			firstname: "jon",
 			lastname: "snow",
 			address: "123 winderfell",
 			email: "winter@fell.com",
 			phonenumber: "1234567890",
-			rol: "1",
+			rol: "2",
 		},
 		Library: {
 			name: "King's Landing",
@@ -96,6 +101,10 @@ const config = {
 		Category: {
 			genre: "fantasy",
 			description: "a genre of fiction",
+		},
+		Login: {
+			username: "kingofthenorth",
+			userpass: "12345",
 		},
 	},
 };

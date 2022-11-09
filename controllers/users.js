@@ -10,7 +10,7 @@ async function signUp(req, res) {
 			// check if body has username password and email
 			if (!req.body.username || !req.body.userpass || !req.body.email) {
 				return res.status(400).send({
-					message: "Content can not be empty!",
+					message: "You might be missing your username password or email!",
 				});
 			}
 			// if first name and last name is emp
@@ -25,8 +25,20 @@ async function signUp(req, res) {
 				user.password_hash = hash;
 				user.password_salt = salt;
 
+				// add member since date now
+				user.membersince = new Date().toDateString();
+
+				// if credit card exists hash it
+				if (req.body.credit_card) {
+					const card = User.hashCard(body["credit_card"], salt);
+					user.credit_card = card;
+				}
+
+				// save user
 				user.save();
-				return res.status(200).json({ user });
+				return res
+					.status(200)
+					.json({ message: "User successfully created", user });
 			} catch (err) {
 				return res.status(500).json({ error: err });
 			}
@@ -42,13 +54,14 @@ async function signUp(req, res) {
 				// unique constraint error
 				case "SequelizeUniqueConstraintError":
 					return res.status(400).json({
-						message: "Unique constraint Error",
+						message: "Your email or Username might already in use",
 						errors: err.errors,
 					});
 				// foregin key error
 				case "SequelizeForeignKeyConstraintError":
 					return res.status(400).json({
-						message: "Foreign Key Error",
+						message:
+							"That role doesnt exist yet, can you create it or reqest it with your web master",
 						errors: err.errors,
 					});
 				default:
@@ -56,55 +69,6 @@ async function signUp(req, res) {
 			}
 		});
 }
-
-// confirm of deletable
-// async function signUp(req, res) {
-// 	const body = req.body;
-// 	body.membersince = new Date().toDateString();
-// 	try {
-// 		const user = await User.create(body);
-// 		const { salt, hash } = await User.createPassword(body["userpass"]);
-// 		user.password_salt = salt;
-// 		user.password_hash = hash;
-// 		const card = User.hashCard(body["credit_card"], salt);
-// 		user.credit_card = card;
-// 		await user.save();
-// 		res.status(201).json({
-// 			Estado: "User created",
-// 			usuario: user.username,
-// 			firstname: user.firstname,
-// 			lastname: user.lastname,
-// 			address: user.address,
-// 			email: user.email,
-// 			phonenumber: user.phonenumber,
-// 			rol: user.rol,
-// 			membersince: user.membersince,
-// 		});
-// 	} catch (err) {
-// 		switch (err.name) {
-// 			case "SequelizeUniqueConstraintError":
-// 				res.status(400).json({
-// 					error: "User already exists or email already used",
-// 				});
-// 				break;
-// 			case "SequelizeValidationError":
-// 				res.status(400).json({
-// 					error: "Invalid data",
-// 				});
-// 				break;
-// 			case "SequelizeForeignKeyConstraintError":
-// 				res.status(400).json({
-// 					error: "Invalid rol",
-// 				});
-// 				break;
-// 			default:
-// 				res.status(400).json({
-// 					error: "Error creating user",
-// 					err,
-// 				});
-// 		}
-// 	}
-// }
 
 async function getUser(req, res) {
 	try {
@@ -137,12 +101,12 @@ async function getUsers(req, res) {
 			const users = await User.findAll({
 				include: [{ association: User.hasMany(Library) }],
 			});
-			return res.status(200).json(users);
+			return res.status(200).json({ message: "here are all the users", user });
 		}
 		const user = await User.findAll(/*{
 			attributes: ["id", "username", "firstname", "email", "rol"],
 		}*/);
-		res.status(200).json(user);
+		res.status(200).json({ message: "here are all the users", user });
 	} catch (error) {
 		res
 			.status(400)
