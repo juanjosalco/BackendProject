@@ -5,6 +5,8 @@ const editorial = require("./editorial");
 const book = require("./book");
 const library = require("./library");
 const rol = require("./rol");
+const review = require("./reviews");
+const order = require("./orders");
 
 router.get("/", (req, res) => {
 	/* #swagger.tags = ['Home'];
@@ -47,4 +49,6 @@ router.use("/editorial", editorial);
 router.use("/book", book);
 router.use("/library", library);
 router.use("/rol", rol);
+router.use("/review", review);
+router.use("/order", order);
 module.exports = router;

@@ -34,6 +34,28 @@ async function signUp(req, res) {
 					user.credit_card = card;
 				}
 
+				// if user does not have CC set rol user
+				// if (!req.body.credit_card) {
+				// 	try {
+				// 		user.rol = "2";
+				// 	} catch (error) {
+				// 		res.status(400).json({
+				// 			info: "Error in request",
+				// 			error: "description " + error,
+				// 		});
+				// 	}
+				// } else {
+				// 	// if user has CC set rol to premium
+				// 	try {
+				// 		user.rol = "5";
+				// 	} catch (error) {
+				// 		res.status(400).json({
+				// 			info: "Error in request",
+				// 			error: "description " + error,
+				// 		});
+				// 	}
+				// }
+
 				// save user
 				user.save();
 				return res
