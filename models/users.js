@@ -44,11 +44,11 @@ const User = sequelize.define("User", {
 		allowNull: false,
 	},*/
 	password_hash: {
-		type: DataTypes.TEXT(1024),
+		type: DataTypes.TEXT,
 		allowNull: true,
 	},
 	password_salt: {
-		type: DataTypes.TEXT(1024),
+		type: DataTypes.TEXT,
 		allowNull: true,
 	},
 	phonenumber: {
