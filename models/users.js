@@ -15,7 +15,7 @@ const User = sequelize.define("User", {
 		unique: true,
 		validate: {
 			isLowercase: true,
-			is: /^[a-zA-Z0-9_-]+$/,
+			is: /^[a-z0-9_-]+$/,
 		},
 	},
 
