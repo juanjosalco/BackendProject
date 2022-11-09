@@ -12,9 +12,15 @@ const Author = sequelize.define("Authors", {
 	},
 	name: {
 		type: DataTypes.STRING,
+		allowNull: false,
 	},
-	description: {
+	bio: {//biography
 		type: DataTypes.TEXT,
+		allowNull: true,
+	},
+	prizes: {//premios-prizes
+		type: DataTypes.TEXT,
+		allowNull: true,
 	},
 });
 
