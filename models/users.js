@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken"); // Genera los JWT
 const secret = require("../config/secret");
 
-const Library = require("./libary");
+const Library = require("./library");
 const Rol = require("./rol");
 
 const User = sequelize.define("User", {
