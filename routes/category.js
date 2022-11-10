@@ -29,7 +29,6 @@ router.get(
 			}
 		}
   */
-
 );
 router.get(
 	"/id/:genre",
@@ -75,11 +74,11 @@ router.post(
 	description: 'Category',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Categories" }
+	schema: { $ref: "#/definitions/Category" }
   }
   */
 );
-router.patch(
+router.put(
 	"/id/:genre",
 	authpassport,
 	auth.required,
@@ -100,7 +99,7 @@ router.patch(
 	description: 'Category',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Categories" }
+	schema: { $ref: "#/definitions/Category" }
   }
   */
 );

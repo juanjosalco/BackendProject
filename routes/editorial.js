@@ -75,11 +75,11 @@ router.post(
 	description: 'Editorial',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Editorials" }
+	schema: { $ref: "#/definitions/Editorial" }
   }
   */
 );
-router.patch(
+router.put(
 	"/id/:name",
 	authpassport,
 	auth.required,
@@ -100,7 +100,7 @@ router.patch(
 	description: 'Editorial',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Editorials" }
+	schema: { $ref: "#/definitions/Editorial" }
   }
   */
 );

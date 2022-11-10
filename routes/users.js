@@ -78,7 +78,7 @@ router.post(
 	"/signUp",
 	signUp
 	/*
-  #swagger.tags = ['Users Actions'];
+  #swagger.tags = ['Users'];
   #swagger.summary = 'Sign up';
   #swagger.description = 'API to sign up';
   #swagger.consumes = ['application/json'];
@@ -218,7 +218,7 @@ router.get(
 router.post(
 	"/logIn",
 	logIn /*
-  #swagger.tags = ['Users Actions'];
+  #swagger.tags = ['Users'];
   #swagger.summary = 'Log in';
   #swagger.description = 'API to log in';
   #swagger.consumes = ['application/json'];

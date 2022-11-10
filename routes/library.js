@@ -18,8 +18,8 @@ const {
 router.get(
 	"/",
 	getLibraries
-  /*
-  #swagger.tags = ['Library'];
+	/*
+  #swagger.tags = ['Libraries'];
   #swagger.summary = 'Get all Libraries';
   #swagger.description = 'API to get all Libraries';
   #swagger.responses[200] = {
@@ -35,7 +35,7 @@ router.get(
 	"/id/:id",
 	authpassport,
 	auth.required,
-	getLibrary 
+	getLibrary
 	/*
   #swagger.tags = ['Libraries'];
   #swagger.summary = 'Get Library by ID';
@@ -80,11 +80,11 @@ router.post(
   */
 );
 
-router.patch(
+router.put(
 	"/id/:id",
 	authpassport,
 	auth.required,
-	updateLibrary 
+	updateLibrary
 	/*
   #swagger.tags = ['Libraries'];
   #swagger.summary = 'Update a Library';
@@ -109,7 +109,7 @@ router.delete(
 	"/id/:id",
 	authpassport,
 	auth.required,
-	deleteLibrary 
+	deleteLibrary
 	/*
   #swagger.tags = ['Libraries'];
   #swagger.summary = 'Delete Library by ID';
