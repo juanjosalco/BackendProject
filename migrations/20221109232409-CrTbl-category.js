@@ -3,9 +3,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('Editorial', {
-      //id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-      name: { 
+    await queryInterface.createTable("Category", {
+      id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+      genre: { 
         type: Sequelize.STRING,
         primaryKey: true,
         /*allowNull: false, 
@@ -31,6 +31,6 @@ module.exports = {
   },
   
   async down (queryInterface, Sequelize) {
-    await queryInterface.droptabke('Editorial');
+    await queryInterface.dropTable('Category');
   }
 };
