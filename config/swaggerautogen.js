@@ -19,7 +19,7 @@ const config = {
 	servers: [
 		{
 			url: "http://localhost:3000/",
-			description: "LocalSqlite server",
+			description: "Local server",
 		},
 		{
 			url: "http://localhost:5668/",

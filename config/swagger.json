@@ -8,7 +8,7 @@
   "servers": [
     {
       "url": "http://localhost:3000/",
-      "description": "LocalSqlite server"
+      "description": "Local server"
     },
     {
       "url": "http://localhost:5668/",
@@ -2574,7 +2574,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Review ID that will be deleted",
+            "description": "Order ID that will be deleted",
             "example": 1
           }
         ],

@@ -131,13 +131,13 @@ auth.isAdmin,*/ deleteReview
 	#swagger.summary = 'Delete a Review';
 	#swagger.description = 'API to delete a Review';
 	#swagger.consumes = ['application/json'];
-	#swagger.parameters['id'] = {
-		in: 'path',
-		required: true,
-		type: 'number',
-		description: 'Review ID that will be deleted',
-		example: 1
-	}
+	  #swagger.parameters['id'] = {
+			  in: 'path',
+			  required: true,
+			  type: 'number',
+			  description: 'Order ID that will be deleted',
+			  example: 1
+		}
 	#swagger.responses[200] = {
 		description: 'Review successfully deleted.',
 	}
