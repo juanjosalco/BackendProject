@@ -4,25 +4,19 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable("Category", {
-      id: { 
-        type: Sequelize.INTEGER, 
+      id: { type: Sequelize.INTEGER,
         primaryKey: true,
-         autoIncrement: true },
+        allowNull: false,
+        autoIncrement: true },
       genre: { 
         type: Sequelize.STRING,
-        //primaryKey: true,
+       //primaryKey: true,//COMENTED DUE TO MIGRATIONS ASSKING for ID attibute
         /*allowNull: false, 
         unique: true,*/
         //partes del modelo que creo faltan
         //no puede ser nulo
       },
-      country: {
-        type: Sequelize.STRING,
-        /*allowNull: true,*/
-        //partes del modelo que creo faltan
-        //pude ser nulo
-      },
-      editorial_desc: {
+      description: {
         type: Sequelize.TEXT,
         /*allowNull: true,*/
         //partes del modelo que creo faltan

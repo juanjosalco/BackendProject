@@ -82,14 +82,28 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       //FK to Rol model/table
-      rolId: {
+      rol: {
         type: Sequelize.INTEGER,
+        defaultValue:"2",
         references: {
           model: 'Roles',
           key: 'id'
         },
         onDelete: 'CASCADE'
       },
+      isPremium: {
+        //ATTRIBUTE DESIGNED FOR FUTURE SPRINT-CREATE TOGGLE BUTTON IN FRONT
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+        defaultValue:false,
+      },
+      isActive: {
+        //ATTRIBUTE DESIGNED FOR FUTURE SPRINT-CREATE TOGGLE BUTTON IN FRONT
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+        defaultValue:true,
+      },
+
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });

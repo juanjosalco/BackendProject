@@ -3,23 +3,59 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    await queryInterface.bulkInsert('Library', [{"id":1,"name":"Dusky rattlesnake","description":"Stand-alone fresh-thinking analyzer","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":2,"name":"Crow, american","description":"Visionary optimizing alliance","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":3,"name":"African lynx","description":"Proactive needs-based instruction set","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":4,"name":"Plover, blacksmith","description":"Visionary scalable success","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":5,"name":"Javan gold-spotted mongoose","description":"Reduced zero tolerance firmware","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":6,"name":"Arctic ground squirrel","description":"Extended 24/7 ability","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":7,"name":"Sandhill crane","description":"User-friendly background implementation","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":8,"name":"African black crake","description":"Inverse impactful local area network","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":9,"name":"Wallaby, river","description":"Progressive fresh-thinking frame","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":10,"name":"Deer, black-tailed","description":"Self-enabling optimizing initiative","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":11,"name":"Gonolek, burchell's","description":"Customer-focused incremental approach","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":12,"name":"Crested bunting","description":"Inverse dedicated matrix","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":13,"name":"Two-toed tree sloth","description":"Realigned contextually-based alliance","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":14,"name":"Andean goose","description":"Horizontal system-worthy complexity","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":15,"name":"Pelican, eastern white","description":"Face to face homogeneous instruction set","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":16,"name":"Numbat","description":"Grass-roots methodical orchestration","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":17,"name":"Stork, jabiru","description":"Devolved optimizing internet solution","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":18,"name":"Malleefowl","description":"Enhanced homogeneous info-mediaries","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":19,"name":"Tyrant flycatcher","description":"Multi-layered coherent hardware","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":20,"name":"Owl, snowy","description":"Compatible contextually-based knowledge user","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":21,"name":"Buffalo, asian water","description":"Reverse-engineered explicit pricing structure","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":22,"name":"Eagle, tawny","description":"Multi-lateral dedicated framework","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":23,"name":"Robin, kalahari scrub","description":"Advanced optimal interface","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":24,"name":"Owl, great horned","description":"Synchronised upward-trending interface","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":25,"name":"African lynx","description":"Fundamental motivating adapter","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":26,"name":"Wallaby, agile","description":"Centralized bottom-line budgetary management","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":27,"name":"Little heron","description":"Implemented background knowledge user","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":28,"name":"Cat, toddy","description":"Cross-platform eco-centric superstructure","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":29,"name":"Magistrate black colobus","description":"Future-proofed well-modulated contingency","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":30,"name":"Scaly-breasted lorikeet","description":"Adaptive motivating moderator","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":31,"name":"Mexican boa","description":"Balanced value-added archive","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":32,"name":"Numbat","description":"Programmable mobile installation","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":33,"name":"Mynah, indian","description":"User-friendly asymmetric neural-net","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":34,"name":"Burmese black mountain tortoise","description":"Virtual exuding knowledge user","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":35,"name":"Columbian rainbow boa","description":"Progressive dedicated capacity","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":36,"name":"Swamp deer","description":"Synergistic coherent protocol","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":37,"name":"Fox, asian red","description":"Multi-lateral zero tolerance productivity","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":38,"name":"Buffalo, wild water","description":"Implemented zero defect project","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":39,"name":"Mongoose, small indian","description":"Cloned mobile open architecture","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":40,"name":"Peccary, collared","description":"Multi-channelled optimizing capacity","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":41,"name":"Eagle, white-bellied sea","description":"Optional foreground website","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":42,"name":"Cockatoo, roseate","description":"Persistent composite project","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":43,"name":"Cardinal, red-capped","description":"Adaptive 3rd generation adapter","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":44,"name":"American bison","description":"Open-architected 4th generation orchestration","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":45,"name":"Stanley bustard","description":"Horizontal attitude-oriented hardware","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":46,"name":"Buffalo, american","description":"Universal systemic matrices","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":47,"name":"Paddy heron (unidentified)","description":"Horizontal client-server architecture","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":48,"name":"Greater blue-eared starling","description":"Pre-emptive dedicated challenge","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":49,"name":"Cormorant, little","description":"Focused fault-tolerant product","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":50,"name":"Legaan, Monitor (unidentified)","description":"Reduced foreground algorithm","createdAt":new Date(),"updatedAt":new Date()}], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Library', null, {});
   }
 };

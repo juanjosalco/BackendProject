@@ -23,7 +23,13 @@ const Author = sequelize.define("Authors", {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
-});
+	},
+	{
+		freezeTableName: true,
+		timestamps: true,
+	}
+);
+
 
 //remove after checking working status
 /*Author.hasMany(Book);

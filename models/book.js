@@ -44,7 +44,13 @@ const Book = sequelize.define("Book", {
         allowNull: false,
       },*/
 
-});
+	},
+	{
+		freezeTableName: true,
+		timestamps: true,
+	}
+);
+
 
 Book.hasOne(Category);
 Category.hasMany(Book);

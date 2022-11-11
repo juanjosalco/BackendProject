@@ -11,7 +11,7 @@ module.exports = {
         primaryKey: true,
       },
       review: {
-        type: Sequelize.TEXT,
+        type: Sequelize.TEXT("tiny"),
         allowNull: true,
       },
       rating: {

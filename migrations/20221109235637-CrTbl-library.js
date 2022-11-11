@@ -16,20 +16,11 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-       //FK to Library model/table
-      bookId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Book',
-          key: 'id'
-        },
-        onDelete: 'CASCADE'
-      },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });
   },
-  //CHECK THE NUMBER OF FK FROM THE Models, TOTAL 3
+  //CHECK THE NUMBER OF FK FROM THE Models, TOTAL 0 AS the relations are moving at LibraryBook Table
   /*Library.hasMany(Book);
     Book.belongsTo(Library);*/
   
