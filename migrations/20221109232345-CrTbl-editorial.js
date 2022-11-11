@@ -4,10 +4,14 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Editorial', {
-      id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+      id: { 
+        type: Sequelize.INTEGER,
+        primaryKey:true, 
+        autoIncrement:true 
+      },
       name: { 
         type: Sequelize.STRING,
-        primaryKey: true,
+        //primaryKey: true
         /*allowNull: false, 
         unique: true,*/
         //partes del modelo que creo faltan
