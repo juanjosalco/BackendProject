@@ -527,30 +527,13 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "security": [
           {
             "bearer": []
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "credit_card": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]
       },
       "delete": {
         "tags": [
@@ -809,6 +792,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1242,8 +1228,16 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Editorial",
           "required": true,
@@ -1277,17 +1271,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Editorial ID that will be search",
-            "example": 1,
-            "schema": {
-              "type": "number"
-            }
+            },
+            "description": "Editorial Name that will be search",
+            "example": "Bantam Books"
           }
         ],
         "responses": {
@@ -1298,9 +1284,25 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
+                    "Name": {
+                      "type": "string",
+                      "example": "Bantam Books"
+                    },
+                    "country": {
+                      "type": "string",
+                      "example": "mexico"
+                    },
+                    "editorial_desc": {
+                      "type": "string",
+                      "example": "a book publisher"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2022-11-11T06:52:15.192Z"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2022-11-11T06:52:15.192Z"
                     }
                   },
                   "xml": {
@@ -1312,9 +1314,25 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
+                    "Name": {
+                      "type": "string",
+                      "example": "Bantam Books"
+                    },
+                    "country": {
+                      "type": "string",
+                      "example": "mexico"
+                    },
+                    "editorial_desc": {
+                      "type": "string",
+                      "example": "a book publisher"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2022-11-11T06:52:15.192Z"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2022-11-11T06:52:15.192Z"
                     }
                   },
                   "xml": {
@@ -1362,8 +1380,16 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -1384,10 +1410,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "Editorial ID that will be updated",
-            "example": 1,
+            "description": "Editorial Name that will be updated",
+            "example": "Bantam Books",
             "schema": {
-              "type": "number"
+              "type": "string"
             }
           }
         ],
@@ -1405,6 +1431,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Editorial",
           "required": true,
@@ -1436,17 +1467,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            },
             "description": "Editorial ID that will be deleted",
-            "example": 1,
-            "schema": {
-              "type": "number"
-            }
+            "example": "Bantam Books"
           }
         ],
         "responses": {
@@ -1492,7 +1515,12 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/book/": {
