@@ -29,7 +29,6 @@ router.get(
 			}
 		}
   */
-
 );
 router.get(
 	"/id/:id",
@@ -75,11 +74,11 @@ router.post(
 	description: 'Book',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Books" }
+	schema: { $ref: "#/definitions/Book" }
   }
   */
 );
-router.patch(
+router.put(
 	"/id/:id",
 	authpassport,
 	auth.required,
@@ -100,7 +99,7 @@ router.patch(
 	description: 'Book',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Books" }
+	schema: { $ref: "#/definitions/Book" }
   }
   */
 );

@@ -19,7 +19,7 @@ const config = {
 	servers: [
 		{
 			url: "http://localhost:3000/",
-			description: "LocalSqlite server",
+			description: "Local server",
 		},
 		{
 			url: "http://localhost:5668/",
@@ -64,6 +64,14 @@ const config = {
 			name: "User Filters",
 			description: "User Filters API",
 		},
+		{
+			name: "Reviews",
+			description: "Reviews API",
+		},
+		{
+			name: "Orders",
+			description: "Orders API",
+		},
 	],
 	securityDefinitions: {
 		bearer: {
@@ -105,6 +113,22 @@ const config = {
 		Login: {
 			username: "kingofthenorth",
 			userpass: "12345",
+		},
+		Editorial: {
+			name: "Bantam Books",
+			country: "mexico",
+			editorial_desc: "a book publisher",
+		},
+		Orders: {
+			user_id: "1",
+			payment_amount: "420.69",
+			order_date: "04/20/1969",
+		},
+		Reviews: {
+			review: "Lorem epsum my guy",
+			rating: "5",
+			user_id: "1",
+			book_id: "1",
 		},
 	},
 };
