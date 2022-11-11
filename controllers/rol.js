@@ -12,7 +12,9 @@ async function createRol(req, res) {
 			});
 		})
 		.catch((error) => {
-			res.status(400).send(error);
+			res
+				.status(400)
+				.send({ info: "error in request", error: "description" + error });
 		});
 }
 
@@ -45,9 +47,17 @@ async function updateRol(req, res) {
 				.then(() =>
 					res.status(200).send({ message: "usario actualizado", rol })
 				)
-				.catch((error) => res.status(400).send(error));
+				.catch((error) =>
+					res
+						.status(400)
+						.send({ info: "error in request", error: "description" + error })
+				);
 		})
-		.catch((error) => res.status(400).send(error));
+		.catch((error) =>
+			res
+				.status(400)
+				.send({ info: "error in request", error: "description" + error })
+		);
 }
 
 // delete role
@@ -62,9 +72,17 @@ async function deleteRol(req, res) {
 			return rol
 				.destroy()
 				.then(() => res.status(200).send({ message: "Rol eliminado", rol }))
-				.catch((error) => res.status(400).send(error));
+				.catch((error) =>
+					res
+						.status(400)
+						.send({ info: "Error in request", error: "description " + error })
+				);
 		})
-		.catch((error) => res.status(400).send(error));
+		.catch((error) =>
+			res
+				.status(400)
+				.send({ info: "Error in request", error: "description " + error })
+		);
 }
 
 module.exports = {

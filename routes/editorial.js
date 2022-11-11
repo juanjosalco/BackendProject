@@ -59,6 +59,10 @@ router.get(
 				error: 'Editorial not found.'
 			}
 		}
+		 #swagger.security = [{
+               "bearer": []
+        }] 
+		
   */
 );
 

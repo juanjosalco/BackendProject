@@ -27,7 +27,7 @@ const auth = {
 		if (!req.auth) {
 			return res.status(401).json({ Error: "Credentials not founded" });
 		}
-		if (req.auth.type !== 1) {
+		if (req.auth.role !== 1) {
 			return res
 				.status(403)
 				.json({ Error: "You are not an admin, can't access this info" });

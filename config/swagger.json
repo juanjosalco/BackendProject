@@ -527,30 +527,13 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "security": [
           {
             "bearer": []
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "credit_card": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]
       },
       "delete": {
         "tags": [
@@ -809,6 +792,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -949,6 +935,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Category",
           "required": true,
@@ -1053,12 +1044,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
           }
         }
       },
@@ -1094,6 +1079,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Category",
           "required": true,
@@ -1173,7 +1163,12 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/editorial/": {
@@ -1363,7 +1358,12 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -2224,12 +2224,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
           "404": {
             "description": "Not Found"
           }
@@ -2267,6 +2261,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Author",
           "required": true,
@@ -2346,7 +2345,12 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/author/create": {
@@ -2371,6 +2375,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Author",
           "required": true,

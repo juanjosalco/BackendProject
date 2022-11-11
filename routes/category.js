@@ -32,8 +32,6 @@ router.get(
 );
 router.get(
 	"/id/:genre",
-	authpassport,
-	auth.required,
 	getCategory
 	/*
   #swagger.tags = ['Categories'];
@@ -76,6 +74,10 @@ router.post(
 	type: 'object',
 	schema: { $ref: "#/definitions/Category" }
   }
+   #swagger.security = [{
+               "bearer": []
+        }] 
+  
   */
 );
 router.put(
@@ -101,6 +103,9 @@ router.put(
 	type: 'object',
 	schema: { $ref: "#/definitions/Category" }
   }
+   #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 router.delete(
@@ -129,6 +134,9 @@ router.delete(
 				error: 'Category not found.'
 			}
 		}
+		 #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 

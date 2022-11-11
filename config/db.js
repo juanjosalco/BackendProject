@@ -53,7 +53,7 @@ try {
 	// console log with date as text
 	console.log("Connected to DB as of " + new Date().toUTCString());
 } catch (error) {
-	console.log("Unable to connect to DB:", error);
+	console.log("Unable to connect to DB:", { error: "description " + error });
 }
 
 module.exports = sequelize;

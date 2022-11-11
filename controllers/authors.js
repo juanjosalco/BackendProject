@@ -1,17 +1,36 @@
 const Author = require("../models/authors");
 const Book = require("../models/book");
 
-function createAuthor(req, res) {
-	try {
-		const body = req.body;
-		Author.create(body).then((author) => {
-			res.status(201).json(author);
+// create Author
+async function createAuthor(req, res) {
+	return await Author.create(req.body)
+		.then((author) => {
+			res.status(201).send({
+				message: "Author created sucessfully",
+				data: author,
+			});
+		})
+		.catch((error) => {
+			switch (error.name) {
+				case "SequelizeValidationError":
+					res.status(400).send({
+						message: "Mission information",
+						error: "description " + error,
+					});
+					break;
+				case "SequelizeUniqueConstraintError":
+					res.status(400).send({
+						message: "Unique constrant",
+						error: "description " + error,
+					});
+					break;
+				default:
+					res.status(400).send({
+						message: "Something went wrong",
+						error: "description " + error,
+					});
+			}
 		});
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
 }
 
 async function getAuthor(req, res) {
@@ -22,9 +41,7 @@ async function getAuthor(req, res) {
 			return res.status(400).json({ error: "Try with numeric value" });
 		}
 		const author = await Author.findByPk(id, {
-			include: [
-				{ association: Author.hasMany(Book) },
-			],
+			include: [{ association: Author.hasMany(Book) }],
 		});
 		if (!author) {
 			res
@@ -82,18 +99,29 @@ async function updateAuthor(req, res) {
 }
 
 async function deleteAuthor(req, res) {
-	try {
-		const id = req.params.id;
-		if (!Number(id)) {
-			return res.status(400).json({ error: "Try with numeric value" });
-		}
-		const destruido = Author.destroy({ where: { id } });
-		res.status(200).json({ destruido });
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
+	return await Author.findByPk(req.params.id)
+		.then((author) => {
+			if (!author) {
+				return res.status(400).send({
+					message: "Author Not Found",
+				});
+			}
+			return author
+				.destroy()
+				.then(() => res.status(200).send({ message: "Author deleted", author }))
+				.catch((error) =>
+					res.status(400).send({
+						message: "Error in request",
+						error: "description " + error,
+					})
+				);
+		})
+		.catch((error) =>
+			res.status(400).send({
+				message: "Error in request",
+				error: "description " + error,
+			})
+		);
 }
 
 module.exports = {

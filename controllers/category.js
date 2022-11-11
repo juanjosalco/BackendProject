@@ -2,26 +2,44 @@ const { Sequelize } = require("sequelize");
 const Category = require("../models/category");
 const Book = require("../models/book");
 
-function createCategory(req, res) {
+async function createCategory(req, res) {
+	// find by genre
 	try {
-		const body = req.body;
-		Category.create(body).then((cat) => {
-			return res.status(201).json(cat);
+		// if genere is empty reject
+		if (!req.body.genre) {
+			return res.status(400).send({
+				message: "genre can not be empty",
+			});
+		}
+
+		const category = await Category.findOne({
+			where: {
+				genre: req.body.genre,
+			},
 		});
+		if (category) {
+			return res.status(400).send({
+				message: "Category already exists",
+			});
+
+			// if not exists, create
+		} else {
+			const newCategory = await Category.create(req.body);
+			res.status(201).json({ message: "Catagory created", newCategory });
+		}
 	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
+		return res.status(400).send(error);
 	}
 }
 
 async function getCategory(req, res) {
 	try {
 		const genre = req.params.genre;
-		const cat = await Category.findByPk(genre, {
+		const category = await Category.findOne({
+			where: { genre },
 			include: Book,
 		});
-		res.status(200).json(cat);
+		res.status(200).json(category);
 	} catch (error) {
 		res
 			.status(400)
@@ -45,22 +63,14 @@ async function getCategories(req, res) {
 async function updateCategory(req, res) {
 	try {
 		const genre = req.params.genre;
-		const cat = req.body;
-
-		const newCat = await Category.findByPk(genre);
-
-		for (const key in cat) {
-			if (!newCat[key] && newCat[key] != null) {
-				console.log("no encontrado");
-				return res
-					.status(400)
-					.json({ Error: "Attribute not update, attribute not valid" });
-			}
+		const category = await Category.findOne({
+			where: { genre },
+		});
+		if (!category) {
+			return res.status(404).json({ message: "Category not found" });
 		}
-
-		const update = await Category.update(cat, { where: { genre } });
-
-		res.status(200).json({ status: "Attribute was updated", cat: cat });
+		const updatedCategory = await category.update(req.body);
+		res.status(200).json({ message: "Category updated", updatedCategory });
 	} catch (error) {
 		res
 			.status(400)
@@ -71,9 +81,14 @@ async function updateCategory(req, res) {
 async function deleteCategory(req, res) {
 	try {
 		const genre = req.params.genre;
-
-		const destruido = Category.destroy({ where: { genre } });
-		res.status(200).json({ destruido });
+		const category = await Category.findOne({
+			where: { genre },
+		});
+		if (!category) {
+			return res.status(404).json({ message: "Category not found" });
+		}
+		await category.destroy();
+		res.status(200).json({ message: "Category deleted", category });
 	} catch (error) {
 		res
 			.status(400)

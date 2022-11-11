@@ -33,8 +33,6 @@ router.get(
 );
 router.get(
 	"/id/:id",
-	authpassport,
-	auth.required,
 	getAuthor
 	/*
   #swagger.tags = ['Authors'];
@@ -77,6 +75,9 @@ router.post(
 	type: 'object',
 	schema: { $ref: "#/definitions/Authors" }
   }
+   #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 
@@ -103,6 +104,9 @@ router.put(
 	type: 'object',
 	schema: { $ref: "#/definitions/Authors" }
   }
+   #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 router.delete(
@@ -131,6 +135,9 @@ router.delete(
 				error: 'Author not found.'
 			}
 		}
+		 #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 
