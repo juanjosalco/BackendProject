@@ -1,6 +1,6 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, DATE } = require("sequelize");
 
-let sequelize='';
+let sequelize = "";
 // node env development/staging/production switch databases
 
 if (process.env.NODE_ENV === "development") {
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "development") {
 			port: process.env.PORTDBDEV,
 		}
 	);
-}else if (process.env.NODE_ENV === "staging") {
+} else if (process.env.NODE_ENV === "staging") {
 	sequelize = new Sequelize(
 		process.env.DBSTG,
 		process.env.USERSTG,
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "development") {
 			port: process.env.PORTDBSTG,
 		}
 	);
-}else if (process.env.NODE_ENV === "production") {
+} else if (process.env.NODE_ENV === "production") {
 	sequelize = new Sequelize(
 		process.env.DBPRD,
 		process.env.USERPRD,
@@ -40,5 +40,20 @@ if (process.env.NODE_ENV === "development") {
 		}
 	);
 }
-	
+
+// authenticate sequelize and send console log
+try {
+	sequelize.authenticate().then(() => {
+		console.log("DB Authenticated");
+	});
+	sequelize.sync({ force: false }).then(() => {
+		console.log("DB syncronized " + process.env.NODE_ENV);
+	});
+
+	// console log with date as text
+	console.log("Connected to DB as of " + new Date().toUTCString());
+} catch (error) {
+	console.log("Unable to connect to DB:", error);
+}
+
 module.exports = sequelize;

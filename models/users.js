@@ -67,7 +67,7 @@ const User = sequelize.define("User", {
         }*/
 	},
 	rol: {
-		// defaultValue: "2", review en mysql
+		defaultValue: "2",
 		type: DataTypes.INTEGER,
 		allowNull: false,
 	},
