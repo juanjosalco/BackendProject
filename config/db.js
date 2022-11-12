@@ -29,14 +29,14 @@ if (process.env.NODE_ENV === "development") {
 	);
 } else if (process.env.NODE_ENV === "production") {
 	sequelize = new Sequelize(
-		process.env.DBPRD,
-		process.env.USERPRD,
-		process.env.PASSWDPRD,
+		process.env.DATABASE,
+		process.env.USER,
+		process.env.PASSWORD,
 		{
-			//URL: process.env.DATABASE_URL,
-			host: process.env.HOSTPRD,
-			dialect: process.env.DIALECTPRD,
-			port: process.env.PORTDBPRD,
+			URL: process.env.DATABASE_URL,
+			host: process.env.HOST,
+			dialect: "mysql",
+			port: process.env.PORT,
 		}
 	);
 }
