@@ -62,7 +62,7 @@ router.get(
 router.post(
 	"/",
 	authpassport,
-	auth.isAdmin,
+	auth.isEditor,
 	createCategory
 	/*
   #swagger.tags = ['Categories'];
@@ -83,11 +83,11 @@ router.post(
 router.put(
 	"/id/:genre",
 	authpassport,
-	auth.required,
+	auth.isEditor,
 	updateCategory
 	/*
   #swagger.tags = ['Categories'];
-  #swagger.summary = 'Update a Categories';
+  #swagger.summary = 'Update a Category';
   #swagger.description = 'API to update a Category';
   #swagger.consumes = ['application/json'];
   #swagger.parameters['genre'] = {

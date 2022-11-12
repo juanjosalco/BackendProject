@@ -17,6 +17,7 @@ const {
 
 router.get(
 	"/",
+	auth.isAdmin,
 	getLibraries
 	/*
   #swagger.tags = ['Libraries'];
@@ -29,12 +30,15 @@ router.get(
 				
 			}
 		}
+		#swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.get(
 	"/id/:id",
 	// authpassport,
-	// auth.required,
+	auth.isAdmin,
 	getLibrary
 	/*
   #swagger.tags = ['Libraries'];
@@ -60,12 +64,15 @@ router.get(
 				error: 'Library not found.'
 			}
 		}
+	#swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.post(
 	"/create",
 	// authpassport,
-	// auth.required,
+	auth.isUser,
 	createLibrary
 	/*
   #swagger.tags = ['Libraries'];
@@ -77,13 +84,15 @@ router.post(
 	type: 'object',
 	schema: { $ref: "#/definitions/Library" }
   }
+  #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 
 router.put(
 	"/id/:id",
-	// authpassport,
-	// auth.required,
+	auth.isUser,
 	updateLibrary
 	/*
   #swagger.tags = ['Libraries'];
@@ -103,12 +112,15 @@ router.put(
 	type: 'object',
 	schema: { $ref: "#/definitions/Library" }
   }
+  #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.delete(
 	"/id/:id",
 	// authpassport,
-	// auth.required,
+	auth.isUser,
 	deleteLibrary
 	/*
   #swagger.tags = ['Libraries'];
@@ -131,6 +143,9 @@ router.delete(
 				error: 'Library not found.'
 			}
 		}
+		#swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 

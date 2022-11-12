@@ -43,6 +43,7 @@ const auth = {
 			return res
 				.status(403)
 				.json({ Error: "You are not an admin, can't access this info" });
+			Z;
 		}
 		next();
 	},
@@ -52,10 +53,13 @@ const auth = {
 				.status(401)
 				.json({ Error: "Hi please login to access this info" });
 		}
-		if (req.auth.role !== 3 || req.auth.role) {
-			return res
-				.status(403)
-				.json({ Error: "You are not an editor, can't access this info" });
+		if (req.auth.role == 1) {
+			return next();
+		}
+		if (req.auth.role !== 3) {
+			return res.status(403).json({
+				Error: "You are not an editor, can't access this info",
+			});
 		}
 		next();
 	},

@@ -1,7 +1,6 @@
 const Library = require("../models/library");
 const Book = require("../models/book");
 const User = require("../models/users");
-const LibraryBooks = require("../models/LibraryBook");
 
 // create library
 function createLibrary(req, res) {
@@ -52,6 +51,11 @@ async function getLibraries(req, res) {
 				model: User,
 				attributes: ["id", "username"],
 			},
+			// {
+			// 	model: Book,
+			// },
+			// NEXT SPRINT
+			// ADD MODEL BOOKS TO LIBRARY
 		],
 	})
 		.then((libraries) => {
