@@ -41,7 +41,10 @@ async function getAuthor(req, res) {
 			return res.status(400).json({ error: "Try with numeric value" });
 		}
 		const author = await Author.findByPk(id, {
-			include: [{ association: Author.hasMany(Book) }],
+			include: {
+				model: Book,
+				attributes: ["book_name", "description", "AuthorId"],
+			},
 		});
 		if (!author) {
 			res
@@ -59,7 +62,10 @@ async function getAuthor(req, res) {
 async function getAuthors(req, res) {
 	try {
 		const author = await Author.findAll({
-			include: [{ association: Author.hasMany(Book) }],
+			include: {
+				model: Book,
+				attributes: ["book_name", "description", "AuthorId"],
+			},
 		});
 		res.status(200).json(author);
 	} catch (error) {
@@ -77,7 +83,7 @@ async function updateAuthor(req, res) {
 			return res.status(400).json({ error: "Try with numeric value" });
 		}
 		const newAuthor = await Author.findByPk(id);
-		///
+
 		for (const key in author) {
 			if (!newAuthor[key] && newAuthor[key] != null) {
 				console.log("no encontrado");
@@ -86,7 +92,6 @@ async function updateAuthor(req, res) {
 					.json({ Error: "Attribute not update, attribute not valid" });
 			}
 		}
-		//
 
 		const update = await Author.update(author, { where: { id } });
 

@@ -1,7 +1,9 @@
 const Library = require("../models/library");
 const Book = require("../models/book");
 const User = require("../models/users");
+const LibraryBooks = require("../models/LibraryBook");
 
+// create library
 function createLibrary(req, res) {
 	try {
 		const body = req.body;
@@ -15,46 +17,55 @@ function createLibrary(req, res) {
 	}
 }
 
+// get library by id
 async function getLibrary(req, res) {
-	try {
-		const id = req.params.id;
-
-		if (!Number(id)) {
-			return res.status(400).json({ error: "Try with numeric value" });
-		}
-		const lib = await Library.findByPk(id, {
-			// include book and user
-			include: [Book, User],
-		});
-		if (!lib) {
-			res
-				.status(404)
-				.json({ mensaje: "id not found in DB, try with another id" });
-		}
-		res.status(200).json(lib);
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
-}
-
-async function getLibraries(req, res) {
-	try {
-		const lib = await Library.findAll({
-			// include book and user
-			include: {
-				model: book,
+	return await Library.findByPk(req.params.id, {
+		include: [
+			{
+				model: User,
+				attributes: ["id", "username"],
 			},
+		],
+	})
+		.then((Library) => {
+			if (!Library) {
+				return res.status(404).json({
+					message: "Library not found",
+				});
+			}
+			return res.status(200).json({ message: "heres your library", Library });
+		})
+		.catch((error) => {
+			return res.status(500).json({
+				info: "Error in request",
+				error: "description " + error,
+			});
 		});
-		res.status(200).json(lib);
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
 }
 
+// get all libraries
+async function getLibraries(req, res) {
+	return await Library.findAll({
+		// include book and user
+		include: [
+			{
+				model: User,
+				attributes: ["id", "username"],
+			},
+		],
+	})
+		.then((libraries) => {
+			res.status(200).json({ message: "heres all the libraries", libraries });
+		})
+		.catch((error) => {
+			res
+
+				.status(400)
+				.json({ info: "Check error", error: "description " + error });
+		});
+}
+
+// update library
 async function updateLibrary(req, res) {
 	try {
 		const id = req.params.id;
@@ -84,19 +95,37 @@ async function updateLibrary(req, res) {
 	}
 }
 
+// delete library
 async function deleteLibrary(req, res) {
-	try {
-		const id = req.params.id;
-		if (!Number(id)) {
-			return res.status(400).json({ error: "Try with numeric value" });
-		}
-		const destruido = Library.destroy({ where: { id } });
-		res.status(200).json({ destruido });
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
+	return await Library.findByPk(req.params.id)
+
+		.then((library) => {
+			if (!library) {
+				return res.status(404).json({
+					message: "Library not found",
+				});
+			}
+			return library
+				.destroy()
+				.then(() => {
+					return res.status(200).json({
+						message: "Library was deleted",
+						library,
+					});
+				})
+				.catch((error) => {
+					return res.status(500).json({
+						info: "Error in request",
+						error: "description " + error,
+					});
+				});
+		})
+		.catch((error) => {
+			return res.status(500).json({
+				info: "Error in request",
+				error: "description " + error,
+			});
+		});
 }
 
 module.exports = {
