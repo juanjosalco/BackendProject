@@ -935,6 +935,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Category",
           "required": true,
@@ -1039,12 +1044,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
           }
         }
       },
@@ -1080,6 +1079,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Category",
           "required": true,
@@ -1159,7 +1163,12 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/editorial/": {
@@ -2252,12 +2261,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
           "404": {
             "description": "Not Found"
           }
@@ -2295,6 +2298,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Author",
           "required": true,
@@ -2374,7 +2382,12 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/author/create": {
@@ -2399,6 +2412,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Author",
           "required": true,
