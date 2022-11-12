@@ -18,18 +18,18 @@ app.use("/", routes);
 app.use(helmet());
 app.use(cors());
 
-try {
-	sequelize.authenticate().then(() => {
-		console.log("DB Authenticated");
-	});
-	sequelize.sync({force:true}).then(() => {
-		console.log("DB syncronized " + process.env.NODE_ENV);
-	});
+// try {
+// 	sequelize.authenticate().then(() => {
+// 		console.log("DB Authenticated");
+// 	});
+// 	sequelize.sync({ force: true }).then(() => {
+// 		console.log("DB syncronized " + process.env.NODE_ENV);
+// 	});
 
-	console.log("Connected to DB");
-} catch (error) {
-	console.log("Unable to connect to DB:", error);
-}
+// 	console.log("Connected to DB");
+// } catch (error) {
+// 	console.log("Unable to connect to DB:", error);
+// }
 
 app.listen(process.env.PORT || 3000, () => {
 	console.log("Server listening on PORT: " + process.env.PORT);

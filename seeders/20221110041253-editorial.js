@@ -1,36 +1,186 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Editorial', [{"id":1,"name":"Great white pelican","country":"Brazil","editorial_desc":"Programmable radical standardization","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":2,"name":"American bighorn sheep","country":"Brazil","editorial_desc":"Object-based demand-driven open system","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":3,"name":"Dark-winged trumpeter","country":"United States","editorial_desc":"Triple-buffered zero administration extranet","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":4,"name":"Southern sea lion","country":"Brazil","editorial_desc":"Total mobile project","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":5,"name":"Blue catfish","country":"Brazil","editorial_desc":"Up-sized intermediate open system","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":6,"name":"Giant heron","country":"Canada","editorial_desc":"Enterprise-wide solution-oriented secured line","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":7,"name":"Yellow-rumped siskin","country":"Brazil","editorial_desc":"Function-based full-range framework","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":8,"name":"White-winged black tern","country":"Argentina","editorial_desc":"Sharable coherent concept","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":9,"name":"South American sea lion","country":"France","editorial_desc":"Robust heuristic hardware","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":10,"name":"Cat, cape wild","country":"Brazil","editorial_desc":"Multi-channelled well-modulated adapter","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":11,"name":"Waxbill, black-cheeked","country":"Canada","editorial_desc":"Cross-group impactful monitoring","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":12,"name":"Azara's zorro","country":"Brazil","editorial_desc":"Stand-alone 24/7 challenge","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":13,"name":"Pocket gopher (unidentified)","country":"Chile","editorial_desc":"Sharable exuding parallelism","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":14,"name":"Swamp deer","country":"United States","editorial_desc":"Cross-platform reciprocal challenge","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":15,"name":"Crane, black-crowned","country":"Brazil","editorial_desc":"Future-proofed hybrid solution","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":16,"name":"Red meerkat","country":"Brazil","editorial_desc":"Versatile bottom-line forecast","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":17,"name":"Woodcock, american","country":"France","editorial_desc":"User-centric needs-based hierarchy","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":18,"name":"Green vine snake","country":"France","editorial_desc":"Devolved optimizing methodology","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":19,"name":"Paca","country":"Brazil","editorial_desc":"Streamlined multi-tasking forecast","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":20,"name":"Tiger snake","country":"Mexico","editorial_desc":"Multi-lateral asymmetric complexity","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":21,"name":"Buttermilk snake","country":"United States","editorial_desc":"Cross-platform actuating hub","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":22,"name":"Killer whale","country":"France","editorial_desc":"Reduced needs-based knowledge base","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":23,"name":"Fringe-eared oryx","country":"United States","editorial_desc":"Right-sized web-enabled policy","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":24,"name":"Heron, goliath","country":"Brazil","editorial_desc":"Focused 6th generation software","createdAt":new Date(),"updatedAt":new Date()},
-    {"id":25,"name":"Small-toothed palm civet","country":"Brazil","editorial_desc":"Configurable multi-tasking pricing structure","createdAt":new Date(),"updatedAt":new Date()}], {});
-  },
+	async up(queryInterface, Sequelize) {
+		await queryInterface.bulkInsert(
+			"Editorial",
+			[
+				{
+					id: 1,
+					name: "Thoughtmix",
+					country: "Indonesia",
+					editorial_desc:
+						"Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",
+				},
+				{
+					id: 2,
+					name: "Jayo",
+					country: "Malta",
+					editorial_desc:
+						"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
+				},
+				{
+					id: 3,
+					name: "Babbleblab",
+					country: "Chile",
+					editorial_desc:
+						"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+				},
+				{
+					id: 4,
+					name: "DabZ",
+					country: "Russia",
+					editorial_desc:
+						"Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.",
+				},
+				{
+					id: 5,
+					name: "Oyope",
+					country: "Egypt",
+					editorial_desc:
+						"Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.",
+				},
+				{
+					id: 6,
+					name: "Browsetype",
+					country: "Morocco",
+					editorial_desc:
+						"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
+				},
+				{
+					id: 7,
+					name: "Voonte",
+					country: "Indonesia",
+					editorial_desc:
+						"Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+				},
+				{
+					id: 8,
+					name: "Brainsphere",
+					country: "Brazil",
+					editorial_desc:
+						"Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",
+				},
+				{
+					id: 9,
+					name: "Yozio",
+					country: "Czech Republic",
+					editorial_desc: "Nulla ut erat id mauris vulputate elementum.",
+				},
+				{
+					id: 10,
+					name: "Divanoodle",
+					country: "China",
+					editorial_desc:
+						"Duis at velit eu est congue elementum. In hac habitasse platea dictumst.",
+				},
+				{
+					id: 11,
+					name: "Gabtype",
+					country: "China",
+					editorial_desc:
+						"Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
+				},
+				{
+					id: 12,
+					name: "Yacero",
+					country: "Indonesia",
+					editorial_desc:
+						"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
+				},
+				{
+					id: 13,
+					name: "Layo",
+					country: "Poland",
+					editorial_desc:
+						"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+				},
+				{
+					id: 14,
+					name: "Kanoodle",
+					country: "France",
+					editorial_desc:
+						"Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
+				},
+				{
+					id: 15,
+					name: "Feedbug",
+					country: "Portugal",
+					editorial_desc: "Nunc rhoncus dui vel sem. Sed sagittis.",
+				},
+				{
+					id: 16,
+					name: "Quimm",
+					country: "Argentina",
+					editorial_desc:
+						"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
+				},
+				{
+					id: 17,
+					name: "JumpXS",
+					country: "Malaysia",
+					editorial_desc: "In hac habitasse platea dictumst.",
+				},
+				{
+					id: 18,
+					name: "Meemm",
+					country: "Pakistan",
+					editorial_desc: "Aenean fermentum.",
+				},
+				{
+					id: 19,
+					name: "Feedfire",
+					country: "Germany",
+					editorial_desc: "Suspendisse potenti.",
+				},
+				{
+					id: 20,
+					name: "Oyope",
+					country: "Japan",
+					editorial_desc:
+						"Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
+				},
+				{
+					id: 21,
+					name: "Skimia",
+					country: "Poland",
+					editorial_desc:
+						"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+				},
+				{
+					id: 22,
+					name: "Oyonder",
+					country: "China",
+					editorial_desc:
+						"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
+				},
+				{
+					id: 23,
+					name: "Yakijo",
+					country: "Indonesia",
+					editorial_desc: "Integer ac leo. Pellentesque ultrices mattis odio.",
+				},
+				{
+					id: 24,
+					name: "Gigabox",
+					country: "Russia",
+					editorial_desc:
+						"Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
+				},
+				{
+					id: 25,
+					name: "Rooxo",
+					country: "Indonesia",
+					editorial_desc:
+						"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
+				},
+			],
+			{}
+		);
+	},
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Editorial', null, {});
-  }
+	async down(queryInterface, Sequelize) {
+		await queryInterface.bulkDelete("Editorial", null, {});
+	},
 };

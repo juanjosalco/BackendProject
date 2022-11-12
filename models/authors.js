@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
+const Book = require("./book");
+
 
 const Author = sequelize.define("Authors", {
 	id: {
@@ -22,7 +24,12 @@ const Author = sequelize.define("Authors", {
 	},
 	createdAt: DataTypes.DATE,
 	updatedAt: DataTypes.DATE,
-},{
+},
+                                {
+	freezeTableName: true,
+	timestamps: true,
+},
+{
 	hooks: {		
 		beforeCreate: function (author, options){ 				
 			author.createdAt = new Date();
@@ -33,10 +40,8 @@ const Author = sequelize.define("Authors", {
 		},
 	},
 },	
-{
-	freezeTableName: true,
-	timestamps: true,
-}
+
 );
+
 
 module.exports = Author;
