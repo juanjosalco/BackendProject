@@ -1,13 +1,15 @@
 const router = require("express").Router();
-const users = require("./users");
-const categories = require("./category");
+
+const rol = require("./rol");
 const editorial = require("./editorial");
+const categories = require("./category");
+const author = require("./authors");
+
 const book = require("./book");
 const library = require("./library");
-const author = require("./authors");
-const rol = require("./rol");
-const review = require("./reviews");
+const users = require("./users");
 const order = require("./orders");
+const review = require("./reviews");
 
 router.get("/", (req, res) => {
 	/* #swagger.tags = ['Home'];
@@ -44,13 +46,14 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.use("/users", users);
-router.use("/category", categories);
+router.use("/rol", rol);
 router.use("/editorial", editorial);
+router.use("/category", categories);
+router.use("/author", author);
 router.use("/book", book);
 router.use("/library", library);
-router.use("/author", author);
-router.use("/rol", rol);
+router.use("/users", users);
 router.use("/review", review);
 router.use("/order", order);
+
 module.exports = router;

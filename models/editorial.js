@@ -18,11 +18,22 @@ const Editorial = sequelize.define("Editorial", {
 	editorial_desc: {
 		type: DataTypes.TEXT,
 	},
+	createdAt: DataTypes.DATE,
+	updatedAt: DataTypes.DATE,
+}, {
+	freezeTableName: true,
+	timestamps: true,
+}, {
+	hooks: {	
+		beforeCreate: function (editorial, options){ 				
+			editorial.createdAt = new Date();
+			editorial.updatedAt = new Date(); 			
+			},
+		beforeUpdate: function (editorial, options) { 
+			editorial.updatedAt = new Date();
+		},
 	},
-	{
-		freezeTableName: true,
-		timestamps: true,
-	}
+},
 );
 
 module.exports = Editorial;

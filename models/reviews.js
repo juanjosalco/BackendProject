@@ -25,11 +25,22 @@ const Review = sequelize.define(
 			allowNull: false,
 			//FOREIGNKEYS
 		},
-	},
-	{
+		createdAt: DataTypes.DATE,
+		updatedAt: DataTypes.DATE,
+	}, {
 		freezeTableName: true,
-		timestamps: false,
-	}
+		timestamps: true,
+	}, {
+		hooks: {		
+			beforeCreate: function (review, options){ 				
+				review.createdAt = new Date();
+				review.updatedAt = new Date(); 			
+				},
+			beforeUpdate: function (review, options) { 
+				review.updatedAt = new Date();
+			},
+		},
+	},
 );
 
 //FKrels between Tables
