@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "01-migrate":"npx sequelize  db:migrate --env development",
+    "01-undo":"npx sequelize  db:migrate:undo:all --env development",
+    "02-seeder":"npx sequelize  db:seed:all --env development",
+    "02-undo":"npx sequelize  db:seed:undo:all --env development",
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

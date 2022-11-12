@@ -23,10 +23,8 @@ async function getLibrary(req, res) {
 			return res.status(400).json({ error: "Try with numeric value" });
 		}
 		const lib = await Library.findByPk(id, {
-			include: [
-				{ association: Library.hasMany(Book) },
-				{ association: Library.hasMany(User) },
-			],
+			// include book and user
+			include: [Book, User],
 		});
 		if (!lib) {
 			res
@@ -44,7 +42,10 @@ async function getLibrary(req, res) {
 async function getLibraries(req, res) {
 	try {
 		const lib = await Library.findAll({
-			include: [{ association: Library.hasMany(Book) }],
+			// include book and user
+			include: {
+				model: book,
+			},
 		});
 		res.status(200).json(lib);
 	} catch (error) {
