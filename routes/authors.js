@@ -18,8 +18,8 @@ const {
 router.get(
 	"/",
 	getAuthors
-  /*
-  #swagger.tags = ['Author'];
+	/*
+  #swagger.tags = ['Authors'];
   #swagger.summary = 'Get all Authors';
   #swagger.description = 'API to get all Authors';
   #swagger.responses[200] = {
@@ -33,9 +33,7 @@ router.get(
 );
 router.get(
 	"/id/:id",
-	authpassport,
-	auth.required,
-	getAuthor 
+	getAuthor
 	/*
   #swagger.tags = ['Authors'];
   #swagger.summary = 'Get Author by ID';
@@ -75,16 +73,19 @@ router.post(
 	description: 'Author',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Author" }
+	schema: { $ref: "#/definitions/Authors" }
   }
+   #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 
-router.patch(
+router.put(
 	"/id/:id",
 	authpassport,
 	auth.required,
-	updateAuthor 
+	updateAuthor
 	/*
   #swagger.tags = ['Authors'];
   #swagger.summary = 'Update a Author';
@@ -101,15 +102,18 @@ router.patch(
 	description: 'Author',
 	required: true,
 	type: 'object',
-	schema: { $ref: "#/definitions/Author" }
+	schema: { $ref: "#/definitions/Authors" }
   }
+   #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 router.delete(
 	"/id/:id",
 	authpassport,
 	auth.required,
-	deleteAuthor 
+	deleteAuthor
 	/*
   #swagger.tags = ['Authors'];
   #swagger.summary = 'Delete Author by ID';
@@ -131,6 +135,9 @@ router.delete(
 				error: 'Author not found.'
 			}
 		}
+		 #swagger.security = [{
+               "bearer": []
+        }] 
   */
 );
 

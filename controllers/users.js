@@ -62,32 +62,43 @@ async function signUp(req, res) {
 					.status(200)
 					.json({ message: "User successfully created", user });
 			} catch (err) {
-				return res.status(500).json({ error: err });
+				return res
+					.status(500)
+					.json({ info: "Check error", error: "description " + err });
 			}
 		})
 		.catch((err) => {
-			switch (err.name) {
+			switch (err) {
 				// validation error
 				case "SequelizeValidationError":
 					return res.status(400).json({
 						message: "Validation Error",
-						errors: err.errors,
+
+						info: "Error in request",
+						error: "description " + err,
 					});
 				// unique constraint error
 				case "SequelizeUniqueConstraintError":
 					return res.status(400).json({
 						message: "Your email or Username might already in use",
-						errors: err.errors,
+
+						info: "Error in request",
+						error: "description " + err,
 					});
 				// foregin key error
 				case "SequelizeForeignKeyConstraintError":
 					return res.status(400).json({
 						message:
 							"That role doesnt exist yet, can you create it or reqest it with your web master",
-						errors: err.errors,
+
+						info: "Error in request",
+						error: "description " + err,
 					});
 				default:
-					return res.status(500).json({ error: err });
+					return res.status(500).json({
+						info: "Error in request",
+						error: "description " + err,
+					});
 			}
 		});
 }
@@ -137,47 +148,47 @@ async function getUsers(req, res) {
 }
 
 async function updateUser(req, res) {
-	try {
-		const id = req.params.id;
-		const user = req.body;
-		if (!Number(id)) {
-			return res.status(400).json({ error: "Try with numeric value" });
-		}
-		const newUser = await User.findByPk(id);
-		if (req.user.rol != "admin" && req.auth.user != newUser.username) {
-			console.log("usuario diferente");
-			return res.status(403).json({
-				status:
-					"Cannot update others profiles, just only update your own profile",
+	return await User.findByPk(req.params.id).then((user) => {
+		const body = req.body;
+		if (!user) {
+			return res.status(404).json({
+				message: "User Not Found",
 			});
 		}
+		// // declare salt from user password
+		const salt = user.password_salt;
 
-		/////
-		for (const key in user) {
-			if (!newUser[key] && newUser[key] != null) {
-				console.log("no encontrado");
-				return res
-					.status(400)
-					.json({ Error: "Attribute not update, attribute not valid" });
-			}
+		// // if credit card exists hash it
+		if (req.body.credit_card) {
+			const card = User.hashCard(body["credit_card"], salt);
+			user.credit_card = card;
 		}
-		const update = await User.update(user, { where: { id } });
+		return (
+			user
+				.update({
+					username: body["username"],
+					firstname: body["firstname"],
+					lastname: body["lastname"],
+					address: body["address"],
+					email: body["email"],
+					phonenumber: body["phonenumber"],
+					rol: body["rol"],
+					credit_card: user.credit_card,
+				})
+				// return updated user
+				.then(() =>
+					res.status(200).json({ message: "User successfully updated", user })
+				)
 
-		res.status(200).json({ status: "Attribute was updated", user: user });
-	} catch (err) {
-		if (
-			["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(
-				err.name
-			)
-		) {
-			return res.status(400).json({
-				error: err.errors.map((e) => e.message),
-				description: "try with other value",
-			});
-		} else {
-			throw err;
-		}
-	}
+				// catch error
+				.catch((error) =>
+					res.status(400).json({
+						info: "Error in request",
+						error: "description " + error,
+					})
+				)
+		);
+	});
 }
 
 async function deleteUser(req, res) {
@@ -187,7 +198,7 @@ async function deleteUser(req, res) {
 			return res.status(400).json({ error: "Try with numeric value" });
 		}
 		const destruido = User.destroy({ where: { id } });
-		res.status(200).json({ destruido });
+		res.status(200).json({ destruido, id });
 	} catch (error) {
 		res
 			.status(400)
@@ -211,6 +222,12 @@ async function bringByRol(req, res) {
 	try {
 		const rol = req.params.rol;
 		const user = await User.findAll({ where: { rol } });
+		if (user == "") {
+			return res.status(404).json({
+				message:
+					"No users found under that role maybe it doesnt exist or users have not been created",
+			});
+		}
 		res.status(200).json(user);
 	} catch (error) {
 		res

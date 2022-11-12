@@ -72,6 +72,10 @@ const config = {
 			name: "Orders",
 			description: "Orders API",
 		},
+		{
+			name: "Authors",
+			description: "Authors API",
+		},
 	],
 	securityDefinitions: {
 		bearer: {
@@ -129,6 +133,11 @@ const config = {
 			rating: "5",
 			user_id: "1",
 			book_id: "1",
+		},
+		Authors: {
+			name: "George RR Martin",
+			bio: "Lorem epsum my guy",
+			prizes: "Lorem epsum my guy",
 		},
 	},
 };

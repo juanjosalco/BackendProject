@@ -1,7 +1,8 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Library', {
       id: {
@@ -22,9 +23,10 @@ module.exports = {
   },
   //CHECK THE NUMBER OF FK FROM THE Models, TOTAL 0 AS the relations are moving at LibraryBook Table
   /*Library.hasMany(Book);
+
     Book.belongsTo(Library);*/
-  
-  async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Library');
-  }
+
+	async down(queryInterface, Sequelize) {
+		await queryInterface.dropTable("Library");
+	},
 };
