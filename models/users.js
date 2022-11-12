@@ -67,11 +67,29 @@ const User = sequelize.define("User", {
         }*/
 	},
 	rol: {
-		defaultValue: "2",
+		defaultValue: "2", //review en mysql
 		type: DataTypes.INTEGER,
 		allowNull: false,
 	},
-});
+	isPremium: {
+	  //ATTRIBUTE DESIGNED FOR FUTURE SPRINT-CREATE TOGGLE BUTTON IN FRONT
+	  type: DataTypes.BOOLEAN,
+	  allowNull: true,
+	  defaultValue:false,
+	},
+	isActive: {
+	  //ATTRIBUTE DESIGNED FOR FUTURE SPRINT-CREATE TOGGLE BUTTON IN FRONT
+	  type: DataTypes.BOOLEAN,
+	  allowNull: true,
+	  defaultValue:true,
+	},
+	},
+	{
+		freezeTableName: true,
+		timestamps: true,
+	}
+);
+
 
 User.createPassword = function (plainText) {
 	try {

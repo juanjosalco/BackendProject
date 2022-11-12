@@ -16,7 +16,12 @@ const Library = sequelize.define("Library", {
 	description: {
 		type: DataTypes.TEXT,
 	},
-});
+	},
+	{
+		freezeTableName: true,
+		timestamps: true,
+	}
+);
 
 Library.hasMany(Book);
 Book.belongsTo(Library);

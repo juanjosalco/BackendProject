@@ -7,7 +7,7 @@ const Review = sequelize.define(
 	"Reviews",
 	{
 		review: {
-			type: DataTypes.TEXT("tiny"),
+			type: DataTypes.STRING,
 			allowNull: true,
 		},
 		rating: {
