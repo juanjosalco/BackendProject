@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const auth = require("../config/auth");
 
 const {
 	createRol,
@@ -10,6 +11,7 @@ const {
 
 router.get(
 	"/",
+	auth.isAdmin,
 	getRoles
 	/*
   #swagger.tags = ['Roles'];
@@ -22,10 +24,15 @@ router.get(
 				rol: 'admin',
 			}
 		}
+  #swagger.security = [{
+               "bearer": []
+        }]
+	
   */
 );
 router.get(
 	"/:id",
+	auth.isAdmin,
 	getRol
 	/*
   #swagger.tags = ['Roles'];
@@ -50,11 +57,15 @@ router.get(
 			schema: {
 				error: 'Role not found.'
 			}
-		}
+		}	
+	  #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.post(
 	"/",
+	auth.isAdmin,
 	createRol
 	/*
   #swagger.tags = ['Roles'];
@@ -66,10 +77,14 @@ router.post(
 	type: 'object',
 	schema: { $ref: "#/definitions/Roles" }
   }
+    #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.put(
 	"/:id",
+	auth.isAdmin,
 	updateRol
 	/*
   #swagger.tags = ['Roles'];
@@ -89,10 +104,14 @@ router.put(
 	type: 'object',
 	schema: { $ref: "#/definitions/Roles" }
   }
+    #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.delete(
 	"/:id",
+	auth.isAdmin,
 	deleteRol
 	/*
   #swagger.tags = ['Roles'];
@@ -115,6 +134,9 @@ router.delete(
 				error: 'Role not found.'
 			}
 		}
+		  #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 

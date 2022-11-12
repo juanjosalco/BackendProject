@@ -194,8 +194,9 @@ async function deleteUser(req, res) {
 }
 
 async function bringByAttributes(req, res) {
+	//search/atributos?firstname=jarret
 	return await User.findAll({
-		where: req.body,
+		where: req.query,
 	})
 		.then((users) => {
 			if (users == "") {
@@ -208,7 +209,7 @@ async function bringByAttributes(req, res) {
 		.catch((err) => {
 			res
 				.status(400)
-				.json({ info: "Error in request", error: "description " + err });
+				.json({ info: "Check error", error: "description " + err });
 		});
 }
 

@@ -17,6 +17,7 @@ const {
 
 router.get(
 	"/",
+
 	getReviews
 	/*
 	#swagger.tags = ['Reviews'];
@@ -56,8 +57,9 @@ router.get(
 
 router.post(
 	"/",
-	/* authpassport,
-auth.required,*/ createReview
+	authpassport,
+	auth.isUser,
+	createReview
 
 	/*
 	#swagger.tags = ['Reviews'];
@@ -87,8 +89,9 @@ auth.required,*/ createReview
 
 router.put(
 	"/:id",
-	/*authpassport,
-auth.required,*/ updateReview
+	authpassport,
+	auth.isUser,
+	updateReview
 	/*
 	#swagger.tags = ['Reviews'];
 	#swagger.summary = 'Update a Review';
@@ -130,8 +133,9 @@ auth.required,*/ updateReview
 
 router.delete(
 	"/:id",
-	/*authpassport,
-auth.isAdmin,*/ deleteReview
+	authpassport,
+	auth.isAdmin,
+	deleteReview
 	/*
 	#swagger.tags = ['Reviews'];
 	#swagger.summary = 'Delete a Review';
