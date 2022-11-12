@@ -307,6 +307,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -429,6 +435,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -723,6 +732,9 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "security": [
@@ -857,6 +869,9 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -2149,6 +2164,9 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "security": [
@@ -2211,9 +2229,6 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "404": {
             "description": "User not found.",
             "content": {
@@ -2246,6 +2261,9 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -2406,6 +2424,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "security": [
@@ -2583,6 +2604,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -3034,6 +3058,12 @@
         "responses": {
           "200": {
             "description": "all Orders successfully obtained."
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -3048,11 +3078,11 @@
           "200": {
             "description": "Order successfully created."
           },
-          "201": {
-            "description": "Created"
-          },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "requestBody": {
@@ -3160,6 +3190,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -3217,6 +3250,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "requestBody": {
@@ -3292,6 +3328,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }

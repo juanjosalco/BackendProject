@@ -32,8 +32,8 @@ router.get(
 );
 router.get(
 	"/id/:id",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	getBook
 	/*
   #swagger.tags = ['Books'];
@@ -63,8 +63,8 @@ router.get(
 );
 router.post(
 	"/",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	createBook
 	/*
   #swagger.tags = ['Books'];
@@ -80,8 +80,8 @@ router.post(
 );
 router.put(
 	"/id/:id",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	updateBook
 	/*
   #swagger.tags = ['Books'];
@@ -105,8 +105,8 @@ router.put(
 );
 router.delete(
 	"/id/:id",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	deleteBook
 	/*
   #swagger.tags = ['Books'];

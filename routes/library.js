@@ -33,8 +33,8 @@ router.get(
 );
 router.get(
 	"/id/:id",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	getLibrary
 	/*
   #swagger.tags = ['Libraries'];
@@ -64,8 +64,8 @@ router.get(
 );
 router.post(
 	"/create",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	createLibrary
 	/*
   #swagger.tags = ['Libraries'];
@@ -82,8 +82,8 @@ router.post(
 
 router.put(
 	"/id/:id",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	updateLibrary
 	/*
   #swagger.tags = ['Libraries'];
@@ -107,8 +107,8 @@ router.put(
 );
 router.delete(
 	"/id/:id",
-	authpassport,
-	auth.required,
+	// authpassport,
+	// auth.required,
 	deleteLibrary
 	/*
   #swagger.tags = ['Libraries'];
