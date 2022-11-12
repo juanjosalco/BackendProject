@@ -11,16 +11,14 @@
     - [Books](#books)
     - [Categorias](#categorias)
     - [Editorial](#editorial)
-    - [Libreria](#libreria)
+- [Libreria](#libreria)
 * [Tecnologías](#Tecnologias)
 * [Documento inicial](#evidencia_documento_inicial)
-
 
 ## Descripcion
 
 Libravere es una API-REST, esta pensada para proporcionar información a quien la requiera de sus datos que contiene.
 Proporciona la información de las entidades creadas, ademas proporciona los métodos CRUD para manejar cada entidad.
-
 
 ## Instalacion
 
@@ -28,14 +26,15 @@ Para probar nuestro proyecto sigue los siguientes pasos
 
 * clonar repositorio a tu repositorio local
 * ´npm install` (instala las librerias necesarias)
-*  `npm run dev` (para iniciar la aplicacion en modo desarrollador
+* `npm run dev` (para iniciar la aplicacion en modo desarrollador
 
 con estos sencillos pasos tienes la aplicación en tu computadora y ahora puedes realizar las peticiones desde Insominia o Postman
 usando la siguiente dirección  `localhost:3000/`
 
-## Entidades   
+## Entidades
 
 el backend de la API cuenta con las siguientes entidades
+
 * Usuarios
 * Libros
 * Categoria
@@ -47,8 +46,11 @@ Cada uno de las entidades tiene propiamente su CRUD pero con distintos permisos 
 
 
 ## Relacion_entidades
+
 la relación de las entidades se describen en la siguiente imagen
-![](src/imgs/relacionEntidad.jpg)
+
+![relaciion entidaden Fase3](src/imgs/LibroverseF3.png)
+![relaciion entidaden Fase2](src/imgs/relacionEntidadF2.jpg)
 
 ## EndPoints
 
@@ -102,7 +104,7 @@ la relación de las entidades se describen en la siguiente imagen
 | `PATCH` | `/library/id/:id` | Modifica una editorial existente | usuario registrado| --- |
 | `DELETE` | `/library/id/:id` | Elimina una categoria especificada | usuario registrado | --- |
 
-##Tecnologias
+## Tecnologias
 
 * PostegreSQL
 * JavaScript
@@ -112,6 +114,7 @@ la relación de las entidades se describen en la siguiente imagen
 * Express.js
 * Heroku
 
-## Evidencia_Documento_inicial
+## Evidencia_Documento_inicia
+
 En este [Documento inicial](https://docs.google.com/document/d/1Zm7--3V2wiXMalCs8f_o3MtDpoGeK2owIOqlfRb7rno/edit)
-en donde fuimos realizando los primeros pasos para la creación y organización del proyecto.
+en donde fuimos realizando los primeros pasos para la creación y organización del proyecto. MergingNpx sequelize db:seed:allá --env
