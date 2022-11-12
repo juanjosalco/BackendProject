@@ -20,20 +20,23 @@ const Order = sequelize.define(
 		},
 		createdAt: DataTypes.DATE,
 		updatedAt: DataTypes.DATE,
-	}, {
+	},
+	{
 		freezeTableName: true,
 		timestamps: true,
-	}, {
-		hooks: {	
-			beforeCreate: function (orders, options){ 				
+	},
+	{
+		hooks: {
+			beforeCreate: function (orders, options) {
 				orders.createdAt = new Date();
-				orders.updatedAt = new Date(); 			
-				},
-			beforeUpdate: function (orders, options) { 
+				orders.updatedAt = new Date();
+				orders.order_date = new Date();
+			},
+			beforeUpdate: function (orders, options) {
 				orders.updatedAt = new Date();
 			},
 		},
-	},
+	}
 );
 
 //FKrels between Tables
