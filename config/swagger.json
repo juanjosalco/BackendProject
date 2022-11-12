@@ -307,10 +307,21 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -325,8 +336,19 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Rol",
           "required": true,
@@ -432,10 +454,21 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -462,10 +495,21 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Rol",
           "required": true,
@@ -538,8 +582,19 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/editorial/": {
@@ -2615,24 +2670,20 @@
         "parameters": [
           {
             "name": "body",
-            "in": "body",
+            "in": "query",
+            "allowReserved": true,
             "required": true,
             "description": "User data that will be search",
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "firstname": {
                   "type": "string",
-                  "example": "Jhon Doe"
-                },
-                "age": {
-                  "type": "number",
-                  "example": 29
+                  "example": "jarret"
                 }
               },
               "required": [
-                "name",
-                "age"
+                "firstname"
               ]
             }
           }
@@ -2862,6 +2913,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "requestBody": {
@@ -2997,6 +3054,12 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Review ID doesnt exist in DB",
             "content": {
@@ -3104,6 +3167,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Review not deleted.",
