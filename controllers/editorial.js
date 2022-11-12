@@ -19,9 +19,13 @@ async function getEditorial(req, res) {
 	try {
 		const name = req.params.name;
 
-		const ed = await Editorial.findByPk(name, {
+		const ed = await Editorial.findOne({
+			where: {name},
 			include: Book,
 		});
+		if (!ed){
+			return res.status(404).json({Error : "Editorial doesnt exist in DB",name})
+		}
 		res.status(200).json(ed);
 	} catch (error) {
 		res
@@ -48,7 +52,9 @@ async function updateEditorial(req, res) {
 		const name = req.params.name;
 		const ed = req.body;
 
-		const newEd = await Editorial.findByPk(name);
+		const newEd = await Editorial.findOne({
+			where:{name}
+		});
 
 		for (const key in ed) {
 			if (!newEd[key] && newEd[key] != null) {
@@ -72,11 +78,14 @@ async function updateEditorial(req, res) {
 async function deleteEditorial(req, res) {
 	try {
 		const name = req.params.name;
-		if (!Number(id)) {
-			return res.status(400).json({ error: "Try with numeric value" });
+		const deleteEd = await Editorial.findOne({
+			where:{name}
+		});
+		if (!deleteEd){
+			return res.status(404).json({Error: "The editorial doesnt exist in DB", name})
 		}
-		const destruido = Editorial.destroy({ where: { name } });
-		res.status(200).json({ destruido });
+		await Editorial.destroy({ where: { name } });
+		res.status(200).json({ Deleted : name});
 	} catch (error) {
 		res
 			.status(400)
