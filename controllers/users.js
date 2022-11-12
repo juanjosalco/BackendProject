@@ -34,28 +34,6 @@ async function signUp(req, res) {
 					user.credit_card = card;
 				}
 
-				// if user does not have CC set rol user
-				// if (!req.body.credit_card) {
-				// 	try {
-				// 		user.rol = "2";
-				// 	} catch (error) {
-				// 		res.status(400).json({
-				// 			info: "Error in request",
-				// 			error: "description " + error,
-				// 		});
-				// 	}
-				// } else {
-				// 	// if user has CC set rol to premium
-				// 	try {
-				// 		user.rol = "5";
-				// 	} catch (error) {
-				// 		res.status(400).json({
-				// 			info: "Error in request",
-				// 			error: "description " + error,
-				// 		});
-				// 	}
-				// }
-
 				// save user
 				user.save();
 				return res
@@ -104,47 +82,48 @@ async function signUp(req, res) {
 }
 
 async function getUser(req, res) {
-	try {
-		const id = req.params.id;
-
-		if (!Number(id)) {
-			return res.status(400).json({ error: "Try with numeric value" });
-		}
-
-		const user = await User.findByPk(id, {
-			include: [{ association: User.hasMany(Library) }],
+	return await User.findOne({
+		where: { id: req.params.id },
+		include: [
+			{
+				model: Library,
+				as: "Libraries",
+				attributes: ["id", "name", "description"],
+			},
+		],
+	})
+		.then((user) => {
+			if (!user) {
+				return res.status(404).json({
+					message: "User not found",
+				});
+			}
+			return res.status(200).json({ message: "heres your user", user });
+		})
+		.catch((err) => {
+			return res.status(500).json({
+				info: "Error in request",
+				error: "description " + err,
+			});
 		});
-		if (!user) {
-			return res
-				.status(404)
-				.json({ mensaje: "id not found in DB, try with another id" });
-		}
-		res.status(200).json(user);
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Check error", error: "description " + error });
-	}
 }
 
 // confirm if deletable
 async function getUsers(req, res) {
-	try {
-		if (!!req.auth && req.auth.role == "admin") {
-			const users = await User.findAll({
-				include: [{ association: User.hasMany(Library) }],
-			});
-			return res.status(200).json({ message: "here are all the users", user });
-		}
-		const user = await User.findAll(/*{
-			attributes: ["id", "username", "firstname", "email", "rol"],
-		}*/);
-		res.status(200).json({ message: "here are all the users", user });
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
+	return await User.findAll()
+		.then((users) => {
+			if (users == "") {
+				return res.status(404).json({
+					message: "No users found, maybe you should create some",
+				});
+			}
+			res.status(200).json({ message: "here are all the users", users });
+		})
+		.catch((err) => {
+			res
+				.status(400)
+				.json({ info: "Check error", error: "description " + err });
+		});
 }
 
 async function updateUser(req, res) {
@@ -192,32 +171,47 @@ async function updateUser(req, res) {
 }
 
 async function deleteUser(req, res) {
-	try {
-		const id = req.params.id;
-		if (!Number(id)) {
-			return res.status(400).json({ error: "Try with numeric value" });
+	return await User.findByPk(req.params.id).then((user) => {
+		// if user exists
+		if (!user) {
+			return res.status(404).json({
+				message: "User Not Found",
+			});
 		}
-		const destruido = User.destroy({ where: { id } });
-		res.status(200).json({ destruido, id });
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
+		// delete user
+		return user
+			.destroy()
+			.then(() =>
+				res.status(200).json({ message: "User successfully deleted", user })
+			)
+			.catch((error) =>
+				res.status(400).json({
+					info: "Error in request",
+					error: "description " + error,
+				})
+			);
+	});
 }
 
 async function bringByAttributes(req, res) {
-	try {
-		const user = await User.findAll({
-			attributes: ["username", "firstname", "email", "rol"],
+	return await User.findAll({
+		where: req.body,
+	})
+		.then((users) => {
+			if (users == "") {
+				return res.status(404).json({
+					message: "No users found, maybe you should create some",
+				});
+			}
+			res.status(200).json({ message: "here are all the users", users });
+		})
+		.catch((err) => {
+			res
+				.status(400)
+				.json({ info: "Error in request", error: "description " + err });
 		});
-		res.status(200).json(user);
-	} catch (error) {
-		res
-			.status(400)
-			.json({ info: "Error in request", error: "description " + error });
-	}
 }
+
 async function bringByRol(req, res) {
 	try {
 		const rol = req.params.rol;
@@ -228,7 +222,16 @@ async function bringByRol(req, res) {
 					"No users found under that role maybe it doesnt exist or users have not been created",
 			});
 		}
-		res.status(200).json(user);
+		const users = user.map((user) => {
+			return {
+				id: user.id,
+				username: user.username,
+				firstname: user.firstname,
+				lastname: user.lastname,
+				rol: user.rol,
+			};
+		});
+		res.status(200).json({ message: "here are all the users", users });
 	} catch (error) {
 		res
 			.status(400)
