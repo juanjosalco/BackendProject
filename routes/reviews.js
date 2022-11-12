@@ -45,10 +45,10 @@ router.get(
 	}
 	#swagger.responses[200] = {
 		description: 'Review successfully obtained.',}
-	#swagger.responses[400] = {
-		description: 'Review not found.',
+	#swagger.responses[404] = {
+		description: 'ID not found.',
 		schema: {
-			error: 'Review not found.'
+			error: 'Review ID doesnt exist in DB.'
 		}
 	}
 	*/
@@ -114,9 +114,15 @@ auth.required,*/ updateReview
 		description: 'Review successfully updated.',
 	}
 	#swagger.responses[400] = {
-		description: 'Review not updated.',
+		description: 'Attributes not update, attributes not valid',
 		schema: {
-			error: 'Review not updated.'
+			error: 'Attributes not update, attributes not valid'
+		}
+	}
+	#swagger.responses[404] = {
+		description: 'Review ID doesnt exist in DB',
+		schema: {
+			error: 'Review ID doesnt exist in DB'
 		}
 	}
 	*/
@@ -142,9 +148,15 @@ auth.isAdmin,*/ deleteReview
 		description: 'Review successfully deleted.',
 	}
 	#swagger.responses[400] = {
+		description: 'Error in request.',
+		schema: {
+			error: 'info: Error in request, error: description error'
+		}
+	}
+	#swagger.responses[404] = {
 		description: 'Review not deleted.',
 		schema: {
-			error: 'Review not deleted.'
+			error: 'Review not found.'
 		}
 	}
 	*/

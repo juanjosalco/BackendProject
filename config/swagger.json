@@ -258,6 +258,1823 @@
         }
       }
     },
+    "/rol/": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get all Roles",
+        "description": "API to get all Roles",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all Roles successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    },
+                    "rol": {
+                      "type": "string",
+                      "example": "admin"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    },
+                    "rol": {
+                      "type": "string",
+                      "example": "admin"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Create a new Role",
+        "description": "API to create a new Role",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "description": "Rol",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rol/{id}": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get Role by ID",
+        "description": "API to get Role based on Role ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Role ID that will be search",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Role not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Update a Role",
+        "description": "API to update a Role",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Role ID that will be updated",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "description": "Rol",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Delete Role by ID",
+        "description": "API to delete Role based on Role ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Role ID that will be deleted",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role successfully deleted."
+          },
+          "400": {
+            "description": "Role not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Role not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/editorial/": {
+      "get": {
+        "tags": [
+          "Editorials"
+        ],
+        "summary": "Get all Editorials",
+        "description": "API to get all Editorials",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all Editorials successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Editorials"
+        ],
+        "summary": "Create a new Editorial",
+        "description": "API to create a new Editorial",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "description": "Editorial",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorial"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorial"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/editorial/id/{name}": {
+      "get": {
+        "tags": [
+          "Editorials"
+        ],
+        "summary": "Get Editorial by ID",
+        "description": "API to get Editorial based on Editorial ID",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Editorial ID that will be search",
+            "example": 1,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Editorial successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Editorial not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Editorials"
+        ],
+        "summary": "Update an Editorial",
+        "description": "API to update a Role",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Editorial ID that will be updated",
+            "example": 1,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "description": "Editorial",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorial"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Editorial"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Editorials"
+        ],
+        "summary": "Delete Editorial by ID",
+        "description": "API to delete Editorial based on Editorial ID",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Editorial ID that will be deleted",
+            "example": 1,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Editorial successfully deleted."
+          },
+          "400": {
+            "description": "Editorial not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Editorial not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/category/": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all Categories",
+        "description": "API to get all Categories",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all Categories successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create a new Category",
+        "description": "API to create a new Category",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Category",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/category/id/{genre}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get Categorie by Genre",
+        "description": "API to get Categorie based on Genre",
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Genre that will be search",
+            "example": "action"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "genre": {
+                      "type": "string",
+                      "example": "action"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "genre": {
+                      "type": "string",
+                      "example": "action"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Category not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Update a Categories",
+        "description": "API to update a Category",
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Genre that will be updated",
+            "example": "action"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Category",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Delete Category by Genre",
+        "description": "API to delete Category based on Genre",
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "genre that will be deleted",
+            "example": "action"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category successfully deleted."
+          },
+          "400": {
+            "description": "Category not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Category not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/author/": {
+      "get": {
+        "tags": [
+          "Authors"
+        ],
+        "summary": "Get all Authors",
+        "description": "API to get all Authors",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all Authors successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/author/id/{id}": {
+      "get": {
+        "tags": [
+          "Authors"
+        ],
+        "summary": "Get Author by ID",
+        "description": "API to get Author based on Author ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Author ID that will be search",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Author successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Author not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Author not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Author not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Authors"
+        ],
+        "summary": "Update a Author",
+        "description": "API to update a Author",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Author ID that will be updated",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Author",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Authors"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Authors"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Authors"
+        ],
+        "summary": "Delete Author by ID",
+        "description": "API to delete Author based on Author ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Author ID that will be deleted",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Author successfully deleted."
+          },
+          "400": {
+            "description": "Author not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Author not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Author not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/author/create": {
+      "post": {
+        "tags": [
+          "Authors"
+        ],
+        "summary": "Create a new Author",
+        "description": "API to create a new Author",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Author",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Authors"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Authors"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/book/": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Get all Books",
+        "description": "API to get all Books",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all Books successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Create a new Book",
+        "description": "API to create a new Book",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "description": "Book",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/book/id/{id}": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Get Book by ID",
+        "description": "API to get Book based on Book ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Book ID that will be search",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Book not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Update a Book",
+        "description": "API to update a Book",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Book ID that will be updated",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "description": "Book",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Delete Book by ID",
+        "description": "API to delete Book based on Book ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Book ID that will be deleted",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book successfully deleted."
+          },
+          "400": {
+            "description": "Book not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/library/": {
+      "get": {
+        "tags": [
+          "Libraries"
+        ],
+        "summary": "Get all Libraries",
+        "description": "API to get all Libraries",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all Libraries successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/library/id/{id}": {
+      "get": {
+        "tags": [
+          "Libraries"
+        ],
+        "summary": "Get Library by ID",
+        "description": "API to get Library based on Library ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Library ID that will be search",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Library successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Library not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Libraries"
+        ],
+        "summary": "Update a Library",
+        "description": "API to update a Library",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Library ID that will be updated",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "description": "Library",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Libraries"
+        ],
+        "summary": "Delete Library by ID",
+        "description": "API to delete Library based on Library ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Library ID that will be deleted",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Library successfully deleted."
+          },
+          "400": {
+            "description": "Library not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Library not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/library/create": {
+      "post": {
+        "tags": [
+          "Libraries"
+        ],
+        "summary": "Create a new Library",
+        "description": "API to create a new Library",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "description": "Library",
+          "required": true,
+          "type": "object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Library"
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/": {
       "get": {
         "tags": [
@@ -867,1854 +2684,6 @@
         }
       }
     },
-    "/category/": {
-      "get": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "Get all Categories",
-        "description": "API to get all Categories",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "all Categories successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "Create a new Category",
-        "description": "API to create a new Category",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "requestBody": {
-          "description": "Category",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Category"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Category"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/id/{genre}": {
-      "get": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "Get Categorie by Genre",
-        "description": "API to get Categorie based on Genre",
-        "parameters": [
-          {
-            "name": "genre",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Genre that will be search",
-            "example": "action"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Category successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "genre": {
-                      "type": "string",
-                      "example": "action"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "genre": {
-                      "type": "string",
-                      "example": "action"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Category not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Category not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Category not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "Update a Categories",
-        "description": "API to update a Category",
-        "parameters": [
-          {
-            "name": "genre",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Genre that will be updated",
-            "example": "action"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "requestBody": {
-          "description": "Category",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Category"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Category"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "Delete Category by Genre",
-        "description": "API to delete Category based on Genre",
-        "parameters": [
-          {
-            "name": "genre",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "genre that will be deleted",
-            "example": "action"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Category successfully deleted."
-          },
-          "400": {
-            "description": "Category not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Category not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Category not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/editorial/": {
-      "get": {
-        "tags": [
-          "Editorials"
-        ],
-        "summary": "Get all Editorials",
-        "description": "API to get all Editorials",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "all Editorials successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Editorials"
-        ],
-        "summary": "Create a new Editorial",
-        "description": "API to create a new Editorial",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "requestBody": {
-          "description": "Editorial",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Editorial"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Editorial"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/editorial/id/{name}": {
-      "get": {
-        "tags": [
-          "Editorials"
-        ],
-        "summary": "Get Editorial by ID",
-        "description": "API to get Editorial based on Editorial ID",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Editorial Name that will be search",
-            "example": "Bantam Books"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Editorial successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Name": {
-                      "type": "string",
-                      "example": "Bantam Books"
-                    },
-                    "country": {
-                      "type": "string",
-                      "example": "mexico"
-                    },
-                    "editorial_desc": {
-                      "type": "string",
-                      "example": "a book publisher"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "example": "2022-11-11T06:52:15.192Z"
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "example": "2022-11-11T06:52:15.192Z"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Name": {
-                      "type": "string",
-                      "example": "Bantam Books"
-                    },
-                    "country": {
-                      "type": "string",
-                      "example": "mexico"
-                    },
-                    "editorial_desc": {
-                      "type": "string",
-                      "example": "a book publisher"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "example": "2022-11-11T06:52:15.192Z"
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "example": "2022-11-11T06:52:15.192Z"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Editorial not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Editorial not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Editorial not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Editorials"
-        ],
-        "summary": "Update an Editorial",
-        "description": "API to update a Role",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Editorial Name that will be updated",
-            "example": "Bantam Books",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "requestBody": {
-          "description": "Editorial",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Editorial"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Editorial"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Editorials"
-        ],
-        "summary": "Delete Editorial by ID",
-        "description": "API to delete Editorial based on Editorial ID",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Editorial ID that will be deleted",
-            "example": "Bantam Books"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Editorial successfully deleted."
-          },
-          "400": {
-            "description": "Editorial not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Editorial not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Editorial not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/book/": {
-      "get": {
-        "tags": [
-          "Books"
-        ],
-        "summary": "Get all Books",
-        "description": "API to get all Books",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "all Books successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Books"
-        ],
-        "summary": "Create a new Book",
-        "description": "API to create a new Book",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "requestBody": {
-          "description": "Book",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Book"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Book"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/book/id/{id}": {
-      "get": {
-        "tags": [
-          "Books"
-        ],
-        "summary": "Get Book by ID",
-        "description": "API to get Book based on Book ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Book ID that will be search",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Role successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Book not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Book not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Book not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Books"
-        ],
-        "summary": "Update a Book",
-        "description": "API to update a Book",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Book ID that will be updated",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "requestBody": {
-          "description": "Book",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Book"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Book"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Books"
-        ],
-        "summary": "Delete Book by ID",
-        "description": "API to delete Book based on Book ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Book ID that will be deleted",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Book successfully deleted."
-          },
-          "400": {
-            "description": "Book not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Book not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Book not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
-    "/library/": {
-      "get": {
-        "tags": [
-          "Libraries"
-        ],
-        "summary": "Get all Libraries",
-        "description": "API to get all Libraries",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "all Libraries successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/library/id/{id}": {
-      "get": {
-        "tags": [
-          "Libraries"
-        ],
-        "summary": "Get Library by ID",
-        "description": "API to get Library based on Library ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Library ID that will be search",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Library successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Library not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Library not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Library not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Libraries"
-        ],
-        "summary": "Update a Library",
-        "description": "API to update a Library",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Library ID that will be updated",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "requestBody": {
-          "description": "Library",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Library"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Library"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Libraries"
-        ],
-        "summary": "Delete Library by ID",
-        "description": "API to delete Library based on Library ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Library ID that will be deleted",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Library successfully deleted."
-          },
-          "400": {
-            "description": "Library not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Library not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Library not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
-    "/library/create": {
-      "post": {
-        "tags": [
-          "Libraries"
-        ],
-        "summary": "Create a new Library",
-        "description": "API to create a new Library",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "requestBody": {
-          "description": "Library",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Library"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Library"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/author/": {
-      "get": {
-        "tags": [
-          "Authors"
-        ],
-        "summary": "Get all Authors",
-        "description": "API to get all Authors",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "all Authors successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/author/id/{id}": {
-      "get": {
-        "tags": [
-          "Authors"
-        ],
-        "summary": "Get Author by ID",
-        "description": "API to get Author based on Author ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Author ID that will be search",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Author successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Author not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Author not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Author not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Authors"
-        ],
-        "summary": "Update a Author",
-        "description": "API to update a Author",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Author ID that will be updated",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "requestBody": {
-          "description": "Author",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Authors"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Authors"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Authors"
-        ],
-        "summary": "Delete Author by ID",
-        "description": "API to delete Author based on Author ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Author ID that will be deleted",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Author successfully deleted."
-          },
-          "400": {
-            "description": "Author not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Author not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Author not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/author/create": {
-      "post": {
-        "tags": [
-          "Authors"
-        ],
-        "summary": "Create a new Author",
-        "description": "API to create a new Author",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "requestBody": {
-          "description": "Author",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Authors"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Authors"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/rol/": {
-      "get": {
-        "tags": [
-          "Roles"
-        ],
-        "summary": "Get all Roles",
-        "description": "API to get all Roles",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "all Roles successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    },
-                    "rol": {
-                      "type": "string",
-                      "example": "admin"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "1"
-                    },
-                    "rol": {
-                      "type": "string",
-                      "example": "admin"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Roles"
-        ],
-        "summary": "Create a new Role",
-        "description": "API to create a new Role",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "description": "Rol",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Roles"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Roles"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/rol/{id}": {
-      "get": {
-        "tags": [
-          "Roles"
-        ],
-        "summary": "Get Role by ID",
-        "description": "API to get Role based on Role ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Role ID that will be search",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Role successfully obtained.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 1
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Role not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Role not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Role not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Roles"
-        ],
-        "summary": "Update a Role",
-        "description": "API to update a Role",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Role ID that will be updated",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "requestBody": {
-          "description": "Rol",
-          "required": true,
-          "type": "object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Roles"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Roles"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Roles"
-        ],
-        "summary": "Delete Role by ID",
-        "description": "API to delete Role based on Role ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Role ID that will be deleted",
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Role successfully deleted."
-          },
-          "400": {
-            "description": "Role not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Role not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Role not found."
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/review/": {
       "get": {
         "tags": [
@@ -2820,8 +2789,8 @@
           "200": {
             "description": "Review successfully obtained."
           },
-          "400": {
-            "description": "Review not found.",
+          "404": {
+            "description": "ID not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2829,7 +2798,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Review not found."
+                      "example": "Review ID doesnt exist in DB."
                     }
                   },
                   "xml": {
@@ -2843,7 +2812,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Review not found."
+                      "example": "Review ID doesnt exist in DB."
                     }
                   },
                   "xml": {
@@ -2878,7 +2847,7 @@
             "description": "Review successfully updated."
           },
           "400": {
-            "description": "Review not updated.",
+            "description": "Attributes not update, attributes not valid",
             "content": {
               "application/json": {
                 "schema": {
@@ -2886,7 +2855,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Review not updated."
+                      "example": "Attributes not update, attributes not valid"
                     }
                   },
                   "xml": {
@@ -2900,7 +2869,40 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Review not updated."
+                      "example": "Attributes not update, attributes not valid"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Review ID doesnt exist in DB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Review ID doesnt exist in DB"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Review ID doesnt exist in DB"
                     }
                   },
                   "xml": {
@@ -2953,7 +2955,7 @@
             "description": "Review successfully deleted."
           },
           "400": {
-            "description": "Review not deleted.",
+            "description": "Error in request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2961,7 +2963,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Review not deleted."
+                      "example": "info: Error in request, error: description error"
                     }
                   },
                   "xml": {
@@ -2975,7 +2977,40 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Review not deleted."
+                      "example": "info: Error in request, error: description error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Review not deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Review not found."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Review not found."
                     }
                   },
                   "xml": {

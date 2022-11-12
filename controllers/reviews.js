@@ -44,7 +44,10 @@ async function createReview(req, res) {
 async function getReview(req, res) {
 	const id = req.params.id;
 	const review = await Review.findByPk(id);
-	res.status(200).json(review);
+	if (!review){
+		return res.status(404).json({Error : "ID doesnt exist in DB", id})
+	}
+	return res.status(200).json(review);
 }
 
 /*No validation required
@@ -57,11 +60,28 @@ async function getReviews(req, res) {
 }
 
 async function updateReview(req, res) {
-	const id = req.params.id;
+	
 	try {
+		const id = req.params.id;
 		const review = req.body;
-		await Review.update(review, { where: { id: id } });
 		const review_updated = await Review.findByPk(id);
+		
+		if (!review_updated){
+			return res
+			.status(404)
+			.json({Error : "ID doesn't exist in DB",id})
+		}
+		for (const key in review) {
+			if (!review_updated[key] && review_updated[key] != null || review_updated[key] == undefined) {
+				console.log("no encontrado");
+				return res
+					.status(400)
+					.json({ Error: "Attributes not update, attribute not valid" ,key });
+			}
+			
+		}
+
+		await Review.update(review, { where: { id: id } });		
 		res.status(200).json(review_updated);
 	} catch (err) {
 		if (
@@ -83,9 +103,23 @@ async function updateReview(req, res) {
  * Only if a GetAll or GetById call return if user exists
  */
 async function deleteReview(req, res) {
-	const id = req.params.id;
-	const deleted = Review.destroy({ where: { id: id } });
-	res.status(200).json(deleted);
+	
+	try {
+		const id = req.params.id;
+		const reviewToDeleted = await Review.findByPk(id);
+		if (!reviewToDeleted) {
+			return res.status(404).json({ message: "Review not found" });
+		}
+		await reviewToDeleted.destroy();
+		res.status(200).json({ message: "Review deleted", reviewToDeleted });
+	} catch (error) {
+		res
+			.status(400)
+			.json({ info: "Error in request", error: "description " + error });
+	}
+
+
+
 }
 
 module.exports = {
