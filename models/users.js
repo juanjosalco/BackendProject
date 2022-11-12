@@ -39,10 +39,6 @@ const User = sequelize.define("User", {
 			isEmail: true, // se revisa que el dato sea un email
 		},
 	},
-	/*userpass: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},*/
 	password_hash: {
 		type: DataTypes.TEXT,
 		allowNull: true,
@@ -83,11 +79,22 @@ const User = sequelize.define("User", {
 	  allowNull: true,
 	  defaultValue:true,
 	},
+	createdAt: DataTypes.DATE,
+	updatedAt: DataTypes.DATE,
+}, {
+	freezeTableName: true,
+	timestamps: true,
+}, {
+	hooks: {		
+		beforeCreate: function (user, options){ 				
+			user.createdAt = new Date();
+			user.updatedAt = new Date(); 			
+			},
+		beforeUpdate: function (user, options) { 
+			user.updatedAt = new Date();
+		},
 	},
-	{
-		freezeTableName: true,
-		timestamps: true,
-	}
+},
 );
 
 
@@ -141,8 +148,60 @@ User.generateJWT = function (user) {
 	);
 };
 
-User.hasMany(Library);
-Library.hasMany(User);
+//Chech Relations do not change tableid type of atttibute name, else all other CRUD should be changed too.
+//Still working status on EVAL
+/*User.hasOne(Library);
+Library.hasMany(User);*/
+const LibraryUser = sequelize.define("LibraryUser", {
+id: {
+	type: Sequelize.INTEGER,
+	autoIncrement: true,
+	allowNull: false,
+	primaryKey: true,
+  },
+   //FK to Library model/table
+  LibraryId: {
+  type: Sequelize.INTEGER,
+  references: {
+	model: 'Library',
+	key: 'id'
+  },
+  onDelete: 'CASCADE'
+  },
+   //FK to Library model/table
+  UserId: {
+	type: Sequelize.INTEGER,
+	references: {
+	  model: 'User',
+	  key: 'id'
+	},
+	onDelete: 'CASCADE'
+},
+createdAt: DataTypes.DATE,
+updatedAt: DataTypes.DATE,
+}, {
+freezeTableName: true,
+timestamps: true,
+}, {
+hooks: {		
+	beforeCreate: function (libraryUser, options){ 				
+		libraryUser.createdAt = new Date();
+		libraryUser.updatedAt = new Date(); 			
+		},
+	beforeUpdate: function (libraryUser, options) { 
+		libraryUser.updatedAt = new Date();
+	},
+},
+},
+);
+
+Library.belongsToMany(User, { through: 'LibraryUser' });
+User.belongsToMany(Library, { through: 'LibraryUser' });
+User.hasMany(LibraryUser);
+LibraryUser.belongsTo(User);
+Library.hasMany(LibraryUser);
+LibraryUser.belongsTo(Library);
+
 
 Rol.hasMany(User, {
 	foreignKey: "rol",

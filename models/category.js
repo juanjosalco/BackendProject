@@ -15,12 +15,22 @@ const Category = sequelize.define("Category", {
 	description: {
 		type: DataTypes.STRING,
 	},
+	createdAt: DataTypes.DATE,
+	updatedAt: DataTypes.DATE,
+}, {
+	freezeTableName: true,
+	timestamps: true,
+}, {
+	hooks: {		
+		beforeCreate: function (category, options){ 				
+			category.createdAt = new Date();
+			category.updatedAt = new Date(); 			
+			},
+		beforeUpdate: function (category, options) { 
+			category.updatedAt = new Date();
+		},
 	},
-	{
-		freezeTableName: true,
-		timestamps: true,
-	}
+},
 );
-
 
 module.exports = Category;

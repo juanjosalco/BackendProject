@@ -32,7 +32,7 @@ const Book = sequelize.define("Book", {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
-	
+	//Remove after relations are fully working at the bottom
 	///Not required after category model is created.
       /*category: { SHOULD BE categoryId BY ASSOCIATIONS-RELATIONS 
         type: DataTypes.STRING,
@@ -44,19 +44,32 @@ const Book = sequelize.define("Book", {
         allowNull: false,
       },*/
 
+	
+	createdAt: DataTypes.DATE,
+	updatedAt: DataTypes.DATE,
+}, {
+	freezeTableName: true,
+	timestamps: true,
+}, {
+	hooks: {		
+		beforeCreate: function (book, options){ 				
+			book.createdAt = new Date();
+			book.updatedAt = new Date(); 			
+			},
+		beforeUpdate: function (book, options) { 
+			book.updatedAt = new Date();
+		},
 	},
-	{
-		freezeTableName: true,
-		timestamps: true,
-	}
+}
 );
 
-
-Book.hasOne(Category);
+//Chech Relations do not change tableid type of atttibute name, else all other CRUD should be changed too.
+//Still working status on EVAL
+Book.belongsTo(Category);
 Category.hasMany(Book);
-Book.hasOne(Editorial);
+Book.belongsTo(Editorial);
 Editorial.hasMany(Book);
-Book.hasOne(Author);
+Book.belongsTo(Author);
 Author.hasMany(Book);
 
 module.exports = Book;

@@ -14,11 +14,22 @@ const Rol = sequelize.define(
 			allowNull: false,
 			unique: true,
 		},
-	},
-	{
+		createdAt: DataTypes.DATE,
+		updatedAt: DataTypes.DATE,
+	}, {
 		freezeTableName: true,
-		timestamps: false,
-	}
+		timestamps: true,
+	}, {
+		hooks: {	
+			beforeCreate: function (rol, options){ 				
+				rol.createdAt = new Date();
+				rol.updatedAt = new Date(); 			
+				},
+			beforeUpdate: function (rol, options) { 
+				rol.updatedAt = new Date();
+			},
+		},
+	},
 );
 
 module.exports = Rol;

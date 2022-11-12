@@ -1,9 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
-//REMOVE AFTER WORK STATUS CONF
-//const Book = require("./book");
-
 const Author = sequelize.define("Authors", {
 	id: {
 		type: DataTypes.INTEGER,
@@ -23,16 +20,23 @@ const Author = sequelize.define("Authors", {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	createdAt: DataTypes.DATE,
+	updatedAt: DataTypes.DATE,
+},{
+	hooks: {		
+		beforeCreate: function (author, options){ 				
+			author.createdAt = new Date();
+			author.updatedAt = new Date(); 			
+			},
+		beforeUpdate: function (author, options) { 
+			author.updatedAt = new Date();
+		},
 	},
-	{
-		freezeTableName: true,
-		timestamps: true,
-	}
+},	
+{
+	freezeTableName: true,
+	timestamps: true,
+}
 );
-
-
-//remove after checking working status
-/*Author.hasMany(Book);
-Book.belongsTo(Author);*/  
 
 module.exports = Author;
