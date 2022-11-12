@@ -179,7 +179,7 @@ router.delete(
   */
 );
 router.get(
-	"/search/atributos",
+	"/search/atributos?",
 	authpassport,
 	auth.isAdmin,
 	bringByAttributes /*
@@ -188,15 +188,13 @@ router.get(
   #swagger.description = 'API to search user based on attributes';
   #swagger.consumes = ['application/json'];
   #swagger.parameters['body'] = {
-		  in: 'body',
+		  in: 'query',
 		  required: true,
 		  type: 'object',
 		  description: 'User data that will be search',
 		  schema: {
-			  $name: 'Jhon Doe',
-			  $age: 29,
-		  }
-		}
+			  $firstname: 'jarret',
+		}}
 		  #swagger.responses[200] = {
 			description: 'User successfully obtained.',
 		}

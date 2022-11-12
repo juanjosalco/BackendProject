@@ -63,7 +63,7 @@ router.get(
 router.post(
 	"/create",
 	authpassport,
-	auth.required,
+	auth.isEditor,
 	createAuthor
 	/*
   #swagger.tags = ['Authors'];
@@ -84,7 +84,7 @@ router.post(
 router.put(
 	"/id/:id",
 	authpassport,
-	auth.required,
+	auth.isEditor,
 	updateAuthor
 	/*
   #swagger.tags = ['Authors'];
@@ -112,7 +112,7 @@ router.put(
 router.delete(
 	"/id/:id",
 	authpassport,
-	auth.required,
+	auth.isAdmin,
 	deleteAuthor
 	/*
   #swagger.tags = ['Authors'];
