@@ -18,16 +18,12 @@ const config = {
 	},
 	servers: [
 		{
-			url: "http://localhost:3000/",
-			description: "Local server",
-		},
-		{
-			url: "http://localhost:5668/",
-			description: "Local Postgress server",
-		},
-		{
 			url: "https://libroverse-production.up.railway.app/",
 			description: "railway server",
+		},
+		{
+			url: "http://localhost:3000/",
+			description: "Local server",
 		},
 	],
 	openapi: "3.0.3",
