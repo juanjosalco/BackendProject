@@ -614,6 +614,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Editorial",
           "required": true,
@@ -647,17 +652,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Editorial ID that will be search",
-            "example": 1,
-            "schema": {
-              "type": "number"
-            }
+            },
+            "description": "Editorial ID that will be searched",
+            "example": "thoughtmix"
           }
         ],
         "responses": {
@@ -727,21 +724,10 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
           "404": {
             "description": "Not Found"
           }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -756,17 +742,9 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Editorial ID that will be updated",
-            "example": 1,
-            "schema": {
-              "type": "number"
-            }
+            },
+            "description": "Editorial ID that will be searched",
+            "example": "thoughtmix"
           }
         ],
         "responses": {
@@ -783,6 +761,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Editorial",
           "required": true,
@@ -873,7 +856,12 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/category/": {
@@ -1060,7 +1048,7 @@
         "tags": [
           "Categories"
         ],
-        "summary": "Update a Categories",
+        "summary": "Update a Category",
         "description": "API to update a Category",
         "parameters": [
           {
@@ -1352,9 +1340,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
           }
         },
         "security": [
@@ -1437,9 +1422,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
           }
         },
         "security": [
@@ -1466,9 +1448,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
           }
         },
         "security": [
@@ -1550,11 +1529,41 @@
         "description": "API to create a new Book",
         "parameters": [],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "Book successfully created."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Book not created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not created."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Book not created."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -1563,6 +1572,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Book",
           "required": true,
@@ -1668,11 +1682,8 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1708,6 +1719,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Book",
           "required": true,
@@ -1786,8 +1802,16 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/library/": {
@@ -1834,8 +1858,19 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/library/id/{id}": {
@@ -1932,8 +1967,16 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -1967,6 +2010,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Library",
           "required": true,
@@ -2045,8 +2093,19 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/library/create": {
@@ -2071,6 +2130,11 @@
             "description": "Forbidden"
           }
         },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
         "requestBody": {
           "description": "Library",
           "required": true,
@@ -2229,6 +2293,12 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "User not found.",
             "content": {
@@ -2357,9 +2427,6 @@
           "401": {
             "description": "Unauthorized"
           },
-          "403": {
-            "description": "Forbidden"
-          },
           "404": {
             "description": "Not Found"
           }
@@ -2424,6 +2491,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -2605,10 +2678,21 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/users/search/rol/{rol}": {
@@ -2616,7 +2700,8 @@
         "tags": [
           "User Filters"
         ],
-        "description": "",
+        "summary": "Search user by rol",
+        "description": "API to search user based on rol",
         "parameters": [
           {
             "name": "rol",
@@ -2624,20 +2709,33 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "User rol that will be search",
+            "example": "admin"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "User successfully obtained."
           },
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/users/logIn": {

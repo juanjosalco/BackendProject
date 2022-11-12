@@ -32,21 +32,18 @@ router.get(
 );
 router.get(
 	"/id/:name",
-	authpassport,
-	auth.required,
 	getEditorial
 	/*
   #swagger.tags = ['Editorials'];
   #swagger.summary = 'Get Editorial by ID';
   #swagger.description = 'API to get Editorial based on Editorial ID';
   #swagger.consumes = ['application/json'];
-  #swagger.parameters['id'] = {
+  #swagger.parameters['name'] = {
 		  in: 'path',
 		  required: true,
-		  type: 'number',
-		  description: 'Editorial ID that will be search',
-		  example: 1
-	}
+		  type: 'string',
+		  description: 'Editorial ID that will be searched',
+		  example: 'thoughtmix'}
 	  #swagger.responses[200] = {
 			description: 'Editorial successfully obtained.',
 			schema: {
@@ -59,9 +56,6 @@ router.get(
 				error: 'Editorial not found.'
 			}
 		}
-		 #swagger.security = [{
-               "bearer": []
-        }] 
 		
   */
 );
@@ -69,7 +63,7 @@ router.get(
 router.post(
 	"/",
 	authpassport,
-	auth.required,
+	auth.isEditor,
 	createEditorial
 	/*
   #swagger.tags = ['Editorials'];
@@ -81,31 +75,36 @@ router.post(
 	type: 'object',
 	schema: { $ref: "#/definitions/Editorial" }
   }
+  #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.put(
 	"/id/:name",
 	authpassport,
-	auth.required,
+	auth.isEditor,
 	updateEditorial
 	/*
   #swagger.tags = ['Editorials'];
   #swagger.summary = 'Update an Editorial';
   #swagger.description = 'API to update a Role';
   #swagger.consumes = ['application/json'];
-  #swagger.parameters['id'] = {
+#swagger.parameters['name'] = {
 		  in: 'path',
 		  required: true,
-		  type: 'number',
-		  description: 'Editorial ID that will be updated',
-		  example: 1
-	}
+		  type: 'string',
+		  description: 'Editorial ID that will be searched',
+		  example: 'thoughtmix'}
    #swagger.requestBody['edit'] = {
 	description: 'Editorial',
 	required: true,
 	type: 'object',
 	schema: { $ref: "#/definitions/Editorial" }
   }
+  #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.delete(
@@ -134,6 +133,9 @@ router.delete(
 				error: 'Editorial not found.'
 			}
 		}
+		#swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 

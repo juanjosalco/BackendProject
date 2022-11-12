@@ -63,8 +63,8 @@ router.get(
 );
 router.post(
 	"/",
-	// authpassport,
-	// auth.required,
+	authpassport,
+	auth.isEditor,
 	createBook
 	/*
   #swagger.tags = ['Books'];
@@ -76,12 +76,23 @@ router.post(
 	type: 'object',
 	schema: { $ref: "#/definitions/Book" }
   }
+  #swagger.responses[200] = {
+			description: 'Book successfully created.',}
+	  #swagger.responses[400] = {	
+			description: 'Book not created.',
+			schema: {
+				error: 'Book not created.'
+			}
+		}
+	#swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.put(
 	"/id/:id",
-	// authpassport,
-	// auth.required,
+	authpassport,
+	auth.isEditor,
 	updateBook
 	/*
   #swagger.tags = ['Books'];
@@ -101,12 +112,15 @@ router.put(
 	type: 'object',
 	schema: { $ref: "#/definitions/Book" }
   }
+  #swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 router.delete(
 	"/id/:id",
-	// authpassport,
-	// auth.required,
+	authpassport,
+	auth.isAdmin,
 	deleteBook
 	/*
   #swagger.tags = ['Books'];
@@ -129,6 +143,9 @@ router.delete(
 				error: 'Book not found.'
 			}
 		}
+		#swagger.security = [{
+               "bearer": []
+        }]
   */
 );
 

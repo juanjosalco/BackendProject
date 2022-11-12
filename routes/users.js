@@ -19,9 +19,9 @@ const {
 
 router.get(
 	"/",
-	getUsers,
-	authpassport,
-	auth.isAdmin
+	auth.isAdmin,
+	getUsers
+
 	/*
   #swagger.tags = ['Users'];
   #swagger.summary = 'Get all users';
@@ -41,8 +41,7 @@ router.get(
 );
 router.get(
 	"/id/:id",
-	// authpassport,
-	// auth.required,
+	auth.isAdmin,
 	getUser
 	/*
   #swagger.tags = ['Users'];
@@ -149,8 +148,8 @@ router.put(
 );
 router.delete(
 	"/id/:id",
-	// authpassport,
-	// auth.isAdmin,
+	authpassport,
+	auth.isAdmin,
 	deleteUser /*
   #swagger.tags = ['Users'];
   #swagger.summary = 'Delete user';
@@ -181,6 +180,8 @@ router.delete(
 );
 router.get(
 	"/search/atributos",
+	authpassport,
+	auth.isAdmin,
 	bringByAttributes /*
   #swagger.tags = ['User Filters'];
   #swagger.summary = 'Search user by attributes';
@@ -205,14 +206,33 @@ router.get(
 				error: 'User not found.'
 			}
 		}
+	  #swagger.security = [{
+			   "bearer": []
+		}]
   */
 );
 router.get(
 	"/search/rol/:rol",
-	// authpassport,
-	// auth.required,
+	authpassport,
+	auth.isAdmin,
 	bringByRol /*
   #swagger.tags = ['User Filters'];
+  #swagger.summary = 'Search user by rol';
+  #swagger.description = 'API to search user based on rol';
+  #swagger.consumes = ['application/json'];
+  #swagger.parameters['rol'] = {
+		  in: 'path',
+		  required: true,
+		  type: 'string',
+		  description: 'User rol that will be search',
+		  example: 'admin'
+		    }
+			  #swagger.responses[200] = {
+			description: 'User successfully obtained.',
+		}
+		  #swagger.security = [{
+			   "bearer": []
+		}]
   */
 );
 router.post(
