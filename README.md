@@ -40,6 +40,11 @@ el backend de la API cuenta con las siguientes entidades
 * Categoria
 * Editorial
 * Libreria
+* Ordenes
+* Reviews
+* Roles
+* Autores
+
 
 Cada uno de las entidades tiene propiamente su CRUD pero con distintos permisos de acceso estos se describen más en el apartado de
 [EndPoints](#endpoints)
