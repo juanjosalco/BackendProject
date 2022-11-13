@@ -104,6 +104,46 @@ la relación de las entidades se describen en la siguiente imagen
 | `PATCH` | `/library/id/:id` | Modifica una editorial existente | usuario registrado| --- |
 | `DELETE` | `/library/id/:id` | Elimina una categoria especificada | usuario registrado | --- |
 
+### Ordenes
+
+| Method | End-Point | Description | level access | notas |
+| --- | --- | --- | --- | --- |
+| `GET` | `/orders/` | Enlista *todos* | sin restricción| --- |
+| `GET` | `/orders/:id` | Obtiene una orden especificada | sin reestricción | --- |
+| `POST` | `/orders/` | Crea una orden | usuario registrado | --- |
+| `PUT` | `/orders/:id` | Modifica una orden existente | usuario registrado| --- |
+| `DELETE` | `/orders/:id` | Elimina una orden especificada | usuario registrado | --- |
+
+### Reviews
+
+| Method | End-Point | Description | level access | notas |
+| --- | --- | --- | --- | --- |
+| `GET` | `/reviews/` | Enlista *todos* | sin restricción| --- |
+| `GET` | `/reviews/:id` | Obtiene una review especificada | sin reestricción | --- |
+| `POST` | `/reviews/` | Crea una review | usuario registrado | --- |
+| `PUT` | `/reviews/:id` | Modifica una review existente | usuario registrado| --- |
+| `DELETE` | `/reviews/:id` | Elimina una review especificada | usuario registrado | --- |
+
+### Roles
+
+| Method | End-Point | Description | level access | notas |
+| --- | --- | --- | --- | --- |
+| `GET` | `/rol/` | Enlista *todos* | sin restricción| --- |
+| `GET` | `/rol/:id` | Obtiene un rol especificado | usuario registrado | --- |
+| `POST` | `/rol/` | Crea un rol | usuario registrado | --- |
+| `PUT` | `/rol/:id` | Modifica un rol existente | usuario registrado| --- |
+| `DELETE` | `/rol/:id` | Elimina un rol especificado | usuario registrado | --- |
+
+### Autores
+
+| Method | End-Point | Description | level access | notas |
+| --- | --- | --- | --- | --- |
+| `GET` | `/authors/` | Enlista *todos* | sin restricción| --- |
+| `GET` | `/authors/id/:id` | Obtiene un autor especificado | usuario registrado | --- |
+| `POST` | `/authors/create` | Crea un autor | usuario registrado | --- |
+| `PUT` | `/authors/id/:id` | Modifica un autor existente | usuario registrado| --- |
+| `DELETE` | `/authors/id/:id` | Elimina un autor especificado | usuario registrado | --- |
+
 ## Tecnologias
 
 * ~~PostegreSQL~~ -> MySQL
