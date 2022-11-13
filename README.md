@@ -26,10 +26,17 @@ Para probar nuestro proyecto sigue los siguientes pasos
 
 * clonar repositorio a tu repositorio local
 * ´npm install` (instala las librerias necesarias)
+* Instala las tablas de entidades via sequelize cli en la base de satos)
+- `01-migrate` o npx sequelize  db:migrate --env staging` 
+* Si encuentras un error, puedes correr para desinstalare o remover las tablas y volver a inicar el proceso.
+- `01-undo` o `npx sequelize  db:migrate:undo:all --env staging`
+    `02-seeder` o `npx sequelize  db:seed:all --env staging`
+    "02-undo":"npx sequelize  db:seed:undo:all --env staging",
 * `npm run dev` (para iniciar la aplicacion en modo desarrollador
 
 con estos sencillos pasos tienes la aplicación en tu computadora y ahora puedes realizar las peticiones desde Insominia o Postman
 usando la siguiente dirección  `localhost:3000/`
+
 
 ## Entidades
 
