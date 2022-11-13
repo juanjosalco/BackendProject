@@ -106,8 +106,7 @@ la relación de las entidades se describen en la siguiente imagen
 
 ## Tecnologias
 
-~~PostegreSQL~~* MySQL
-
+* ~~PostegreSQL~~ -> * MySQL
 * JavaScript
 * Node.js
 * npm
