@@ -26,7 +26,7 @@ Proporciona la información de las entidades creadas, ademas ofrece los métodos
 Para probar nuestro proyecto sigue los siguientes pasos
 
 * clonar repositorio a tu repositorio local
-* Configura tus variables de ambiente en el archivo .env. Toma como ejemplo .env.example. Puedes copiar y renombrar el archivo a .env
+* Configura tus variables de ambiente en el archivo `.env`. Toma como ejemplo `.env.example`. Puedes copiar y renombrar el archivo a `.env`.
 
 * ´npm install` (instala las librerias necesarias)
 
