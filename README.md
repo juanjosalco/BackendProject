@@ -17,7 +17,7 @@
 
 ## Descripcion
 
-<B>"Libravere el Spotify de los libros"</B>,  es una API-REST, esta pensada para el manejo de un sistema de prestamo de lirbos por suscripción. Da acceso a la información, a quien la requiera de los datos que contiene.
+<B>"Libraverse el Spotify de los libros"</B>,  es una API-REST, esta pensada para el manejo de un sistema de prestamo de lirbos por suscripción. Da acceso a la información, a quien la requiera de los datos que contiene.
 
 Proporciona la información de las entidades creadas, ademas ofrece los métodos CRUD para manejar cada entidad.
 
