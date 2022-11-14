@@ -182,3 +182,21 @@ Los roles y sus privilegios se describen en la sección [EndPoints](#endpoints)
 
 En este [Documento inicial](https://docs.google.com/document/d/1Zm7--3V2wiXMalCs8f_o3MtDpoGeK2owIOqlfRb7rno/edit)
 en donde fuimos realizando los primeros pasos para la creación y organización del proyecto. MergingNpx sequelize db:seed:allá --env
+
+
+## Créditos
+
+Proyecto de la Fase 03 del modulo Backend con JavaScript el cual fue desarrollado por el equipo #6, conformado por los siguientes integrantes
+
+- Miguel Chavez  [Github](https://github.com/toonchavez8) [LinkedIn](https://www.linkedin.com/in/toonchavez8/)
+- Juan Salazar [Github](https://github.com/juanjosalco) [LinkedIn](https://www.linkedin.com/in/juanjosalco/)
+- Francisco Goméz [Github](https://github.com/FrankTII)
+- Jesus Díaz [Github](https://github.com/jesuszdp)
+- Angel Lara [Github](https://github.com/Angel123Lara) [LinkedIn](https://www.linkedin.com/in/angel-jlarasz/)
+
+Este proyecto fue desarrollado gracias a los conocimientos adquiridos en el curso de:
+
+- Desarrollo Web con JavaScript de [Becas Santander Universidades](https://www.becas-santander.com/es/index.html) en colaboración con [Bedu](https://bedu.org/)
+
+
+
