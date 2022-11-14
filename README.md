@@ -25,13 +25,27 @@ Proporciona la información de las entidades creadas, ademas proporciona los mé
 Para probar nuestro proyecto sigue los siguientes pasos
 
 * clonar repositorio a tu repositorio local
+* Configura tus variables de ambiente en el archivo .env. Toma como ejemplo .env.example. Puedes copiar y renombrar el archivo a .env
+
 * ´npm install` (instala las librerias necesarias)
-* Instala las tablas de entidades via sequelize cli en la base de satos)
-- `01-migrate` o npx sequelize  db:migrate --env staging` 
-* Si encuentras un error, puedes correr para desinstalare o remover las tablas y volver a inicar el proceso.
-- `01-undo` o `npx sequelize  db:migrate:undo:all --env staging`
-    `02-seeder` o `npx sequelize  db:seed:all --env staging`
-    "02-undo":"npx sequelize  db:seed:undo:all --env staging",
+
+* Instala las tablas de entidades via sequelize cli en la base de datos. Eligiendo el ambiente de trabajo: `development` , `staging` o `production` segun el archivo `./config/config.js`
+
+
+    ` 01-migrate ` o ` npx sequelize  db:migrate --env <ambiente de trabajo> `
+
+* Si encuentras un error, puedes correr para desinstalar o remover las tablas y volver a inicar el proceso.
+
+    `01-undo` o `npx sequelize  db:migrate:undo:all --env <ambiente de trabajo>`
+
+* Puedes cargar datos de prueba en las  tablas de entidades via sequelize cli en la base de datos empleando el siguiente comando. No te recomendamos cargar estos datos en tu ambiente de produción.
+
+    `02-seeder` o `npx sequelize  db:seed:all --env <ambiente de trabajo>`
+
+* Si encuentras un error, puedes remover los datos de prueba y volver a inicar el proceso.
+
+    `02-undo` o `npx sequelize  db:seed:undo:all --env   <ambiente de trabajo>`,
+
 * `npm run dev` (para iniciar la aplicacion en modo desarrollador
 
 con estos sencillos pasos tienes la aplicación en tu computadora y ahora puedes realizar las peticiones desde Insominia o Postman
