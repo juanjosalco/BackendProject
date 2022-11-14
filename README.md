@@ -6,7 +6,8 @@
 * [Instalación](#instalacion)
 * [Entidades](#entidades)
     - [Relacion Entidades](#relacion_entidades)
-*[EndPoints](#endpoints)
+* [Niveles de acceso](#nivel_acceso)
+* [EndPoints](#endpoints)
     - [Usuarios](#usuarios)
     - [Books](#books)
     - [Categorias](#categorias)
@@ -16,6 +17,7 @@
 * [Documento inicial](#evidencia_documento_inicial)
 
 ## Descripcion
+
 
 <B>"Libraverse el Spotify de los libros"</B>,  es una API-REST, esta pensada para el manejo de un sistema de prestamo de lirbos por suscripción. Da acceso a la información, a quien la requiera de los datos que contiene.
 
@@ -57,15 +59,15 @@ usando la siguiente dirección  `localhost:3000/`
 
 el backend de la API cuenta con las siguientes entidades
 
-* Usuarios
-* Libros
-* Categoria
+* Authors
+* Books
+* Category
 * Editorial
-* Libreria
-* Ordenes
+* Library
+* Orders
 * Reviews
 * Roles
-* Autores
+* Users
 
 
 Cada uno de las entidades tiene propiamente su CRUD pero con distintos permisos de acceso estos se describen más en el apartado de
@@ -75,9 +77,24 @@ Cada uno de las entidades tiene propiamente su CRUD pero con distintos permisos 
 ## Relacion_entidades
 
 la relación de las entidades se describen en la siguiente imagen
-
+### Modelo en Fase 03
 ![relaciion entidaden Fase3](src/imgs/LibroverseF3.png)
+
+### Modelo en Fase 02 --- Anterior
 ![relaciion entidaden Fase2](src/imgs/relacionEntidadF2.jpg)
+
+## Nivel_Acceso
+
+Para ingresar a la API hay distintos niveles de acceso los cuales otorgan ciertos privilegios dentro de Libraryverse, los cuales son los siguientes:
+
+* Rol Adminsitrador // Dentro de la API solo hay un usuario como administador
+* Rol Editor
+* Rol User
+* Rol EditorialCompany
+* Rol premiumUser
+
+Los roles y sus privilegios se describen en la sección [EndPoints](#endpoints)
+
 
 ## EndPoints
 
@@ -85,31 +102,35 @@ la relación de las entidades se describen en la siguiente imagen
 
 | Method | End-Point | Description | level access | notas |
 | --- | --- | --- | --- | --- |
-| `GET` | `/users/` | Enlista *todos* | sin restricción| Solo si es **admin** muestra toda la información de los usuarios, pero si solo es **usuario registrado** o no esta registrado , solo muestra  **Username**,**firstname**, **email**,**rol**    |
-| `GET` | `/users/id/:id` | Obtiene un usuario especificado | usuario registrado | --- |
+| `GET` | `/users/` | Enlista *todos* | Solo administrador| --- |
+| `GET` | `/users/id/:id` | Obtiene un usuario especificado | Solo Administrador | --- |
 | `POST` | `/users/signUp` | Registra un nuevo usuario en la Base de Datos | sin restricciones | --- |
-| `PATCH` | `/users/id/:id` | Modifica un usuario |usuario registrado | un usuario puedo solo modificar su propio perfil, **admin** puede modificar cualquier usuario |
-| `DELETE` | `/users/id/:id` | Elimina un usuario especificado | usuario registrado | **admin** solo puede eliminar un usuario |
+| `PATCH` | `/users/id/:id` | Modifica un usuario |usuario registrado y administrador | --- |
+| `DELETE` | `/users/id/:id` | Elimina un usuario especificado | Solo Administrador | **admin** solo puede eliminar un usuario |
+| `GET` | `/users/search/atributos` | Obtienes los usuarios filtrado por los atributos indicados | Solo Administrador | --- |
+| `GET` | `/users/search/rol/:rol` | Obtiene los usuarios filtrado por el rol indicado | Solo Administrador | --- |
+| `POST` | `/users/logIn` | Esta ruta se utiliza para iniciar sesión en la API y obtener acceso | Sin restricción | ingresa un username y un password previamente registrados en la DB |
+
 
 ### Books
 
 | Method | End-Point | Description | level access | notas |
 | --- | --- | --- | --- | --- |
 | `GET` | `/book/` | Enlista *todos* | sin restricción| --- |
-| `POST` | `/book/` | Crea un nuevo libro | usuario registrado | --- |
-| `GET` | `/book/id/:id` | Obtiene un libro especificado | usuario registrado | --- |
-| `PATCH` | `book/id/:id` | Modifica un libro existente |usuario registrado | --- |
-| `DELETE` | `book/id/:id` | Elimina un libro especificado | usuario registrado | --- |
+| `POST` | `/book/` | Crea un nuevo libro | usuario registrado como Editor | --- |
+| `GET` | `/book/id/:id` | Obtiene un libro especificado indicado por el ID| sin restricción | --- |
+| `PUT` | `book/id/:id` | Modifica un libro existente |usuario registrado como Editor| --- |
+| `DELETE` | `book/id/:id` | Elimina un libro especificado | Solo Administrador | --- |
 
 ### Categorias
 
 | Method | End-Point | Description | level access | notas |
 | --- | --- | --- | --- | --- |
 | `GET` | `/Categoria/` | Enlista *todos* | sin restricción| --- |
-| `POST` | `/Categoria/` | Crea una categoria | usuario registrado | --- |
-| `GET` | `/Categoria/id/:name` | Obtiene una categoría especificada | usuario registrado | *escribir nombre de la editorial como pk* |
-| `PATCH` | `/Categoria/id/:name` | Modifica una categoria existente |usuario registrado | *escribir nombre de la editorial como pk* |
-| `DELETE` | `/Categoria/id/:name` | Elimina una categoria especificada | usuario registrado | *escribir nombre de la editorial como pk* |
+| `POST` | `/Categoria/` | Crea una categoria | usuario registrado como Editor| --- |
+| `GET` | `/Categoria/id/:genre` | Obtiene una categoría especificada | sin restricción | --- |
+| `PUT` | `/Categoria/id/:genre` | Modifica una categoria existente |usuario registrado como Editor | --- |
+| `DELETE` | `/Categoria/id/:name` | Elimina una categoria especificada | Solo administrador | --- |
 
 ### Editorial
 
@@ -126,10 +147,10 @@ la relación de las entidades se describen en la siguiente imagen
 | Method | End-Point | Description | level access | notas |
 | --- | --- | --- | --- | --- |
 | `GET` | `/library/` | Enlista *todos* | sin restricción| --- |
-| `GET` | `/library/id/:name` | Obtiene una  editorial especificada | usuario registrado | --- |
-| `POST` | `/library/` | Crea una editorial | usuario registrado | --- |
-| `PATCH` | `/library/id/:id` | Modifica una editorial existente | usuario registrado| --- |
-| `DELETE` | `/library/id/:id` | Elimina una categoria especificada | usuario registrado | --- |
+| `GET` | `/library/id/:name` | Obtiene una  editorial especificada | sin restricción | --- |
+| `POST` | `/library/` | Crea una editorial | usuario registrado como Editor | --- |
+| `PUT` | `/library/id/:id` | Modifica una editorial existente | usuario registrado como Editor| --- |
+| `DELETE` | `/library/id/:id` | Elimina una categoria especificada | Solo administrador | --- |
 
 ### Ordenes
 
