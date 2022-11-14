@@ -18,19 +18,42 @@
 
 ## Descripcion
 
-Libraryverse es una API-REST, esta pensada para proporcionar información a quien la requiera de sus datos que contiene.
-Proporciona la información de las entidades creadas, ademas proporciona los métodos CRUD para manejar cada entidad.
+
+<B>"Libraverse el Spotify de los libros"</B>,  es una API-REST, esta pensada para el manejo de un sistema de prestamo de lirbos por suscripción. Da acceso a la información, a quien la requiera de los datos que contiene.
+
+Proporciona la información de las entidades creadas, ademas ofrece los métodos CRUD para manejar cada entidad.
 
 ## Instalacion
 
 Para probar nuestro proyecto sigue los siguientes pasos
 
 * clonar repositorio a tu repositorio local
+* Configura tus variables de ambiente en el archivo `.env`. Toma como ejemplo `.env.example`. Puedes copiar y renombrar el archivo a `.env`.
+
 * ´npm install` (instala las librerias necesarias)
+
+* Instala las tablas de entidades via sequelize cli en la base de datos. Eligiendo el ambiente de trabajo: `development` , `staging` o `production` segun el archivo `./config/config.js`
+
+
+    ` 01-migrate ` o ` npx sequelize  db:migrate --env <ambiente de trabajo> `
+
+* Si encuentras un error, puedes correr para desinstalar o remover las tablas y volver a inicar el proceso.
+
+    `01-undo` o `npx sequelize  db:migrate:undo:all --env <ambiente de trabajo>`
+
+* Puedes cargar datos de prueba en las  tablas de entidades via sequelize cli en la base de datos empleando el siguiente comando. No te recomendamos cargar estos datos en tu ambiente de produción.
+
+    `02-seeder` o `npx sequelize  db:seed:all --env <ambiente de trabajo>`
+
+* Si encuentras un error, puedes remover los datos de prueba y volver a inicar el proceso.
+
+    `02-undo` o `npx sequelize  db:seed:undo:all --env   <ambiente de trabajo>`,
+
 * `npm run dev` (para iniciar la aplicacion en modo desarrollador
 
 con estos sencillos pasos tienes la aplicación en tu computadora y ahora puedes realizar las peticiones desde Insominia o Postman
 usando la siguiente dirección  `localhost:3000/`
+
 
 ## Entidades
 
@@ -42,9 +65,10 @@ el backend de la API cuenta con las siguientes entidades
 * Editorial
 * Library
 * Orders
-* reviews
-* rol
-* users
+* Reviews
+* Roles
+* Users
+
 
 Cada uno de las entidades tiene propiamente su CRUD pero con distintos permisos de acceso estos se describen más en el apartado de
 [EndPoints](#endpoints)
