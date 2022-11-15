@@ -1,0 +1,61 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    await queryInterface.bulkInsert('Authors', [{"id":1,"name":"Blackish oystercatcher","bio":"Multi-channelled 24 hour software","prizes":"Face to face background flexibility","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":2,"name":"Jungle kangaroo","bio":"Profound global access","prizes":"Persevering dedicated capability","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":3,"name":"Lemming, arctic","bio":"Polarised discrete initiative","prizes":"De-engineered executive process improvement","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":4,"name":"Otter, north american river","bio":"Enhanced zero administration matrix","prizes":"Optimized scalable database","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":5,"name":"Koala","bio":"Configurable local success","prizes":"User-centric national product","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":6,"name":"Sungazer, yellow-brown","bio":"Networked motivating ability","prizes":"Grass-roots uniform encoding","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":7,"name":"Asian false vampire bat","bio":"Programmable holistic focus group","prizes":"Polarised fresh-thinking moderator","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":8,"name":"Small Indian mongoose","bio":"Virtual encompassing orchestration","prizes":"Streamlined exuding implementation","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":9,"name":"Cat, toddy","bio":"Virtual mobile neural-net","prizes":"Synergized full-range strategy","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":10,"name":"Oryx, beisa","bio":"Down-sized cohesive time-frame","prizes":"Front-line national knowledge user","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":11,"name":"Hawk, ferruginous","bio":"Horizontal static local area network","prizes":"Synergized foreground model","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":12,"name":"Lizard (unidentified)","bio":"Fully-configurable directional data-warehouse","prizes":"Streamlined logistical contingency","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":13,"name":"Gnu, brindled","bio":"Profound static groupware","prizes":"Configurable global collaboration","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":14,"name":"Egyptian goose","bio":"Adaptive mission-critical infrastructure","prizes":"Secured optimizing frame","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":15,"name":"Common raccoon","bio":"Synergized full-range frame","prizes":"Optimized web-enabled matrices","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":16,"name":"Southern boubou","bio":"Synergistic solution-oriented data-warehouse","prizes":"User-friendly logistical local area network","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":17,"name":"Seal, southern elephant","bio":"Monitored dynamic framework","prizes":"Upgradable fresh-thinking time-frame","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":18,"name":"Siskin, pine","bio":"Self-enabling incremental encryption","prizes":"Customizable disintermediate paradigm","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":19,"name":"Marabou stork","bio":"Programmable optimal installation","prizes":"Re-engineered composite focus group","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":20,"name":"Goat, mountain","bio":"Cross-group holistic knowledge base","prizes":"Configurable discrete firmware","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":21,"name":"Yellow-crowned night heron","bio":"Synergistic leading edge moratorium","prizes":"Programmable dedicated internet solution","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":22,"name":"Vulture, white-rumped","bio":"Robust zero administration access","prizes":"Expanded foreground collaboration","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":23,"name":"Dog, african wild","bio":"Object-based explicit complexity","prizes":"Business-focused didactic analyzer","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":24,"name":"Sable antelope","bio":"Expanded 3rd generation moderator","prizes":"Seamless stable algorithm","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":25,"name":"Hoary marmot","bio":"Object-based scalable algorithm","prizes":"De-engineered neutral interface","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":26,"name":"Crane, stanley","bio":"Devolved tertiary process improvement","prizes":"Diverse full-range superstructure","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":27,"name":"Gaur","bio":"Adaptive explicit adapter","prizes":"Assimilated encompassing task-force","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":28,"name":"Greylag goose","bio":"Phased user-facing matrix","prizes":"Optimized regional hardware","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":29,"name":"Duck, mountain","bio":"Object-based dynamic installation","prizes":"Assimilated grid-enabled alliance","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":30,"name":"Topi","bio":"Reactive maximized infrastructure","prizes":"Right-sized mobile synergy","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":31,"name":"European wild cat","bio":"Public-key empowering info-mediaries","prizes":"Enterprise-wide fresh-thinking definition","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":32,"name":"Crimson-breasted shrike","bio":"Enterprise-wide value-added frame","prizes":"Virtual client-server paradigm","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":33,"name":"Rat, arboral spiny","bio":"Synergized explicit process improvement","prizes":"Persevering contextually-based hierarchy","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":34,"name":"Capuchin, brown","bio":"Synergized bi-directional time-frame","prizes":"Right-sized homogeneous functionalities","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":35,"name":"Yellow-billed hornbill","bio":"Ameliorated user-facing adapter","prizes":"Decentralized executive product","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":36,"name":"Buffalo, american","bio":"Implemented modular synergy","prizes":"Balanced clear-thinking portal","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":37,"name":"Striated heron","bio":"Polarised optimizing frame","prizes":"De-engineered static neural-net","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":38,"name":"Macaque, japanese","bio":"Balanced radical knowledge user","prizes":"Compatible transitional software","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":39,"name":"Owl, burrowing","bio":"Re-engineered 3rd generation framework","prizes":"Synergistic bifurcated functionalities","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":40,"name":"Red-necked phalarope","bio":"Progressive multi-state throughput","prizes":"Profit-focused mobile array","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":41,"name":"White-fronted bee-eater","bio":"Synergized contextually-based architecture","prizes":"Versatile fresh-thinking productivity","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":42,"name":"Screamer, southern","bio":"Multi-lateral local task-force","prizes":"Pre-emptive intangible budgetary management","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":43,"name":"White-throated kingfisher","bio":"Networked maximized focus group","prizes":"Sharable contextually-based open system","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":44,"name":"Eastern indigo snake","bio":"Decentralized homogeneous protocol","prizes":"Future-proofed client-server hub","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":45,"name":"Osprey","bio":"Secured scalable solution","prizes":"Monitored bandwidth-monitored matrix","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":46,"name":"Dragon, western bearded","bio":"Devolved analyzing collaboration","prizes":"Re-engineered intermediate hardware","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":47,"name":"Galah","bio":"Total demand-driven orchestration","prizes":"Switchable tertiary info-mediaries","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":48,"name":"Javan gold-spotted mongoose","bio":"Open-source encompassing productivity","prizes":"Mandatory incremental task-force","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":49,"name":"Siskin, yellow-rumped","bio":"Fundamental context-sensitive interface","prizes":"Fully-configurable discrete knowledge base","createdAt":new Date(),"updatedAt":new Date()},
+    {"id":50,"name":"Common raccoon","bio":"Up-sized methodical collaboration","prizes":"Assimilated national data-warehouse","createdAt":new Date(),"updatedAt":new Date()}], {});
+  },
+
+  async down (queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('Authors', null, {});
+  }
+};

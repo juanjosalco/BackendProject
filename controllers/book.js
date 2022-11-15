@@ -1,114 +1,188 @@
-const { Sequelize } = require('sequelize');
-const book = require('../models/book');
-const Category = require('../models/category')
-const Editorial = require('../models/editorial');
-const Library = require('../models/libary');
+// const { Sequelize } = require("sequelize"); // declared but never used
 
-function createBook(req, res) {
-    try {
-        const body = req.body;
-        book.create(body).then(bk => {
-            res.status(201).json(bk);
-        }
-        );
-    } catch (error) {
-        res.status(400).json({ "info": "Error in request",
-                                error : "description " + error})
+// import book model
+const { where } = require("sequelize");
+const Author = require("../models/authors");
+const book = require("../models/book");
 
+// import category  model
+const Category = require("../models/category");
+
+// import edtiorial model
+const Editorial = require("../models/editorial");
+
+// import library model
+const Library = require("../models/library");
+
+// create book
+async function createBook(req, res) {
+	return await book
+		.create(req.body)
+		.then((book) => {
+			// empty body
+			if (!req.body) {
+				res.status(400).send({
+					message: "Content can not be empty!",
+				});
+			}
+			// if book_name,
+			if (!req.body.book_name) {
+				res.status(400).send({
+					message: "book_name can not be empty!",
+				});
+			}
+			// if author_id,
+			if (!req.body.author_id) {
+				res.status(400).send({
+					message: "author_id can not be empty!",
+				});
+			}
+
+			// if category_id,
+			if (!req.body.category_id) {
+				res.status(400).send({
+					message: "category_id can not be empty!",
+				});
+			}
+			// send response
+			res.status(200).json({
+				message: "Book created sucessfully",
+				book,
+			});
+		})
+		.catch((error) => {
+			switch (
+				// if book_name is duplicated
+				error.name
+			) {
+				case "SequelizeUniqueConstraintError":
+					res.status(400).send({
+						message: "Unique constrant",
+						error: "description " + error,
+					});
+					break;
+				// if author_id is not valid
+				case "SequelizeForeignKeyConstraintError":
+					res.status(400).send({
+						message: "Foreign key constraint",
+						error: "description " + error,
+					});
+					break;
+				case "SequelizeValidationError":
+					res.status(400).send({
+						message: "Missing information",
+						error: "description " + error,
+					});
+					break;
+				default:
+					res.status(400).send({
+						message: "Something went wrong",
+						error: "description " + error,
+					});
+			}
+		});
 }
-}
 
+// get book by ID
 async function getBook(req, res) {
-    try {
-        const id = req.params.id;
-        if (!Number(id)) {
-
-            return (res.status(400).json({ error: "Try with numeric value" }))
-        }
-        const bk = await book.findByPk(id,
-            {
-                include: [
-                    { association: book.belongsTo(Editorial) },
-                    { association: book.belongsTo(Library) },
-                    { association: book.belongsTo(Category) }
-                ]
-            });
-        res.status(200).json(bk);
-    } catch (error) {
-        res.status(400).json({ "info": "Error in request",
-                                error : "description " + error})
-    }
+	return await book
+		.findOne({
+			where: {
+				id: req.params.id,
+			},
+			include: [
+				{ model: Editorial, as: "Editorial", attributes: ["name"] },
+				{ model: Category, as: "Category", attributes: ["genre"] },
+			],
+		})
+		.then((book) => {
+			if (!book) {
+				res
+					.status(404)
+					.json({ mensaje: "id not found in DB, try with another id" });
+			}
+			res.status(200).json(book);
+		})
+		.catch((error) => {
+			res
+				.status(400)
+				.json({ info: "Error in request", error: "description " + error });
+		});
 }
 
+// get all books
 async function getBooks(req, res) {
-    try {
-        const books = await book.findAll({
-
-            include: [{ association: book.belongsTo(Editorial) },
-            { association: book.belongsTo(Library) },
-            { association: book.belongsTo(Category) }]
-        });
-        res.status(200).json(books)
-    }
-    catch (err) {
-        res.status(400).json({ "info": "Error in request",
-                                error : "description " + error})
-
-    }
+	return await book
+		.findAll({
+			include: [
+				{ model: Author, attributes: ["name"] },
+				{ model: Editorial, as: "Editorial", attributes: ["name"] },
+				{ model: Category, as: "Category", attributes: ["genre"] },
+			],
+		})
+		.then((books) => {
+			res.status(200).json(books);
+		})
+		.catch((error) => {
+			res
+				.status(400)
+				.json({ info: "Error in request", error: "description " + error });
+		});
 }
 
+// update book
 async function updateBook(req, res) {
-    try {
-        const id = req.params.id;
-        const bk = req.body;
-        if (!Number(id)) {
+	try {
+		const id = req.params.id;
+		const bk = req.body;
+		if (!Number(id)) {
+			return res.status(400).json({ error: "Try with numeric value" });
+		}
 
-            return (res.status(400).json({ error: "Try with numeric value" }))
-        }
-
-        //
-        const newbk = await book.findByPk(id);
-        for (const key in bk) {
-                     
-            if (!newbk[key] && newbk[key] != null){
-              console.log("no encontrado")
-              return res.status(400).json({Error: "Attribute not update, attribute not valid"})
-            }
-          
-      }
-      //
-      const update = await book.update(bk, { where: { id } })
-      res.status(200).json({status : "Attribute was updated",
-                             user: user });
-
-    } catch (error) {
-        res.status(400).json({ "info": "Error in request",
-        error : "description " + error})
-    }
-
+		//
+		const newbk = await book.findByPk(id);
+		for (const key in bk) {
+			if (!newbk[key] && newbk[key] != null) {
+				console.log("no encontrado");
+				return res
+					.status(400)
+					.json({ Error: "Attribute not update, attribute not valid" });
+			}
+		}
+		//
+		const update = await book.update(bk, { where: { id } });
+		res.status(200).json({ status: "Attribute was updated", newbk });
+	} catch (error) {
+		res
+			.status(400)
+			.json({ info: "Error in request", error: "description " + error });
+	}
 }
 
-function deleteBook() {
-    try {
-        const id = req.params.id;
-        if (!Number(id)) {
-
-            return (res.status(400).json({ error: "Try with numeric value" }))
-        }
-        const destruido = book.destroy({ where: { id } });
-
-        res.status(200).json({ destruido });
-        return
-    } catch (error) {
-        res.status(400).json({ "info": "Error in request",
-                                error : "description " + error})
-    }
+// delete book
+async function deleteBook(req, res) {
+	return await book
+		.findByPk(req.params.id)
+		.then((book) => {
+			if (!book) {
+				res
+					.status(404)
+					.json({ mensaje: "id not found in DB, try with another id" });
+			}
+			book.destroy();
+			res.status(200).json({ mensaje: "Book deleted", book });
+		})
+		.catch((error) => {
+			res
+				.status(400)
+				.json({ info: "Error in request", error: "description " + error });
+		});
 }
 
 module.exports = {
-    createBook,
-    getBook,
-    getBooks,
-    updateBook,
-    deleteBook,
-}
+	createBook,
+	getBook,
+	getBooks,
+	updateBook,
+	deleteBook,
+};
