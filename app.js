@@ -17,6 +17,11 @@ app.use("/", routes);
 // use helmet and use cors
 app.use(helmet());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 // try {
 // 	sequelize.authenticate().then(() => {
